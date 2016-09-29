@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "element-ui": "^1.0.0-rc.4",
-    "vue": "^2.0.0-rc.6"
+    "vue": "^2.0.0-rc.8"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

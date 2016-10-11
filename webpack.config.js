@@ -27,11 +27,11 @@ module.exports = {
         loader: 'style!css'
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
         loader: 'file'
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
         loader: 'file',
         query: {
           name: '[name].[ext]?[hash]'

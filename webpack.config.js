@@ -1,61 +1,98 @@
-var path = require('path')
-var webpack = require('webpack')
+const {
+  resolve
+} = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const url = require('url')
+const publicPath = ''
 
-module.exports = {
-  entry: './src/main.js',
+module.exports = (options = {}) => ({
+  entry: {
+    vendor: './src/vendor',
+    index: './src/main.js'
+  },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    path: resolve(__dirname, 'dist'),
+    filename: options.dev ? '[name].js' : '[name].js?[chunkhash]',
+    chunkFilename: '[id].js?[chunkhash]',
+    publicPath: options.dev ? '/assets/' : publicPath
   },
   module: {
-    loaders: [
-      {
+    rules: [{
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: ['vue-loader']
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: ['babel-loader'],
         exclude: /node_modules/
       },
       {
+        test: /\.html$/,
+        use: [{
+          loader: 'html-loader',
+          options: {
+            root: resolve(__dirname, 'src'),
+            attrs: ['img:src', 'link:href']
+          }
+        }]
+      },
+      {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-        loader: 'file-loader'
+        test: /favicon\.png$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]?[hash]'
+          }
+        }]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
-        loader: 'file-loader',
-        query: {
-          name: '[name].[ext]?[hash]'
-        }
+        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+        exclude: /favicon\.png$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }]
       }
     ]
   },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true
-  },
-  devtool: '#eval-source-map'
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor', 'manifest']
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
     })
-  ])
-}
+  ],
+  resolve: {
+    alias: {
+      '~': resolve(__dirname, 'src')
+    }
+  },
+  devServer: {
+    host: '127.0.0.1',
+    port: 8010,
+    proxy: {
+      '/api/': {
+        target: 'http://127.0.0.1:8080',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
+    historyApiFallback: {
+      index: url.parse(options.dev ? '/assets/' : publicPath).pathname
+    }
+  },
+  performance: {
+    hints: options.dev ? false : 'warning'
+  },
+  devtool: options.dev ? '#eval-source-map' : '#source-map'
+})

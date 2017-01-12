@@ -11,6 +11,9 @@
     "element-ui": "^1.1.2",
     "vue": "^2.1.8"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "devDependencies": {
     "autoprefixer": "^6.6.0",
     "babel-core": "^6.21.0",
@@ -28,8 +31,9 @@
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "vue-loader": "^9.8.0",
-    "webpack": "beta",
+    "vue-loader": "^10.0.0",
+    "vue-template-compiler": "^2.1.8",
+    "webpack": "^2.2.0-rc.4",
     "webpack-dev-server": "beta"
   }
 }

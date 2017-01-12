@@ -4,6 +4,10 @@
 
 *If you are familiar with [cooking](https://github.com/elemefe/cooking), [here](https://github.com/ElementUI/element-cooking-starter) is a starter generated with it*
 
+## Environment
+
+`Node >= 6`
+
 ## Start
 
  - Clone or download this repository

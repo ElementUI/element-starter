@@ -1,6 +1,4 @@
-const {
-  resolve
-} = require('path')
+const resolve = require('path').resolve
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const url = require('url')
@@ -28,31 +26,11 @@ module.exports = (options = {}) => ({
         exclude: /node_modules/
       },
       {
-        test: /\.html$/,
-        use: [{
-          loader: 'html-loader',
-          options: {
-            root: resolve(__dirname, 'src'),
-            attrs: ['img:src', 'link:href']
-          }
-        }]
-      },
-      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
-        test: /favicon\.png$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]?[hash]'
-          }
-        }]
-      },
-      {
         test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-        exclude: /favicon\.png$/,
         use: [{
           loader: 'url-loader',
           options: {

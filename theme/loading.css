@@ -124,7 +124,7 @@
 }
 
 .el-loading-spinner .el-loading-text{
-  color: red;
+  color: #1D8CE0;
   margin: 3px 0;
   font-size: 14px;
 }
@@ -140,7 +140,7 @@
   stroke-dasharray: 90, 150;
   stroke-dashoffset: 0;
   stroke-width: 2;
-  stroke: red;
+  stroke: #1D8CE0;
   stroke-linecap: round;
 }
 
@@ -172,7 +172,7 @@
   /* Transition
   -------------------------- */
   /* Colors
-  -------------------------- #20a0ff;*/
+  -------------------------- */
   /* Link
   -------------------------- */
   /* Border

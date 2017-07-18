@@ -91,7 +91,7 @@
 }
 
 .el-tag{
-    background-color: rgb(165, 136, 131);
+    background-color: rgb(131, 145, 165);
     display: inline-block;
     padding: 0 5px;
     height: 24px;
@@ -121,42 +121,42 @@
 
 .el-tag .el-icon-close:hover{
     background-color: #fff;
-    color: rgb(165, 136, 131)
+    color: rgb(131, 145, 165)
 }
 
 .el-tag--gray{
-    background-color: rgb(241, 231, 228);
-    border-color: rgb(241, 231, 228);
-    color: rgb(106, 77, 72)
+    background-color: rgb(228, 232, 241);
+    border-color: rgb(228, 232, 241);
+    color: rgb(72, 87, 106)
 }
 
 .el-tag--gray .el-tag__close:hover{
-    background-color: rgb(106, 77, 72);
+    background-color: rgb(72, 87, 106);
     color: #fff
 }
 
 .el-tag--gray.is-hit{
-    border-color: rgb(106, 77, 72)
+    border-color: rgb(72, 87, 106)
 }
 
 .el-tag--primary{
-    background-color: rgba(255, 0, 0, 0.1);
-    border-color: rgba(255, 0, 0, 0.2);
-    color: red
+    background-color: rgba(29, 140, 224, 0.1);
+    border-color: rgba(29, 140, 224, 0.2);
+    color: #1D8CE0
 }
 
 .el-tag--primary .el-tag__close:hover{
-    background-color: red;
+    background-color: #1D8CE0;
     color: #fff
 }
 
 .el-tag--primary.is-hit{
-    border-color: red
+    border-color: #1D8CE0
 }
 
 .el-tag--success{
-    background-color: rgba(18,206,102,0.10);
-    border-color: rgba(18,206,102,0.20);
+    background-color: rgba(18, 206, 102, 0.10);
+    border-color: rgba(18, 206, 102, 0.20);
     color: #13ce66
 }
 
@@ -170,8 +170,8 @@
 }
 
 .el-tag--warning{
-    background-color: rgba(247,186,41,0.10);
-    border-color: rgba(247,186,41,0.20);
+    background-color: rgba(247, 186, 41, 0.10);
+    border-color: rgba(247, 186, 41, 0.20);
     color: #f7ba2a
 }
 
@@ -185,8 +185,8 @@
 }
 
 .el-tag--danger{
-    background-color: rgba(255,73,73,0.10);
-    border-color: rgba(255,73,73,0.20);
+    background-color: rgba(255, 73, 73, 0.10);
+    border-color: rgba(255, 73, 73, 0.20);
     color: #ff4949
 }
 
@@ -202,7 +202,7 @@
     /* Transition
   -------------------------- */
     /* Colors
-  -------------------------- #20a0ff;*/
+  -------------------------- */
     /* Link
   -------------------------- */
     /* Border

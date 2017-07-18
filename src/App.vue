@@ -19,8 +19,7 @@
     <el-checkbox-group v-model="checkboxGroup3" size="large" fill="#324057" text-color="#a4aebd" :min="1" :max="3">
       <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
     </el-checkbox-group>
-    <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
-    </el-tree>
+    <el-button type="text" @click="open">点击打开 Message Box</el-button>
   </div>
 </template>
 
@@ -85,12 +84,23 @@ export default {
         message: 'We have laid the groundwork for you. Now it\'s your time to build something epic!',
         duration: 6000
       })
+    },
+    open() {
+      this.$alert('这是一段内容', '标题名称', {
+        confirmButtonText: '确定',
+        callback: action => {
+          this.$message({
+            type: 'info',
+            message: `action: ${action}`
+          });
+        }
+      });
     }
   }
 }
 </script>
 
-<style>
+<style lang="sass" scoped>
 body {
   font-family: Helvetica, sans-serif;
 }

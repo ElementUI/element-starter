@@ -91,7 +91,7 @@
 }
 
 .el-collapse{
-    border: 1px solid rgb(223, 230, 236);
+    border: 1px solid rgb(236, 223, 223);
     border-radius: 0;
 }
 
@@ -110,9 +110,9 @@
     line-height: 43px;
     padding-left: 15px;
     background-color: #fff;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
     cursor: pointer;
-    border-bottom: 1px solid rgb(223, 230, 236);
+    border-bottom: 1px solid rgb(236, 223, 223);
     font-size: 13px;
 }
 
@@ -123,23 +123,23 @@
 
 .el-collapse-item__wrap{
     will-change: height;
-    background-color: rgb(251, 253, 255);
+    background-color: rgb(255, 250, 250);
     overflow: hidden;
     box-sizing: border-box;
-    border-bottom: 1px solid rgb(223, 230, 236);
+    border-bottom: 1px solid rgb(236, 223, 223);
 }
 
 .el-collapse-item__content{
     padding: 10px 15px;
     font-size: 13px;
-    color: rgb(31, 45, 61);
+    color: rgb(61, 34, 31);
     line-height: 1.769230769230769;
 }
 :root{
     /* Transition
   -------------------------- */
     /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
     /* Link
   -------------------------- */
     /* Border

@@ -172,23 +172,23 @@
 }
 
 .el-dialog__headerbtn .el-dialog__close {
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
 }
 
 .el-dialog__headerbtn:focus .el-dialog__close, .el-dialog__headerbtn:hover .el-dialog__close{
-    color: #20a0ff;
+    color: red;
 }
 
 .el-dialog__title{
     line-height: 1;
     font-size: 16px;
     font-weight: 700;
-    color: rgb(31, 45, 61);
+    color: rgb(61, 34, 31);
 }
 
 .el-dialog__body{
     padding: 30px 20px;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
     font-size: 14px;
 }
 
@@ -231,7 +231,7 @@
     /* Transition
   -------------------------- */
     /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
     /* Link
   -------------------------- */
     /* Border

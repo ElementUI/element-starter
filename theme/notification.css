@@ -130,7 +130,7 @@
 .el-notification__title{
     font-weight: 400;
     font-size: 16px;
-    color: rgb(31, 45, 61);
+    color: rgb(61, 34, 31);
     margin: 0;
 }
 
@@ -138,7 +138,7 @@
     font-size: 14px;
     line-height: 21px;
     margin: 10px 0 0 0;
-    color: rgb(131, 145, 165);
+    color: rgb(165, 136, 131);
     text-align: justify;
 }
 
@@ -156,12 +156,12 @@
     right: 20px;
     position: absolute;
     cursor: pointer;
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
     font-size: 14px;
 }
 
 .el-notification__closeBtn:hover{
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
 }
 
 .el-notification-fade-enter {
@@ -176,7 +176,7 @@
     /* Transition
   -------------------------- */
     /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
     /* Link
   -------------------------- */
     /* Border

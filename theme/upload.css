@@ -125,7 +125,7 @@
 }
 .el-progress__text{
     font-size: 14px;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
@@ -174,7 +174,7 @@
 .el-progress-bar__outer{
     height: 6px;
     border-radius: 100px;
-    background-color: rgb(228, 232, 241);
+    background-color: rgb(241, 231, 228);
     overflow: hidden;
     position: relative;
     vertical-align: middle;
@@ -185,7 +185,7 @@
     top: 0;
     height: 100%;
     border-radius: 2px 0 0 2px;
-    background-color: #20a0ff;
+    background-color: red;
     text-align: right;
     border-radius: 100px;
     line-height: 1;
@@ -318,7 +318,7 @@
 
 .el-upload__tip{
     font-size: 12px;
-    color: rgb(131, 145, 165);
+    color: rgb(165, 136, 131);
     margin-top: 7px;
 }
 
@@ -340,8 +340,8 @@
 }
 
 .el-upload--picture-card:hover{
-    border-color: #20a0ff;
-    color: #20a0ff;
+    border-color: red;
+    color: red;
 }
 
 .el-upload-dragger{
@@ -358,19 +358,19 @@
 }
 
 .el-upload-dragger .el-upload__text{
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
     font-size: 14px;
     text-align: center
 }
 
 .el-upload-dragger .el-upload__text em{
-    color: #20a0ff;
+    color: red;
     font-style: normal;
 }
 
 .el-upload-dragger .el-icon-upload{
     font-size: 67px;
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
     margin: 40px 0 16px;
     line-height: 50px;
 }
@@ -380,18 +380,18 @@
 }
 
 .el-upload-dragger ~ .el-upload__files{
-    border-top: 1px solid rgba(191, 203, 217, 0.2);
+    border-top: 1px solid rgba(217, 193, 191, 0.2);
     margin-top: 7px;
     padding-top: 5px;
 }
 
 .el-upload-dragger:hover{
-    border-color: #20a0ff;
+    border-color: red;
 }
 
 .el-upload-dragger.is-dragover{
     background-color: rgba(32, 159, 255, .06);
-    border: 2px dashed #20a0ff;
+    border: 2px dashed red;
 }
 
 .el-upload-list{
@@ -403,7 +403,7 @@
 .el-upload-list__item{
     transition: all .5s cubic-bezier(.55,0,.1,1);
     font-size: 14px;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
     line-height: 1.8;
     margin-top: 5px;
     position: relative;
@@ -446,7 +446,7 @@
     right: 5px;
     cursor: pointer;
     opacity: .75;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
     transform: scale(.7);
 }
 
@@ -455,7 +455,7 @@
 }
 
 .el-upload-list__item:hover{
-    background-color: rgb(238, 241, 246);
+    background-color: rgb(246, 240, 238);
 }
 
 .el-upload-list__item:hover .el-icon-close{
@@ -471,7 +471,7 @@
 }
 
 .el-upload-list__item.is-success .el-upload-list__item-name:hover{
-    color: #20a0ff;
+    color: red;
     cursor: pointer;
 }
 
@@ -480,7 +480,7 @@
 }
 
 .el-upload-list__item-name{
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
     display: block;
     margin-right: 40px;
     overflow: hidden;
@@ -491,7 +491,7 @@
 }
 
 .el-upload-list__item-name [class^="el-icon"] {
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
     margin-right: 7px;
     height: 100%;
     line-height: inherit;
@@ -510,12 +510,12 @@
     right: 10px;
     top: 0;
     font-size: 12px;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
     display: none;
 }
 
 .el-upload-list__item-delete:hover{
-    color: #20a0ff;
+    color: red;
 }
 
 .el-upload-list--picture-card{
@@ -837,13 +837,13 @@
     margin: 0;
     line-height: 36px;
     font-size: 14px;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
 }
 :root{
     /* Transition
   -------------------------- */
     /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
     /* Link
   -------------------------- */
     /* Border

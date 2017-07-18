@@ -91,7 +91,7 @@
 }
 
 .el-checkbox{
-    color: rgb(31, 45, 61);
+    color: rgb(61, 34, 31);
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -116,8 +116,8 @@
 }
 
 .el-checkbox__input.is-indeterminate .el-checkbox__inner{
-    background-color: #20a0ff;
-    border-color: rgb(1, 144, 254)
+    background-color: red;
+    border-color: rgb(228, 1, 1)
 }
 
 .el-checkbox__input.is-indeterminate .el-checkbox__inner::before{
@@ -136,12 +136,12 @@
 }
 
 .el-checkbox__input.is-focus .el-checkbox__inner{
-    border-color: #20a0ff;
+    border-color: red;
 }
 
 .el-checkbox__input.is-checked .el-checkbox__inner{
-    background-color: #20a0ff;
-    border-color: rgb(1, 144, 254)
+    background-color: red;
+    border-color: rgb(228, 1, 1)
 }
 
 .el-checkbox__input.is-checked .el-checkbox__inner::after{
@@ -149,14 +149,14 @@
 }
 
 .el-checkbox__input.is-disabled .el-checkbox__inner{
-    background-color: rgb(238, 241, 246);
-    border-color: rgb(209, 219, 229);
+    background-color: rgb(246, 240, 238);
+    border-color: rgb(229, 211, 209);
     cursor: not-allowed
 }
 
 .el-checkbox__input.is-disabled .el-checkbox__inner::after{
     cursor: not-allowed;
-    border-color: rgb(238, 241, 246)
+    border-color: rgb(246, 240, 238)
 }
 
 .el-checkbox__input.is-disabled .el-checkbox__inner + .el-checkbox__label{
@@ -164,8 +164,8 @@
 }
 
 .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
-    background-color: rgb(209, 219, 229);
-    border-color: rgb(209, 219, 229)
+    background-color: rgb(229, 211, 209);
+    border-color: rgb(229, 211, 209)
 }
 
 .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after{
@@ -173,8 +173,8 @@
 }
 
 .el-checkbox__input.is-disabled.is-indeterminate .el-checkbox__inner{
-    background-color: rgb(209, 219, 229);
-    border-color: rgb(209, 219, 229)
+    background-color: rgb(229, 211, 209);
+    border-color: rgb(229, 211, 209)
 }
 
 .el-checkbox__input.is-disabled.is-indeterminate .el-checkbox__inner::before{
@@ -189,7 +189,7 @@
 .el-checkbox__inner{
     display: inline-block;
     position: relative;
-    border: 1px solid rgb(191, 203, 217);
+    border: 1px solid rgb(217, 193, 191);
     border-radius: 4px;
     box-sizing: border-box;
     width: 18px;
@@ -201,7 +201,7 @@
 }
 
 .el-checkbox__inner:hover{
-    border-color: #20a0ff
+    border-color: red
 }
 
 .el-checkbox__inner::after{
@@ -244,30 +244,30 @@
 
 .el-checkbox-button.is-checked .el-checkbox-button__inner{
     color: #fff;
-    background-color: #20a0ff;
-    border-color: #20a0ff;
-    box-shadow: -1px 0 0 0 #20a0ff
+    background-color: red;
+    border-color: red;
+    box-shadow: -1px 0 0 0 red
 }
 
 .el-checkbox-button.is-disabled{}
 
 .el-checkbox-button.is-disabled .el-checkbox-button__inner{
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
     cursor: not-allowed;
     background-image: none;
-    background-color: rgb(238, 241, 246);
-    border-color: rgb(209, 219, 229);
+    background-color: rgb(246, 240, 238);
+    border-color: rgb(229, 211, 209);
     box-shadow: none
 }
 
 .el-checkbox-button.is-focus{}
 
 .el-checkbox-button.is-focus .el-checkbox-button__inner{
-    border-color: #20a0ff
+    border-color: red
 }
 
 .el-checkbox-button:first-child .el-checkbox-button__inner{
-    border-left: 1px solid rgb(191, 203, 217);
+    border-left: 1px solid rgb(217, 193, 191);
     border-radius: 4px 0 0 4px;
     box-shadow: none !important
 }
@@ -283,9 +283,9 @@
     vertical-align: middle;
     cursor: pointer;
     background: #fff;
-    border: 1px solid rgb(191, 203, 217);
+    border: 1px solid rgb(217, 193, 191);
     border-left: 0;
-    color: rgb(31, 45, 61);
+    color: rgb(61, 34, 31);
     -webkit-appearance: none;
     text-align: center;
     box-sizing: border-box;
@@ -303,7 +303,7 @@
 }
 
 .el-checkbox-button__inner:hover{
-    color: #20a0ff
+    color: red
 }
 
 .el-checkbox-button__inner [class*="el-icon-"]{
@@ -350,7 +350,7 @@
     /* Transition
   -------------------------- */
     /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
     /* Link
   -------------------------- */
     /* Border

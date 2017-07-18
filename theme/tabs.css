@@ -93,7 +93,7 @@
 .el-tabs{}
 
 .el-tabs__header{
-  border-bottom: 1px solid rgb(209, 219, 229);
+  border-bottom: 1px solid rgb(229, 211, 209);
   padding: 0;
   position: relative;
   margin: 0 0 15px;
@@ -104,7 +104,7 @@
   bottom: 0;
   left: 0;
   height: 3px;
-  background-color: #20a0ff;
+  background-color: red;
   z-index: 1;
   transition: transform .3s cubic-bezier(.645,.045,.355,1);
   list-style: none;
@@ -130,7 +130,7 @@
 }
 
 .el-tabs__new-tab:hover{
-  color: #20a0ff;
+  color: red;
 }
 
 .el-tabs__nav-wrap{
@@ -152,7 +152,7 @@
   cursor: pointer;
   line-height: 44px;
   font-size: 12px;
-  color: rgb(131, 145, 165);
+  color: rgb(165, 136, 131);
 }
 
 .el-tabs__nav-next{
@@ -178,7 +178,7 @@
   display: inline-block;
   list-style: none;
   font-size: 14px;
-  color: rgb(131, 145, 165);
+  color: rgb(165, 136, 131);
   position: relative;
 }
 
@@ -195,12 +195,12 @@
 }
 
 .el-tabs__item .el-icon-close:hover{
-  background-color: rgb(151, 168, 190);
+  background-color: rgb(190, 157, 151);
   color: #fff;
 }
 
 .el-tabs__item:hover{
-  color: rgb(31, 45, 61);
+  color: rgb(61, 34, 31);
   cursor: pointer;
 }
 
@@ -210,7 +210,7 @@
 }
 
 .el-tabs__item.is-active{
-  color: #20a0ff;
+  color: red;
 }
 
 .el-tabs__content{
@@ -252,7 +252,7 @@
 }
 
 .el-tabs--card > .el-tabs__header .el-tabs__item.is-active{
-  border: 1px solid rgb(209, 219, 229);
+  border: 1px solid rgb(229, 211, 209);
   border-bottom-color: #fff;
   border-radius: 4px 4px 0 0;
 }
@@ -268,7 +268,7 @@
 
 .el-tabs--border-card{
   background: #fff;
-  border: 1px solid rgb(209, 219, 229);
+  border: 1px solid rgb(229, 211, 209);
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.12), 0px 0px 6px 0px rgba(0,0,0,0.04);
 }
 
@@ -277,7 +277,7 @@
 }
 
 .el-tabs--border-card >.el-tabs__header {
-  background-color: rgb(238, 241, 246);
+  background-color: rgb(246, 240, 238);
   margin: 0;
 }
 
@@ -291,16 +291,16 @@
 
 .el-tabs--border-card >.el-tabs__header .el-tabs__item.is-active{
   background-color: #fff;
-  border-right-color: rgb(209, 219, 229);
-  border-left-color: rgb(209, 219, 229);
+  border-right-color: rgb(229, 211, 209);
+  border-left-color: rgb(229, 211, 209);
 }
 
 .el-tabs--border-card >.el-tabs__header .el-tabs__item.is-active:first-child{
-  border-left-color: rgb(209, 219, 229);
+  border-left-color: rgb(229, 211, 209);
 }
 
 .el-tabs--border-card >.el-tabs__header .el-tabs__item.is-active:last-child{
-  border-right-color: rgb(209, 219, 229);
+  border-right-color: rgb(229, 211, 209);
 }
 
 .slideInRight-transition, .slideInLeft-transition {
@@ -381,7 +381,7 @@
   /* Transition
   -------------------------- */
   /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
   /* Link
   -------------------------- */
   /* Border

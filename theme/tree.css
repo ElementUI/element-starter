@@ -93,7 +93,7 @@
 .el-tree{
   cursor: default;
   background: #fff;
-  border: 1px solid rgb(209, 219, 229);
+  border: 1px solid rgb(229, 211, 209);
 }
 
 .el-tree__empty-block{
@@ -109,7 +109,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: rgb(94, 115, 130);
+  color: rgb(130, 94, 94);
 }
 
 .el-tree-node{
@@ -140,7 +140,7 @@
 }
 
 .el-tree-node__content:hover{
-  background: rgb(228, 232, 241);
+  background: rgb(241, 231, 228);
 }
 
 .el-tree-node__expand-icon{
@@ -152,7 +152,7 @@
   margin-left: 10px;
   border: 6px solid transparent;
   border-right-width: 0;
-  border-left-color: rgb(151, 168, 190);
+  border-left-color: rgb(190, 157, 151);
   border-left-width: 7px;
   transform: rotate(0deg);
   transition: transform 0.3s ease-in-out;
@@ -182,17 +182,17 @@
   vertical-align: middle;
   margin-right: 4px;
   font-size: 14px;
-  color: rgb(151, 168, 190);
+  color: rgb(190, 157, 151);
 }
 
 .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-  background-color: rgb(237, 247, 255);
+  background-color: rgb(255, 235, 235);
 }
 :root{
   /* Transition
   -------------------------- */
   /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
   /* Link
   -------------------------- */
   /* Border

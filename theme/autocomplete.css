@@ -97,23 +97,23 @@
     width: 100%;
 }
 .el-input.is-disabled .el-input__inner{
-    background-color: rgb(238, 241, 246);
-    border-color: rgb(209, 219, 229);
+    background-color: rgb(246, 240, 238);
+    border-color: rgb(229, 211, 209);
     color: #bbb;
     cursor: not-allowed;
 }
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
 }
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
 }
 .el-input.is-disabled .el-input__inner::placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
 }
 .el-input.is-active .el-input__inner{
     outline: none;
-    border-color: #20a0ff;
+    border-color: red;
 }
 .el-input__inner{
     -webkit-appearance: none;
@@ -122,9 +122,9 @@
     background-color: #fff;
     background-image: none;
     border-radius: 4px;
-    border: 1px solid rgb(191, 203, 217);
+    border: 1px solid rgb(217, 193, 191);
     box-sizing: border-box;
-    color: rgb(31, 45, 61);
+    color: rgb(61, 34, 31);
     display: inline-block;
     font-size: inherit;
     height: 36px;
@@ -135,20 +135,20 @@
     width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
 }
 .el-input__inner:-ms-input-placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
 }
 .el-input__inner::placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
 }
 .el-input__inner:hover{
-    border-color: rgb(131, 145, 165);
+    border-color: rgb(165, 136, 131);
 }
 .el-input__inner:focus{
     outline: none;
-    border-color: #20a0ff;
+    border-color: red;
 }
 .el-input__icon{
     position: absolute;
@@ -157,7 +157,7 @@
     right: 0;
     top: 0;
     text-align: center;
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
     transition: all .3s;
 }
 .el-input__icon:after{
@@ -173,10 +173,10 @@
 .el-input__icon.is-clickable{}
 .el-input__icon.is-clickable:hover{
     cursor: pointer;
-    color: rgb(131, 145, 165);
+    color: rgb(165, 136, 131);
 }
 .el-input__icon.is-clickable:hover + .el-input__inner{
-    border-color: rgb(131, 145, 165);
+    border-color: rgb(165, 136, 131);
 }
 .el-input--large{
     font-size: 16px;
@@ -207,12 +207,12 @@
     display: table-cell;
 }
 .el-input-group__append, .el-input-group__prepend{
-    background-color: rgb(251, 253, 255);
-    color: rgb(151, 168, 190);
+    background-color: rgb(255, 250, 250);
+    color: rgb(190, 157, 151);
     vertical-align: middle;
     display: table-cell;
     position: relative;
-    border: 1px solid rgb(191, 203, 217);
+    border: 1px solid rgb(217, 193, 191);
     border-radius: 4px;
     padding: 0 10px;
     width: 1px;
@@ -256,19 +256,19 @@
     vertical-align: bottom;
 }
 .el-textarea.is-disabled .el-textarea__inner{
-    background-color: rgb(238, 241, 246);
-    border-color: rgb(209, 219, 229);
+    background-color: rgb(246, 240, 238);
+    border-color: rgb(229, 211, 209);
     color: #bbb;
     cursor: not-allowed;
 }
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
 }
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
 }
 .el-textarea.is-disabled .el-textarea__inner::placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(217, 193, 191);
 }
 .el-textarea__inner{
     display: block;
@@ -278,28 +278,28 @@
     box-sizing: border-box;
     width: 100%;
     font-size: 14px;
-    color: rgb(31, 45, 61);
+    color: rgb(61, 34, 31);
     background-color: #fff;
     background-image: none;
-    border: 1px solid rgb(191, 203, 217);
+    border: 1px solid rgb(217, 193, 191);
     border-radius: 4px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
 }
 .el-textarea__inner::-webkit-input-placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
 }
 .el-textarea__inner:-ms-input-placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
 }
 .el-textarea__inner::placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(190, 157, 151);
 }
 .el-textarea__inner:hover{
-    border-color: rgb(131, 145, 165);
+    border-color: rgb(165, 136, 131);
 }
 .el-textarea__inner:focus{
     outline: none;
-    border-color: #20a0ff;
+    border-color: red;
 }
 :root{
     /* Transition
@@ -505,11 +505,11 @@
     height: 0;
     cursor: pointer;
     border-radius: inherit;
-    background-color: rgba(151, 168, 190, 0.3);
+    background-color: rgba(190, 157, 151, 0.3);
     transition: .3s background-color;
 }
 .el-scrollbar__thumb:hover{
-    background-color: rgba(151, 168, 190, 0.5);
+    background-color: rgba(190, 157, 151, 0.5);
 }
 .el-scrollbar__bar{
     position: absolute;
@@ -551,7 +551,7 @@
     padding: 0 10px;
     margin: 0;
     cursor: pointer;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 77, 72);
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
@@ -559,21 +559,21 @@
 }
 
 .el-autocomplete-suggestion li:hover{
-    background-color: rgb(228, 232, 241);
+    background-color: rgb(241, 231, 228);
 }
 
 .el-autocomplete-suggestion li.highlighted{
-    background-color: #20a0ff;
+    background-color: red;
     color: #fff;
 }
 
 .el-autocomplete-suggestion li:active{
-    background-color: rgb(0, 130, 230);
+    background-color: rgb(204, 0, 0);
 }
 
 .el-autocomplete-suggestion li.divider{
     margin-top: 6px;
-    border-top: 1px solid rgb(209, 219, 229);
+    border-top: 1px solid rgb(229, 211, 209);
 }
 
 .el-autocomplete-suggestion li.divider:last-child{
@@ -607,7 +607,7 @@
     max-height: 280px;
     overflow: auto;
     background-color: #fff;
-    border: 1px solid rgb(209, 219, 229);
+    border: 1px solid rgb(229, 211, 209);
     padding: 6px 0;
     border-radius: 2px;
     box-sizing: border-box;
@@ -621,7 +621,7 @@
     /* Transition
   -------------------------- */
     /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
     /* Link
   -------------------------- */
     /* Border

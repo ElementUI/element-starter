@@ -91,7 +91,7 @@
 }
 
 .el-tag{
-    background-color: rgb(131, 145, 165);
+    background-color: rgb(165, 136, 131);
     display: inline-block;
     padding: 0 5px;
     height: 24px;
@@ -121,37 +121,37 @@
 
 .el-tag .el-icon-close:hover{
     background-color: #fff;
-    color: rgb(131, 145, 165)
+    color: rgb(165, 136, 131)
 }
 
 .el-tag--gray{
-    background-color: rgb(228, 232, 241);
-    border-color: rgb(228, 232, 241);
-    color: rgb(72, 87, 106)
+    background-color: rgb(241, 231, 228);
+    border-color: rgb(241, 231, 228);
+    color: rgb(106, 77, 72)
 }
 
 .el-tag--gray .el-tag__close:hover{
-    background-color: rgb(72, 87, 106);
+    background-color: rgb(106, 77, 72);
     color: #fff
 }
 
 .el-tag--gray.is-hit{
-    border-color: rgb(72, 87, 106)
+    border-color: rgb(106, 77, 72)
 }
 
 .el-tag--primary{
-    background-color: rgba(32, 160, 255, 0.1);
-    border-color: rgba(32, 160, 255, 0.2);
-    color: #20a0ff
+    background-color: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.2);
+    color: red
 }
 
 .el-tag--primary .el-tag__close:hover{
-    background-color: #20a0ff;
+    background-color: red;
     color: #fff
 }
 
 .el-tag--primary.is-hit{
-    border-color: #20a0ff
+    border-color: red
 }
 
 .el-tag--success{
@@ -202,7 +202,7 @@
     /* Transition
   -------------------------- */
     /* Colors
-  -------------------------- */
+  -------------------------- #20a0ff;*/
     /* Link
   -------------------------- */
     /* Border

@@ -93,7 +93,7 @@
 .el-select-dropdown{
     position: absolute;
     z-index: 1001;
-    border: solid 1px rgb(209, 219, 229);
+    border: solid 1px rgb(209, 229, 222);
     border-radius: 2px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
@@ -108,12 +108,12 @@
 .el-select-dropdown.is-multiple{}
 
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected{
-    color: #1D8CE0;
+    color: #41b883;
     background-color: #fff;
 }
 
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover{
-    background-color: rgb(228, 232, 241);
+    background-color: rgb(228, 241, 239);
 }
 
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected::after{

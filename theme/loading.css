@@ -124,7 +124,7 @@
 }
 
 .el-loading-spinner .el-loading-text{
-  color: #1D8CE0;
+  color: #41b883;
   margin: 3px 0;
   font-size: 14px;
 }
@@ -140,7 +140,7 @@
   stroke-dasharray: 90, 150;
   stroke-dashoffset: 0;
   stroke-width: 2;
-  stroke: #1D8CE0;
+  stroke: #41b883;
   stroke-linecap: round;
 }
 

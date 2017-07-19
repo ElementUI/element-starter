@@ -17,36 +17,36 @@ module.exports = (options = {}) => ({
     },
     module: {
         rules: [{
-                test: /\.vue$/,
-                use: [{
-                        loader: 'vue-loader',
-                        options: {
-                            postcss: [require('autoprefixer')({
-                                browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']
-                            })]
-                        }
-                    }
-
-                ]
-            },
-            {
-                test: /\.js$/,
-                use: ['babel-loader'],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.(css|scss|sass)$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader', ]
-            },
-            {
-                test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10000
-                    }
-                }]
+            test: /\.vue$/,
+            use: [{
+                loader: 'vue-loader',
+                options: {
+                    postcss: [require('autoprefixer')({
+                        browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']
+                    })]
+                }
             }
+
+            ]
+        },
+        {
+            test: /\.js$/,
+            use: ['babel-loader'],
+            exclude: /node_modules/
+        },
+        {
+            test: /\.(css|scss|sass)$/,
+            use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader',]
+        },
+        {
+            test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    limit: 10000
+                }
+            }]
+        }
         ]
     },
     plugins: [
@@ -63,7 +63,10 @@ module.exports = (options = {}) => ({
             '.js', '.vue', '.json'
         ],
         alias: {
-            '~': resolve(__dirname, 'src')
+            'vue$': 'vue/dist/vue.esm.js',
+            '@': resolve('src'),
+            'assets': resolve(__dirname, './src/assets'),
+            'views': resolve(__dirname, './src/views'),
         }
     },
     devServer: {
@@ -71,7 +74,7 @@ module.exports = (options = {}) => ({
         port: 8010,
         proxy: {
             '/api/': {
-                target: 'http://127.0.0.1:8080',
+                target: ' https://cnodejs.org/api',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''

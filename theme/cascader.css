@@ -97,23 +97,23 @@
     width: 100%;
 }
 .el-input.is-disabled .el-input__inner{
-    background-color: rgb(238, 241, 246);
-    border-color: rgb(209, 219, 229);
+    background-color: rgb(238, 246, 244);
+    border-color: rgb(209, 229, 222);
     color: #bbb;
     cursor: not-allowed;
 }
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(191, 217, 208);
 }
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(191, 217, 208);
 }
 .el-input.is-disabled .el-input__inner::placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(191, 217, 208);
 }
 .el-input.is-active .el-input__inner{
     outline: none;
-    border-color: #1D8CE0;
+    border-color: #41b883;
 }
 .el-input__inner{
     -webkit-appearance: none;
@@ -122,9 +122,9 @@
     background-color: #fff;
     background-image: none;
     border-radius: 4px;
-    border: 1px solid rgb(191, 203, 217);
+    border: 1px solid rgb(191, 217, 208);
     box-sizing: border-box;
-    color: rgb(31, 45, 61);
+    color: rgb(31, 61, 50);
     display: inline-block;
     font-size: inherit;
     height: 36px;
@@ -135,20 +135,20 @@
     width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(151, 190, 178);
 }
 .el-input__inner:-ms-input-placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(151, 190, 178);
 }
 .el-input__inner::placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(151, 190, 178);
 }
 .el-input__inner:hover{
-    border-color: rgb(131, 145, 165);
+    border-color: rgb(131, 165, 154);
 }
 .el-input__inner:focus{
     outline: none;
-    border-color: #1D8CE0;
+    border-color: #41b883;
 }
 .el-input__icon{
     position: absolute;
@@ -157,7 +157,7 @@
     right: 0;
     top: 0;
     text-align: center;
-    color: rgb(191, 203, 217);
+    color: rgb(191, 217, 208);
     transition: all .3s;
 }
 .el-input__icon:after{
@@ -173,10 +173,10 @@
 .el-input__icon.is-clickable{}
 .el-input__icon.is-clickable:hover{
     cursor: pointer;
-    color: rgb(131, 145, 165);
+    color: rgb(131, 165, 154);
 }
 .el-input__icon.is-clickable:hover + .el-input__inner{
-    border-color: rgb(131, 145, 165);
+    border-color: rgb(131, 165, 154);
 }
 .el-input--large{
     font-size: 16px;
@@ -207,12 +207,12 @@
     display: table-cell;
 }
 .el-input-group__append, .el-input-group__prepend{
-    background-color: rgb(250, 253, 254);
-    color: rgb(151, 168, 190);
+    background-color: rgb(251, 254, 253);
+    color: rgb(151, 190, 178);
     vertical-align: middle;
     display: table-cell;
     position: relative;
-    border: 1px solid rgb(191, 203, 217);
+    border: 1px solid rgb(191, 217, 208);
     border-radius: 4px;
     padding: 0 10px;
     width: 1px;
@@ -256,19 +256,19 @@
     vertical-align: bottom;
 }
 .el-textarea.is-disabled .el-textarea__inner{
-    background-color: rgb(238, 241, 246);
-    border-color: rgb(209, 219, 229);
+    background-color: rgb(238, 246, 244);
+    border-color: rgb(209, 229, 222);
     color: #bbb;
     cursor: not-allowed;
 }
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(191, 217, 208);
 }
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(191, 217, 208);
 }
 .el-textarea.is-disabled .el-textarea__inner::placeholder{
-    color: rgb(191, 203, 217);
+    color: rgb(191, 217, 208);
 }
 .el-textarea__inner{
     display: block;
@@ -278,28 +278,28 @@
     box-sizing: border-box;
     width: 100%;
     font-size: 14px;
-    color: rgb(31, 45, 61);
+    color: rgb(31, 61, 50);
     background-color: #fff;
     background-image: none;
-    border: 1px solid rgb(191, 203, 217);
+    border: 1px solid rgb(191, 217, 208);
     border-radius: 4px;
     transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
 }
 .el-textarea__inner::-webkit-input-placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(151, 190, 178);
 }
 .el-textarea__inner:-ms-input-placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(151, 190, 178);
 }
 .el-textarea__inner::placeholder{
-    color: rgb(151, 168, 190);
+    color: rgb(151, 190, 178);
 }
 .el-textarea__inner:hover{
-    border-color: rgb(131, 145, 165);
+    border-color: rgb(131, 165, 154);
 }
 .el-textarea__inner:focus{
     outline: none;
-    border-color: #1D8CE0;
+    border-color: #41b883;
 }
 :root{
     /* Transition
@@ -429,7 +429,7 @@
     height: 100%;
     line-height: 34px;
     padding: 0 25px 0 10px;
-    color: rgb(31, 45, 61);
+    color: rgb(31, 61, 50);
     width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -441,7 +441,7 @@
 }
 
 .el-cascader__label span {
-    color: rgb(151, 168, 190);
+    color: rgb(151, 190, 178);
 }
 
 .el-cascader--large{
@@ -466,7 +466,7 @@
     position: absolute;
     margin: 5px 0;
     z-index: 2;
-    border: solid 1px rgb(209, 219, 229);
+    border: solid 1px rgb(209, 229, 222);
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
@@ -476,7 +476,7 @@
     vertical-align: top;
     height: 204px;
     overflow: auto;
-    border-right: solid 1px rgb(209, 219, 229);
+    border-right: solid 1px rgb(209, 229, 222);
     background-color: #fff;
     box-sizing: border-box;
     margin: 0;
@@ -495,7 +495,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: rgb(72, 87, 106);
+    color: rgb(72, 106, 95);
     height: 36px;
     line-height: 1.5;
     box-sizing: border-box;
@@ -503,29 +503,29 @@
 }
 
 .el-cascader-menu__item:hover{
-    background-color: rgb(228, 232, 241);
+    background-color: rgb(228, 241, 239);
 }
 
 .el-cascader-menu__item.selected{
     color: #fff;
-    background-color: #1D8CE0;
+    background-color: #41b883;
 }
 
 .el-cascader-menu__item.selected.hover{
-    background-color: rgb(26, 123, 197);
+    background-color: rgb(57, 162, 115);
 }
 
 .el-cascader-menu__item.is-active{
     color: #fff;
-    background-color: #1D8CE0;
+    background-color: #41b883;
 }
 
 .el-cascader-menu__item.is-active:hover{
-    background-color: rgb(26, 123, 197);
+    background-color: rgb(57, 162, 115);
 }
 
 .el-cascader-menu__item.is-disabled{
-    color: rgb(191, 203, 217);
+    color: rgb(191, 217, 208);
     background-color: #fff;
     cursor: not-allowed;
 }

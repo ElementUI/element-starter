@@ -2,7 +2,12 @@
     <div id="app">
         <el-row>
             <el-col :span="24">
-                <div class="grid-content bg-purple-dark"></div>
+                <div class="grid-content bg-purple-dark">
+                    <i class="el-icon-edit"></i>
+                    <i class="el-icon-share"></i>
+                    <i class="el-icon-delete"></i>
+                    <el-button type="primary" icon="search">搜索</el-button>
+                </div>
             </el-col>
         </el-row>
         <el-row>
@@ -58,11 +63,7 @@
                 <div class="grid-content bg-purple-light"></div>
             </el-col>
         </el-row>
-        Element React 基础组件 Basic Layout 布局 Color 色彩 Typography 字体 Icon 图标 Button 按钮 Form Radio 单选框 Checkbox 多选框 Input 输入框 InputNumber 计数器 Select 选择器 Cascader 级联选择器 Switch 开关 Slider 滑块 TimePicker 时间选择器 DatePicker 日期选择器 DateTimePicker 日期时间选择器 Upload 上传 Rate 评分 ColorPicker 颜色选择器 Transfer 穿梭框 Form 表单 Data Table 表格 Tag 标签 Progress 进度条 Tree 树形控件 Pagination 分页 Badge 标记 Notice Alert 警告 Loading 加载 Message 消息提示 MessageBox 弹框 Notification 通知 Navigation NavMenu 导航菜单 Tabs 标签页 Breadcrumb 面包屑 Dropdown 下拉菜单 Steps 步骤条 Others Dialog 对话框 Tooltip 文字提示 Popover 弹出框 Card 卡片 Carousel 走马灯 Collapse 折叠面板 ¶ Icon 图标 提供了一套常用的图标集合。 ¶ 使用方法 直接通过设置类名为 el-icon-iconName 来使用即可。例如： 搜索 在线运行
-        <i class="el-icon-edit"></i>
-        <i class="el-icon-share"></i>
-        <i class="el-icon-delete"></i>
-        <el-button type="primary" icon="search">搜索</el-button>
+    
     </div>
 </template>
 

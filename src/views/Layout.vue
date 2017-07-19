@@ -129,7 +129,7 @@ export default {
     }
   }
   .el-col {
-    border-radius: 4px;
+    border-radius: 5px;
   }
   .bg-purple-dark {
     background: #99a9bf;

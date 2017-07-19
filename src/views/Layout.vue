@@ -129,7 +129,8 @@ export default {
     }
   }
   .el-col {
-    border-radius: 6px;
+    //   开发分支
+    border-radius: 7px;
   }
   .bg-purple-dark {
     background: #99a9bf;

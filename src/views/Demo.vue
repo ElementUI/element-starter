@@ -54,7 +54,7 @@
                 <el-col :span="8">
                     <el-card class="box-card">
                         <div>
-                            <p>CNode：Node.js专业中文社区</p>
+                            <p>CNode：Node.js专业中文社区123</p>
                             <p>您可以 登录 或 注册 , 也可以</p>
                             <el-button type="primary">前往github登录</el-button>
                         </div>

@@ -4,7 +4,7 @@
             <el-row :gutter="20">
                 <el-col :span="16">
                     <el-card class="box-card">
-                        <div slot="header" class="clearfix">
+                        <div class="grid-content bg-purple">
                             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
                                 <el-menu-item index="1" v-on:click="handleCurrentTab()">全部</el-menu-item>
                                 <el-menu-item index="2" v-on:click="handleCurrentTab('good')">精华</el-menu-item>
@@ -13,6 +13,8 @@
                                 <el-menu-item index="5" v-on:click="handleCurrentTab('job')">招聘</el-menu-item>
                             </el-menu>
                         </div>
+                    </el-card>
+                    <el-card class="box-card" style="margin-top:20px;min-height:700px;">
                         <div class="grid-content bg-purple">
                             <el-table :data="tableData" style="width: 100%" border v-loading="loading" element-loading-text="拼命加载中">
                                 <el-table-column label="author" width="85">
@@ -35,7 +37,7 @@
                                 </el-table-column>
                                 <el-table-column label="time">
                                     <template scope="scope">
-                                        {{ scope.row.create_at }}
+                                        {{ scope.row.create_at.split("T")[0] }}
                                     </template>
                                 </el-table-column>
                                 <el-table-column label="id">
@@ -118,36 +120,19 @@ export default {
     },
     methods: {
         getDetail: function (id) {
-            this.axios.get('/v1/topic/' + id)
-                .then(function (res) {
-                    console.log(res.data.data)
-                }.bind(this))
-                .catch(function (error) {
-                    console.log("服务器错误")
-                    if (error.response) {
-                        //请求已经发出，但是服务器响应返回的状态吗不在2xx的范围内
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.header);
-                    } else {
-                        //一些错误是在设置请求的时候触发
-                        console.log('Error', error.message);
-                    }
-                    console.log(error.config);
-                }.bind(this));
+            this.$router.push({ path: 'detail', query: { id: id+'' }})
         },
-        getDoubanData: function () {
+        getData: function () {
             if (this.tab == null) {
                 this.tab = ''
             }
             this.loading = true;
-            this.axios.get('/v1/topics?tab=' + this.tab + '&page=' + this.currentPage + '&mdrender=false&limit=40')
+            this.axios.get('/v1/topics?tab=' + this.tab + '&page=' + this.currentPage + '&mdrender=false&limit=10')
                 .then(function (res) {
                     setTimeout(() => {
                         this.loading = false;
-                        this.tableData = res.data.data
-                        console.log(this.tableData)
-                    }, 2000);
+                        this.tableData = res.data.data;
+                    }, 1000);
                 }.bind(this))
                 .catch(function (error) {
                     console.log("服务器错误")
@@ -165,12 +150,12 @@ export default {
         },
         handleCurrentChange(currentPage) {
             this.currentPage = currentPage;
-            this.getDoubanData();
+            this.getData();
         },
         handleCurrentTab(tab) {
             this.currentPage = 1;
             this.tab = tab;
-            this.getDoubanData();
+            this.getData();
         },
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
@@ -187,13 +172,14 @@ export default {
         // 配置数据观测（编译模版前）的工作
     },
     created() {
-        this.handleCurrentTab()
+        
     },
     beforeMount() {
         // 挂载实例到DOM之前的工作
     },
     mounted() {
         // 挂载实例到DOM之后的工作
+        this.handleCurrentTab()
     },
     beforeUpdate() {
         // 在数据变化时前的工作 

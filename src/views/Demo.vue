@@ -1,111 +1,8 @@
 <template>
-    <el-row :gutter="20">
-        <el-col :span="18" :offset="3">
-            <el-row :gutter="20">
-                <el-col :span="16">
-                    <el-card class="box-card">
-                        <div class="grid-content bg-purple">
-                            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                                <el-menu-item index="1" v-on:click="handleCurrentTab()">全部</el-menu-item>
-                                <el-menu-item index="2" v-on:click="handleCurrentTab('good')">精华</el-menu-item>
-                                <el-menu-item index="3" v-on:click="handleCurrentTab('share')">分享</el-menu-item>
-                                <el-menu-item index="4" v-on:click="handleCurrentTab('ask')">回答</el-menu-item>
-                                <el-menu-item index="5" v-on:click="handleCurrentTab('job')">招聘</el-menu-item>
-                            </el-menu>
-                        </div>
-                    </el-card>
-                    <el-card class="box-card" style="margin-top:20px;min-height:700px;">
-                        <div class="grid-content bg-purple">
-                            <el-table :data="tableData" style="width: 100%" border v-loading="loading" element-loading-text="拼命加载中">
-                                <el-table-column label="author" width="85">
-                                    <template scope="scope">
-                                        <img :src="scope.row.author.avatar_url" style="idth: 30px;height: 30px;border-radius: 3px;">
-                                    </template>
-                                </el-table-column>
-                                <el-table-column label="visit_count">
-                                    <template scope="scope">
-                                        <el-tag type="primary" v-if="scope.row.top">置顶</el-tag>
-                                        <el-tag type="primary" v-else-if="scope.row.good">精华</el-tag>
-                                        <el-tag type="primary" v-else>{{scope.row.tab | getCn}}</el-tag>
-                                        {{ scope.row.reply_count}}/ {{ scope.row.visit_count }}
-                                    </template>
-                                </el-table-column>
-                                <el-table-column label="title">
-                                    <template scope="scope">
-                                        {{ scope.row.title }}
-                                    </template>
-                                </el-table-column>
-                                <el-table-column label="time">
-                                    <template scope="scope">
-                                        {{ scope.row.create_at.split("T")[0] }}
-                                    </template>
-                                </el-table-column>
-                                <el-table-column label="id">
-                                    <template scope="scope">
-                                        <el-button type="primary" v-on:click="getDetail(scope.row.id)">主题详情</el-button>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
-                            <div class="block" style="padding-top:20px;">
-                                <el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000" :current-page.sync="currentPage">
-                                </el-pagination>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="8">
-                    <el-card class="box-card">
-                        <div>
-                            <p>CNode：Node.js专业中文社区123</p>
-                            <p>您可以 登录 或 注册 , 也可以</p>
-                            <el-button type="primary">前往github登录</el-button>
-                        </div>
-                    </el-card>
-                    <el-card class="box-card" style="margin-top:20px;">
-                        <div>
-                            <img src="~assets/images/banner1.png" style="max-width:100%;">
-                            <img src="~assets/images/banner2.png" style="max-width:100%;">
-                            <img src="~assets/images/banner3.png" style="max-width:100%;">
-                            <img src="~assets/images/banner4.png" style="max-width:100%;">
-                        </div>
-                    </el-card>
-                    <el-card class="box-card" style="margin-top:20px;">
-                        <div>
-                            <img src="~assets/images/golangtc-logo.png" style="max-width:70%;">
-                            <img src="~assets/images/TesterHome-logo.png" style="max-width:70%;">
-                            <img src="~assets/images/phphub-logo.png" style="max-width:70%;">
-                            <img src="~assets/images/ruby-logo.png" style="max-width:70%;">
-                        </div>
-                    </el-card>
-                </el-col>
-            </el-row>
-        </el-col>
-    </el-row>
+
 </template>
 
 <script>
-// 使用 Mock
-var Mock = require('mockjs')
-var data = Mock.mock({
-    "object|2": {
-        "310000": "上海市",
-        "320000": "江苏省",
-        "330000": "浙江省",
-        "340000": "安徽省"
-    }
-})
-
-console.log(data)
-
-var template = {
-    name: 'value1'
-}
-var data2 = {
-    name: 'value2'
-}
-
-console.log(Mock.valid(template, data2))
-// 输出结果
 
 export default {
     data() {
@@ -179,7 +76,6 @@ export default {
     },
     mounted() {
         // 挂载实例到DOM之后的工作
-        this.handleCurrentTab()
     },
     beforeUpdate() {
         // 在数据变化时前的工作 

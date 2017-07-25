@@ -15,14 +15,16 @@
                             </div>
                         </div>
                         <div class="grid-content">
-                            <div v-html="detailData.content" class="content"></div>
+                            <div v-html="detailData.content"></div>
                         </div>
                     </el-card>
                     <el-card class="box-card" style="margin-top:20px;">
                         <div class="grid-content" v-for="(replie,index) in detailData.replies" :key="replie.id">
                             <div>{{index}}楼 {{ replie.author.loginname }}</div>
-                            <div><img :src="replie.author.avatar_url" style="idth: 30px;height: 30px;border-radius: 3px;"></div>
-                            <div v-html="replie.content"></div>
+                            <div>
+                                <img :src="replie.author.avatar_url" style="idth: 30px;height: 30px;border-radius: 3px;">
+                            </div>
+                            <div v-html="replie.content" class="content"></div>
                             <div style="width:100%;height:1px;background:#ddd;"></div>
                         </div>
                     </el-card>
@@ -120,37 +122,43 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-   .content {
-       width:100%;
-        img {
-        max-width: 100%;
-        }
-  }
-  .el-row {
+.el-row {
     margin-bottom: 20px;
     &:last-child {
-      margin-bottom: 0;
+        margin-bottom: 0;
     }
-  }
-  .el-col {
+}
+
+.el-col {
     //   开发分支
     border-radius: 7px;
-  }
-  .bg-purple-dark {
+}
+
+.bg-purple-dark {
     background: #99a9bf;
-  }
-  .bg-purple {
+}
+
+.bg-purple {
     background: #d3dce6;
-  }
-  .bg-purple-light {
+}
+
+.bg-purple-light {
     background: #e5e9f2;
-  }
-  .grid-content {
+}
+
+.grid-content {
     border-radius: 4px;
     min-height: 36px;
-  }
-  .row-bg {
+}
+
+.row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
-  }
+}
+.content {
+    background:red;
+}
+.markdown-text  {
+    font-size:20px;
+}
 </style>

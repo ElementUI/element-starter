@@ -58,8 +58,8 @@
                         <div>
                             <p>CNode：Node.js专业中文社区123</p>
                             <p>您可以 登录 或 注册 , 也可以</p>
-                            <el-button type="primary" v-on:click='accessToken'>accesstoken</el-button>
-                            <el-button type="primary" v-on:click='buildTopic'>buildTopic</el-button>
+                            <el-button type="primary" v-on:click='accessToken'>通过Github登录</el-button>
+                            <a href="http://github.com/login/oauth/authorize?client_id=9846fbab6bf76400ef5c&redirect_uri=http://localhost:3000&state=1234">链接</a>
                         </div>
                     </el-card>
                     <el-card class="box-card" style="margin-top:20px;">
@@ -162,34 +162,7 @@ export default {
             console.log(key, keyPath);
         },
         accessToken() {
-            this.axios.post('/v1/accesstoken', {
-                accesstoken: '74c3eaf8-ad2c-4931-b565-abc28702af3d'
-            })
-                .then(function (res) {
-                    console.log(res)
-                }.bind(this))
-                .catch(function (error) {
-                    console.log("服务器错误")
-                    if (error.response) {
-                        //请求已经发出，但是服务器响应返回的状态吗不在2xx的范围内
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.header);
-                    } else {
-                        //一些错误是在设置请求的时候触发
-                        console.log('Error', error.message);
-                    }
-                    console.log(error.config);
-                }.bind(this));
-
-        },
-        buildTopic() {
-            this.axios.post('/v1//topics', {
-                accesstoken: '74c3eaf8-ad2c-4931-b565-abc28702af3d',
-                title:'bob huang title',
-                tab:'dev',
-                content:'test for buildTopic'
-            })
+            this.axios.get('')
                 .then(function (res) {
                     console.log(res)
                 }.bind(this))

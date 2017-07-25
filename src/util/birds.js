@@ -18,8 +18,7 @@ router.get('/', function (req, res) {
             state: req.query.state
         })
             .then(function (res) {
-                console.log(res.data.access_token)
-                expressRes.redirect('/about');
+                expressRes.location(200,'http://localhost:8010/?accessToken='+res.data.access_token);
             }.bind(this))
             .catch(function (error) {
                 console.log("服务器错误")

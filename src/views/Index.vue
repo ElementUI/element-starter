@@ -55,11 +55,19 @@
                 </el-col>
                 <el-col :span="8">
                     <el-card class="box-card">
-                        <div>
+                        <div v-if="this.user.id">
+                            <img :src="this.user.avatar_url" class="image" style="width:100%">
+                            <div style="padding: 14px;">
+                                <span>{{ this.user.name }}</span>
+                                <div class="bottom clearfix">
+                                    <time class="time">{{ this.user.created_at }}</time>
+                                    <el-button type="text" class="button">个人主页</el-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else>
                             <p>CNode：Node.js专业中文社区123</p>
-                            <p>您可以 登录 或 注册 , 也可以</p>
-                            <el-button type="primary" v-on:click='accessToken'>通过Github登录</el-button>
-                            <a href="http://github.com/login/oauth/authorize?client_id=9846fbab6bf76400ef5c&redirect_uri=http://localhost:3000&state=1234">链接</a>
+                            <el-button type="primary" v-on:click='login'>通过Github登录</el-button>
                         </div>
                     </el-card>
                     <el-card class="box-card" style="margin-top:20px;">
@@ -107,7 +115,7 @@ var data2 = {
 
 console.log(Mock.valid(template, data2))
 // 输出结果
-
+var UUID = require('uuid');
 export default {
     data() {
         return {
@@ -116,7 +124,40 @@ export default {
             tab: 'good',
             currentPage: 1,
             loading: false,
-            activeIndex: '1'
+            activeIndex: '1',
+            state: UUID.v1(),
+            user: {
+                avatar_url: undefined,
+                bio: undefined,
+                blog: undefined,
+                company: undefined,
+                created_at: undefined,
+                email: undefined,
+                events_url: undefined,
+                followers: undefined,
+                followers_url: undefined,
+                following: undefined,
+                following_url: undefined,
+                gists_url: undefined,
+                gravatar_id: undefined,
+                hireable: undefined,
+                html_url: undefined,
+                id: undefined,
+                location: undefined,
+                login: undefined,
+                name: undefined,
+                organizations_url: undefined,
+                public_gists: undefined,
+                public_repos: undefined,
+                received_events_url: undefined,
+                repos_url: undefined,
+                site_admin: undefined,
+                starred_url: undefined,
+                subscriptions_url: undefined,
+                type: undefined,
+                updated_at: undefined,
+                url: undefined,
+            }
         }
     },
     methods: {
@@ -161,10 +202,33 @@ export default {
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
         },
-        accessToken() {
-            this.axios.get('')
+        login() {
+            window.location.href = "http://github.com/login/oauth/authorize?client_id=9846fbab6bf76400ef5c&redirect_uri=http://localhost:3000&state=" + this.state;
+        }
+    },
+    props: [],
+    computed: {
+    },
+    components: {
+    },
+
+    // 生命周期
+    beforeCreate() {
+        // 配置数据观测（编译模版前）的工作
+    },
+    created() {
+        this.handleCurrentTab()
+    },
+    beforeMount() {
+        // 挂载实例到DOM之前的工作
+    },
+    mounted() {
+        // 挂载实例到DOM之后的工作
+        if (this.$route.query.accessToken) {
+            this.axios.get('https://api.github.com/user?access_token=' + this.$route.query.accessToken)
                 .then(function (res) {
-                    console.log(res)
+                    console.log(res.data);
+                    this.user = res.data
                 }.bind(this))
                 .catch(function (error) {
                     console.log("服务器错误")
@@ -180,26 +244,7 @@ export default {
                     console.log(error.config);
                 }.bind(this));
         }
-    },
-    props: [],
-    computed: {
-    },
-    components: {
-    },
-
-    // 生命周期
-    beforeCreate() {
-        // 配置数据观测（编译模版前）的工作
-    },
-    created() {
-
-    },
-    beforeMount() {
-        // 挂载实例到DOM之前的工作
-    },
-    mounted() {
         // 挂载实例到DOM之后的工作
-        this.handleCurrentTab()
     },
     beforeUpdate() {
         // 在数据变化时前的工作 

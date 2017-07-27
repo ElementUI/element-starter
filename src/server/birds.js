@@ -7,9 +7,7 @@ var router = express.Router();
 
 // 定义网站主页的路由
 router.get('/', function (req, res) {
-    console.log(req.query.code);
-    console.log(req.query.state);
-    var expressRes = res
+    var expressRes = res;
     if (req.query.code) {
         axios.post('https://github.com/login/oauth/access_token', {
             client_id: '9846fbab6bf76400ef5c',
@@ -18,7 +16,7 @@ router.get('/', function (req, res) {
             state: req.query.state
         })
             .then(function (res) {
-                expressRes.location(200,'http://localhost:8010/?accessToken='+res.data.access_token);
+                expressRes.redirect('http://localhost:8010/#/index/?accessToken='+res.data.access_token);
             }.bind(this))
             .catch(function (error) {
                 console.log("服务器错误")
@@ -36,8 +34,5 @@ router.get('/', function (req, res) {
     }
 });
 // 定义 about 页面的路由
-router.get('/about', function (req, res) {
-    res.send('sdsdsdsdsdsdsd');
-});
 
 module.exports = router;

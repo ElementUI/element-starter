@@ -157,10 +157,4 @@ export default {
     padding: 10px 0;
     background-color: #f9fafc;
 }
-.content {
-    background:red;
-}
-.markdown-text  {
-    font-size:20px;
-}
 </style>

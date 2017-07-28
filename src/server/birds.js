@@ -7,6 +7,7 @@ var router = express.Router();
 
 // 定义网站主页的路由
 router.get('/', function (req, res) {
+    var flag = false; 
     var expressRes = res;
     if (req.query.code) {
         axios.post('https://github.com/login/oauth/access_token', {

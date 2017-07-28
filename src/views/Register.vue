@@ -1,6 +1,6 @@
 <template>
     <h1>
-        Demo
+        Register
     </h1>
 </template>
 

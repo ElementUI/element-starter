@@ -1,6 +1,6 @@
 <template>
     <h1>
-        Demo
+        About
     </h1>
 </template>
 

@@ -1,60 +1,56 @@
 <template>
-    <el-row :gutter="20">
-        <el-col :span="18" :offset="3">
-            <el-row :gutter="20" v-if="detailData">
-                <el-col :span="16">
-                    <el-card class="box-card">
-                        <div slot="header" class="clearfix">
-                            <el-tag type="primary" v-if="detailData.top">置顶</el-tag>
-                            <el-tag type="primary" v-else-if="detailData.good">精华</el-tag>
-                            <el-tag type="primary" v-else>{{detailData.tab | getCn}}</el-tag>
-                            <span style="line-height: 36px;">{{ detailData.title}}</span>
-                            <div>
-                                发布于 {{ detailData.create_at.split("T")[0] }} 作者 {{ detailData.author.loginname }} {{ detailData.author.visit_count }} 次浏览 最后一次编辑是 {{ detailData.last_reply_at }} {{ detailData.author.visit_count }} 来自
-                                <el-tag type="primary">{{ detailData.tab | getCn}}</el-tag>
-                            </div>
-                        </div>
-                        <div class="grid-content">
-                            <div v-html="detailData.content"></div>
-                        </div>
-                    </el-card>
-                    <el-card class="box-card" style="margin-top:20px;">
-                        <div class="grid-content" v-for="(replie,index) in detailData.replies" :key="replie.id">
-                            <div>{{index}}楼 {{ replie.author.loginname }}</div>
-                            <div>
-                                <img :src="replie.author.avatar_url" style="idth: 30px;height: 30px;border-radius: 3px;">
-                            </div>
-                            <div v-html="replie.content" class="content"></div>
-                            <div style="width:100%;height:1px;background:#ddd;"></div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="8">
-                    <el-card class="box-card">
-                        <div>
-                            <p>CNode：Node.js专业中文社区123</p>
-                            <p>您可以 登录 或 注册 , 也可以</p>
-                            <el-button type="primary">前往github登录</el-button>
-                        </div>
-                    </el-card>
-                    <el-card class="box-card" style="margin-top:20px;">
-                        <div>
-                            <img src="~assets/images/banner1.png" style="max-width:100%;">
-                            <img src="~assets/images/banner2.png" style="max-width:100%;">
-                            <img src="~assets/images/banner3.png" style="max-width:100%;">
-                            <img src="~assets/images/banner4.png" style="max-width:100%;">
-                        </div>
-                    </el-card>
-                    <el-card class="box-card" style="margin-top:20px;">
-                        <div>
-                            <img src="~assets/images/golangtc-logo.png" style="max-width:70%;">
-                            <img src="~assets/images/TesterHome-logo.png" style="max-width:70%;">
-                            <img src="~assets/images/phphub-logo.png" style="max-width:70%;">
-                            <img src="~assets/images/ruby-logo.png" style="max-width:70%;">
-                        </div>
-                    </el-card>
-                </el-col>
-            </el-row>
+    <el-row :gutter="20" v-if="detailData">
+        <el-col :span="16">
+            <el-card class="box-card" style="margin-top:20px;">
+                <div slot="header" class="clearfix">
+                    <el-tag type="primary" v-if="detailData.top">置顶</el-tag>
+                    <el-tag type="primary" v-else-if="detailData.good">精华</el-tag>
+                    <el-tag type="primary" v-else>{{detailData.tab | getCn}}</el-tag>
+                    <span style="line-height: 36px;">{{ detailData.title}}</span>
+                    <div>
+                        发布于 {{ detailData.create_at.split("T")[0] }} 作者 {{ detailData.author.loginname }} {{ detailData.author.visit_count }} 次浏览 最后一次编辑是 {{ detailData.last_reply_at }} {{ detailData.author.visit_count }} 来自
+                        <el-tag type="primary">{{ detailData.tab | getCn}}</el-tag>
+                    </div>
+                </div>
+                <div class="grid-content">
+                    <div v-html="detailData.content"></div>
+                </div>
+            </el-card>
+            <el-card class="box-card" style="margin-top:20px;">
+                <div class="grid-content" v-for="(replie,index) in detailData.replies" :key="replie.id">
+                    <div>{{index}}楼 {{ replie.author.loginname }}</div>
+                    <div>
+                        <img :src="replie.author.avatar_url" style="idth: 30px;height: 30px;border-radius: 3px;">
+                    </div>
+                    <div v-html="replie.content" class="content"></div>
+                    <div style="width:100%;height:1px;background:#ddd;"></div>
+                </div>
+            </el-card>
+        </el-col>
+        <el-col :span="8">
+            <el-card class="box-card" style="margin-top:20px;min-height:700px;">
+                <div>
+                    <p>CNode：Node.js专业中文社区123</p>
+                    <p>您可以 登录 或 注册 , 也可以</p>
+                    <el-button type="primary">前往github登录</el-button>
+                </div>
+            </el-card>
+            <el-card class="box-card" style="margin-top:20px;">
+                <div>
+                    <img src="~assets/images/banner1.png" style="max-width:100%;">
+                    <img src="~assets/images/banner2.png" style="max-width:100%;">
+                    <img src="~assets/images/banner3.png" style="max-width:100%;">
+                    <img src="~assets/images/banner4.png" style="max-width:100%;">
+                </div>
+            </el-card>
+            <el-card class="box-card" style="margin-top:20px;">
+                <div>
+                    <img src="~assets/images/golangtc-logo.png" style="max-width:70%;">
+                    <img src="~assets/images/TesterHome-logo.png" style="max-width:70%;">
+                    <img src="~assets/images/phphub-logo.png" style="max-width:70%;">
+                    <img src="~assets/images/ruby-logo.png" style="max-width:70%;">
+                </div>
+            </el-card>
         </el-col>
     </el-row>
 </template>
@@ -83,11 +79,10 @@ export default {
     },
     created() {
         fetch.topicDetail({
-            id:this.$route.query.id
-        })
-            .then(function (res) {
-                this.detailData = res.data;
-            }.bind(this))
+            id: this.$route.query.id
+        }).then(function (res) {
+            this.detailData = res.data;
+        }.bind(this))
             .catch(function (error) {
                 console.log("服务器错误")
                 if (error.response) {

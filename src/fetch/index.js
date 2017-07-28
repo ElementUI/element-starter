@@ -3,8 +3,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import querystring from 'querystring'
 Vue.use(VueAxios, axios)
-// jsdoc fetch -d docs
-// axios 配置 axios.defaults.timeout =
+// jsdoc fetch -d docs axios 配置 axios.defaults.timeout =
 // 5000;//指定请求超时之前的毫秒数,如果请求的时间超过'timeout'，请求将被中止。
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.defaults.baseURL = '/api';
@@ -14,7 +13,6 @@ axios
     .interceptors
     .request
     .use((config) => {
-        console.log(config)
         config.data = querystring.stringify(config.data);
         return config;
     }, (error) => {
@@ -45,11 +43,11 @@ axios
  * @param {Number} limit - 每一页的主题数量
  * @paramm {String} drender - 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
  */
-export function fetch(method, url, params) {
+function fetch(method, url, params) {
     if (method === 'get') {
         return new Promise((resolve, reject) => {
             axios
-                .get(url + '?' + params)
+                .get(url + '?' + querystring.stringify(params))
                 .then((response) => {
                     resolve(response.data);
                 }, (err) => {
@@ -62,8 +60,9 @@ export function fetch(method, url, params) {
     } else if (method === 'post') {
         return new Promise((resolve, reject) => {
             axios
-                .post(url, params)
+                .post(url, querystring.stringify(params))
                 .then((response) => {
+                    console.log(response.data)
                     resolve(response.data);
                 }, (err) => {
                     reject(err);
@@ -77,6 +76,7 @@ export function fetch(method, url, params) {
             axios
                 .get(url + '/' + params.id)
                 .then((response) => {
+                    console.log(response.data)
                     resolve(response.data);
                 }, (err) => {
                     reject(err);
@@ -113,7 +113,7 @@ export default {
      * @p* @param {String} accesstoken - 当需要知道一个主题是否被特定用户收藏以及对应评论是否被特定用户点赞时，才需要带此参数。会影响返回值中的 is_collect 以及 replies 列表中的 is_uped 值。
      */
     topicDetail(params) {
-        return fetch(':id','/topic', params)
+        return fetch(':id', '/topic', params)
     },
 
     /**

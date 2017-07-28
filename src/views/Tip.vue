@@ -1,6 +1,6 @@
 <template>
     <h1>
-        Demo
+        Tip
     </h1>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         getDetail: function (id) {
-            this.$router.push({ path: 'detail', query: { id: id+'' }})
+            this.$router.push({ path: 'detail', query: { id: id + '' } })
         },
         getData: function () {
             if (this.tab == null) {
@@ -71,7 +71,7 @@ export default {
         // 配置数据观测（编译模版前）的工作
     },
     created() {
-        
+
     },
     beforeMount() {
         // 挂载实例到DOM之前的工作

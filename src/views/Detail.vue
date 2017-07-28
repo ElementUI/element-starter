@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import fetch from '../fetch' // 加载axios配置
 export default {
     data() {
         return {
@@ -81,10 +82,11 @@ export default {
         // 配置数据观测（编译模版前）的工作
     },
     created() {
-        this.axios.get('/v1/topic/' + this.$route.query.id)
+        fetch.topicDetail({
+            id:this.$route.query.id
+        })
             .then(function (res) {
-                this.detailData = res.data.data;
-                console.log(this.detailData)
+                this.detailData = res.data;
             }.bind(this))
             .catch(function (error) {
                 console.log("服务器错误")

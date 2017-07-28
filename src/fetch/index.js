@@ -14,9 +14,7 @@ axios
     .interceptors
     .request
     .use((config) => {
-        if (config.method === 'post') {
-            config.data = querystring.stringify(config.data);
-        }
+        config.data = querystring.stringify(config.data);
         return config;
     }, (error) => {
         _.toast("错误的传参", 'fail');
@@ -37,42 +35,95 @@ axios
         return Promise.reject(error);
     });
 
-export function fetch(url, params) {
-    return new Promise((resolve, reject) => {
-        axios
-            .post(url, params)
-            .then((response) => {
-                resolve(response.data);
-            }, err => {
-                reject(err);
-            })
-            .catch((error) => {
-                reject(error)
-            })
-    })
+/**
+ * @description 主题首页 接收 get 参数
+ * @method fetch
+ * @param {obj} params - 请求的参数.
+ * @param {Number} page - 页数
+ * @param {String} tab - 主题分类,目前有 ask share job good
+ * @param {Number} limit - 每一页的主题数量
+ * @paramm {String} drender - 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
+ */
+export function fetch(method, url, params) {
+    if (method == 'get') {
+        return new Promise((resolve, reject) => {
+            axios
+                .get(url + '?' + params)
+                .then((response) => {
+                    resolve(response.data);
+                }, (err) => {
+                    reject(err);
+                })
+                .catch((error) => {
+                    reject(error)
+                })
+        })
+    } else if (method == 'post') {
+        return new Promise((resolve, reject) => {
+            axios
+                .post(url, params)
+                .then((response) => {
+                    resolve(response.data);
+                }, (err) => {
+                    reject(err);
+                })
+                .catch((error) => {
+                    reject(error)
+                })
+        })
+    } else {
+        console.log('fetch error');
+    }
 }
 
 export default {
     /**
-     * 用户登录
+     * @description 主题首页 接收 get 参数
+     * @method topics
+     * @param {obj} params - 请求的参数.
+        - {Number} page - 页数
+        - {String} tab - 主题分类,目前有 ask share job good
+        - {Number} limit - 每一页的主题数量
+        - {String} drender - 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
      */
-    Login(params) {
-        return fetch('/users/api/userLogin', params)
-    },
-    
-    /**
-     * 用户注册
-     */
-    Regist(params) {
-        return fetch('/users/api/userRegist', params)
+    topics(params) {
+        return fetch('get', '/topics', params)
     },
 
     /**
-     * 发送注册验证码
+     * @description 主题详情 接收 get 参数
+     * @method topics
+     * @param {obj} params - 请求的参数.
+        - {String} mdrender - 当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本
+        - {String} accesstoken - 当需要知道一个主题是否被特定用户收藏以及对应评论是否被特定用户点赞时，才需要带此参数。会影响返回值中的 is_collect 以及 replies 列表中的 is_uped 值。
      */
-     RegistVerifiCode(tellphone) {
-         return fetch('/users/api/registVerifiCode', {tellphone: tellphone})
-     },
+    topicDetail(params) {
+        return new Promise((resolve, reject) => {
+            axios
+                .get('/topic/' + params.id)
+                .then((response) => {
+                    resolve(response.data);
+                }, (err) => {
+                    reject(err);
+                })
+                .catch((error) => {
+                    reject(error)
+                })
+        })
+    },
+
+    /**
+     * @description 新建主题 接收 post 参数
+     * @method addTopic
+     * @param {obj} params - 请求的参数.
+        - {String} accesstoken - 用户的 accessToken
+        - {String} tab - 开发新客户端的同学，请务必将你们的测试帖发在 dev 专区，以免污染日常的版面，否则会进行封号一周处理。
+        - {Number} title  - 标题
+        - {String} content - 主体内容
+     */
+    addTopic(params) {
+        return fetch('post', '/topics', params)
+    },
 
     /**
      * 获取约跑步列表
@@ -119,16 +170,16 @@ export default {
     /**
      * 获取用户发布约行个数
      */
-     getPubTotravelNum(id) {
-         return fetch('/users/api/getPubTotravelNum', {userId: id})
-     },
+    getPubTotravelNum(id) {
+        return fetch('/users/api/getPubTotravelNum', {userId: id})
+    },
 
-     /**
+    /**
       * 获取用户自己发布的约行
       */
-      getMyTravel(id) {
-          return fetch('/users/api/myTravel', {userId: id})
-      },
+    getMyTravel(id) {
+        return fetch('/users/api/myTravel', {userId: id})
+    },
 
     /**
      * 发布约行活动
@@ -140,8 +191,7 @@ export default {
     /**
      * 获取全国JSON数据
      */
-     getAddressJson() {
-         return fetch('/api/address')
-     }
+    getAddressJson() {
+        return fetch('/api/address')
+    }
 }
-

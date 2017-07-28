@@ -4,12 +4,12 @@ import ElementUI from 'element-ui'
 import App from './App'
 import filter from './filter' // 加载路由
 import router from './router' // 加载路由
-import fetch from './fetch' // 加载axios配置
 
 Vue.use(ElementUI)
 
 new Vue({
   el: '#app',
   router,
+  fetch,
   render: h => h(App)
 })

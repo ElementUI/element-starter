@@ -24,7 +24,7 @@ export default {
                 this.tab = ''
             }
             this.loading = true;
-            this.axios.get('/v1/topics?tab=' + this.tab + '&page=' + this.currentPage + '&mdrender=false&limit=10')
+            this.axios.get('/topics?tab=' + this.tab + '&page=' + this.currentPage + '&mdrender=false&limit=10')
                 .then(function (res) {
                     setTimeout(() => {
                         this.loading = false;

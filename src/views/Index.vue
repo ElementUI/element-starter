@@ -116,6 +116,7 @@ var data2 = {
 console.log(Mock.valid(template, data2))
 // 输出结果
 var UUID = require('uuid');
+import fetch from '../fetch' // 加载axios配置
 export default {
     data() {
         return {
@@ -169,11 +170,16 @@ export default {
                 this.tab = ''
             }
             this.loading = true;
-            this.axios.get('/v1/topics?tab=' + this.tab + '&page=' + this.currentPage + '&mdrender=false&limit=10')
+            fetch.topics({
+                tab: this.tab,
+                page: this.currentPage,
+                mdrender: false,
+                limit: 10
+            })
                 .then(function (res) {
                     setTimeout(() => {
                         this.loading = false;
-                        this.tableData = res.data.data;
+                        this.tableData = res.data;
                     }, 1000);
                 }.bind(this))
                 .catch(function (error) {

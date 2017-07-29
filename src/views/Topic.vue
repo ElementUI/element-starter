@@ -13,13 +13,13 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="标题字数">
-                            <el-input v-model="form.name"></el-input>
+                            <el-input v-model="form.title"></el-input>
                         </el-form-item>
                         <el-form-item label="活动形式">
-                            <el-input type="textarea" v-model="form.desc" rows=10></el-input>
+                            <el-input type="textarea" v-model="form.content"></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="onSubmit">提交</el-button>
+                            <el-button type="primary" v-on:click="add()">提交</el-button>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -30,27 +30,44 @@
 </template>
 <script>
 
-import fetch from '../fetch' // 加载axios配置
+import fetch from '../fetch'
 import Side from '../components/Side'
 export default {
     data() {
         return {
             form: {
-                name: '',
-                region: '',
-                date1: '',
-                date2: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                desc: ''
+                title: '',
+                content: '',
+                region: 'dev'
             }
         }
     },
     methods: {
-        onSubmit() {
-            console.log('submit!');
-        }
+        add() {
+            fetch.updateTopic({ 
+                "accesstoken": "74c3eaf8-ad2c-4931-b565-abc28702af3d", 
+                "title": "22", 
+                "tab": "dev", 
+                "topic_id":'597b6ffa68aa87c774e5ed32',
+                "content": "123232312222222222222222222222222" 
+                })
+                .then(function (res) {
+                    console.log(res.data)
+                }.bind(this))
+                .catch(function (error) {
+                    console.log("服务器错误")
+                    if (error.response) {
+                        //请求已经发出，但是服务器响应返回的状态吗不在2xx的范围内
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.header);
+                    } else {
+                        //一些错误是在设置请求的时候触发
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
+                }.bind(this))
+        },
     },
     props: [],
     computed: {

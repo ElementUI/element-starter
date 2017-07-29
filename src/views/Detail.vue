@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="grid-content">
-                    <div v-html="detailData.content"></div>
+                    <section class='markdown-body topic-content' v-html="detailData.content"></section>
                 </div>
             </el-card>
             <el-card class="box-card" style="margin-top:20px;">

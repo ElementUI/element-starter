@@ -96,7 +96,7 @@ export default {
         getDetail: function (id) {
             this.$router.push({ path: 'detail', query: { id: id + '' } })
         },
-        getData: function () {
+        getData() {
             if (this.tab == null) {
                 this.tab = ''
             }

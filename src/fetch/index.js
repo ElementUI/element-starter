@@ -3,8 +3,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import querystring from 'querystring'
 Vue.use(VueAxios, axios)
-// jsdoc fetch -d docs axios 配置 axios.defaults.timeout =
-// 5000;//指定请求超时之前的毫秒数,如果请求的时间超过'timeout'，请求将被中止。
+    // jsdoc fetch -d docs axios 配置 axios.defaults.timeout =
+    // 5000;//指定请求超时之前的毫秒数,如果请求的时间超过'timeout'，请求将被中止。
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.defaults.baseURL = '/api';
 
@@ -58,6 +58,7 @@ function fetch(method, url, params) {
                 })
         })
     } else if (method === 'post') {
+        console.log(querystring.stringify(params))
         return new Promise((resolve, reject) => {
             axios
                 .post(url, querystring.stringify(params))
@@ -122,7 +123,7 @@ export default {
      * @param {obj} params - 请求的参数.
      * @param {String} accesstoken - 用户的 accessToken
      * @param {String} tab - 开发新客户端的同学，请务必将你们的测试帖发在 dev 专区，以免污染日常的版面，否则会进行封号一周处理。
-     * @param {Number} title  - 标题
+     * @param {String} title  - 标题
      * @param {String} content - 主体内容
      * @example
         return {success: true, topic_id: '5433d5e4e737cbe96dcef312'}

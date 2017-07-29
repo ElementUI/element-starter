@@ -13,6 +13,7 @@
     "axios": "^0.16.2",
     "element-ui": "^1.1.2",
     "flex.css": "^1.1.7",
+    "github-markdown-css": "^2.8.0",
     "install": "^0.10.1",
     "json": "^9.0.6",
     "mockjs": "^1.0.1-beta3",

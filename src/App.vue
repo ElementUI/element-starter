@@ -2,7 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <el-button @click.native="startHacking">Let's do it</el-button>
+    <el-button @click.native="startHacking">Yes!</el-button>
   </div>
 </template>
 
@@ -10,15 +10,15 @@
 export default {
   data () {
     return {
-      msg: 'Use Vue 2.0 Today!'
+      msg: 'Want something new?'
     }
   },
 
   methods: {
     startHacking () {
       this.$notify({
-        title: 'It Works',
-        message: 'We have laid the groundwork for you. Now it\'s your time to build something epic!',
+        title: 'Shhh',
+        message: 'Just be patient...',
         duration: 6000
       })
     }
@@ -27,7 +27,8 @@ export default {
 </script>
 
 <style>
-body {
+#app {
   font-family: Helvetica, sans-serif;
+  text-align: center;
 }
 </style>

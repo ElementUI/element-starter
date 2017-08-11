@@ -14,7 +14,7 @@
  - Enter your local directory, and install dependencies:
 
 ``` bash
-npm install
+yarn
 ```
 
 ## Develop

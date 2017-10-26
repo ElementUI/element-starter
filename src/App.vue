@@ -1,25 +1,21 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <el-button @click.native="startHacking">Yes!</el-button>
+    <div>
+      <el-button @click="startHacking">Start</el-button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      msg: 'Want something new?'
-    }
-  },
-
   methods: {
     startHacking () {
       this.$notify({
-        title: 'Shhh',
-        message: 'Just be patient...',
-        duration: 6000
+        title: 'It works!',
+        type: 'success',
+        message: 'We\'ve laid the ground work for you. It\'s time for you to build something epic!',
+        duration: 5000
       })
     }
   }

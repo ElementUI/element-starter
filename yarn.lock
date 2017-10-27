@@ -1302,8 +1302,8 @@ deep-extend@~0.4.0:
   resolved "http://registry.npm.taobao.org/deep-extend/download/deep-extend-0.4.1.tgz#efe4113d08085f4e6f9687759810f807469e2253"
 
 deepmerge@^1.2.0:
-  version "1.3.2"
-  resolved "http://registry.npm.taobao.org/deepmerge/download/deepmerge-1.3.2.tgz#1663691629d4dbfe364fa12a2a4f0aa86aa3a050"
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-1.5.2.tgz#10499d868844cdad4fee0842df8c7f6f0c95a753"
 
 defined@^1.0.0:
   version "1.0.0"
@@ -1404,9 +1404,9 @@ electron-to-chromium@^1.2.7:
   version "1.3.8"
   resolved "http://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.8.tgz#b2c8a2c79bb89fbbfd3724d9555e15095b5f5fb6"
 
-element-ui@next:
-  version "2.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/element-ui/-/element-ui-2.0.0-rc.1.tgz#a89822fa77f81189de2c5733b701fc4c03500883"
+element-ui@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/element-ui/-/element-ui-2.0.0.tgz#439d1633f3c78a440c5ca9a9cb552905ddbd5097"
   dependencies:
     async-validator "~1.8.1"
     babel-helper-vue-jsx-merge-props "^2.0.0"
@@ -3595,7 +3595,7 @@ tar@^2.2.1:
 
 throttle-debounce@^1.0.1:
   version "1.0.1"
-  resolved "http://registry.npm.taobao.org/throttle-debounce/download/throttle-debounce-1.0.1.tgz#dad0fe130f9daf3719fdea33dc36a8e6ba7f30b5"
+  resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-1.0.1.tgz#dad0fe130f9daf3719fdea33dc36a8e6ba7f30b5"
 
 timers-browserify@^2.0.2:
   version "2.0.2"

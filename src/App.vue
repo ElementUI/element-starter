@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <el-button @click="startHacking">Start</el-button>
-    </div>
+    <a href="/contents.html">Contents</a>
+    <a href="/settings.html">Settings</a>
   </div>
 </template>
 

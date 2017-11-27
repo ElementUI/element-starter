@@ -1,0 +1,36 @@
+<h1>Settings</h1>
+
+<el-row>
+  <el-col :span="5">
+    <!-- foreach module/category -->
+      Sidebar link here, jumps to module name
+    <!-- /end each -->
+  </el-col>
+  <el-col :span="19">
+    <!-- foreach module/category -->
+      <h2>{{Module Name}}</h2>
+
+      <!-- foreach setting in module -->
+        {{Setting Name}}
+        {{Setting Description}}
+
+        <!-- if type === boolean -->
+          Yes/No Toggle here ...
+        <!-- /end if -->
+
+        <!-- if type === textfield -->
+          Text Area here ...
+        <!-- /end if -->
+
+        <!-- if type === text -->
+          Text Input here ...
+        <!-- /end if -->
+
+        <!-- if type === number -->
+          Number Input here ...
+        <!-- /end if -->
+
+      <!-- /end foreach -->
+    <!-- /end foreach -->
+  </el-col>
+</el-row>

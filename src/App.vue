@@ -2,6 +2,7 @@
   <div id="app">
     <a href="/contents.html">Contents</a>
     <a href="/settings.html">Settings</a>
+
   </div>
 </template>
 
@@ -25,4 +26,14 @@ export default {
   font-family: Helvetica, sans-serif;
   text-align: center;
 }
+</style>
+
+<style lang="scss">
+  .why-webpack-cannot-just-bundle-sass {
+    font-weight: bold;
+  }
+
+  /*this seems to work, but I rather want to make css global*/
+  /*@import 'sass/main.scss';*/
+
 </style>

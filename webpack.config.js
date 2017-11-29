@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const url = require('url')
 const publicPath = ''
+var vueLoaderConfig = require('./build/vue-loader.conf')
 
 module.exports = (options = {}) => ({
   entry: {
@@ -18,8 +19,10 @@ module.exports = (options = {}) => ({
   module: {
     rules: [{
         test: /\.vue$/,
-        use: ['vue-loader']
-      },
+        loader: 'vue-loader',
+        options: vueLoaderConfig
+
+    },
       {
         test: /\.js$/,
         use: ['babel-loader'],

@@ -11,10 +11,7 @@ let storeDescription = {
   actions: {
     init: function (context, payload) {
       return new Promise((resolve) => { //using promise to detect the moment when init completed
-        context.commit('common/setSettings', settings)
-        context.commit('common/setContent', content)
-        context.dispatch('common/loadContent')
-        context.dispatch('common/loadSettings')
+
         context.dispatch('login/init').then(
           () => {
             resolve()

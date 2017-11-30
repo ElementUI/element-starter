@@ -28,7 +28,6 @@ const loginModule = {
       console.log('logout...')
       context.commit('updateCurrentUser', null)
       localStorage.removeItem('carrierToken')
-      router.history.
       router.push({name: 'login'})
     },
     auth: function (context, payload) {

@@ -1,39 +1,15 @@
 <template>
-  <div id="app">
-    <a href="/contents.html">Contents</a>
-    <a href="/settings.html">Settings</a>
-
+  <div class="ba-application-root" id="app">
+    <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    startHacking () {
-      this.$notify({
-        title: 'It works!',
-        type: 'success',
-        message: 'We\'ve laid the ground work for you. It\'s time for you to build something epic!',
-        duration: 5000
-      })
-    }
-  }
+  name: 'app'
 }
 </script>
 
 <style>
-#app {
-  font-family: Helvetica, sans-serif;
-  text-align: center;
-}
-</style>
-
-<style lang="scss">
-  .why-webpack-cannot-just-bundle-sass {
-    font-weight: bold;
-  }
-
-  /*this seems to work, but I rather want to make css global*/
-  /*@import 'sass/main.scss';*/
 
 </style>

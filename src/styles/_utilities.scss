@@ -1,0 +1,314 @@
+.u-user-select--none {
+    user-select: none;
+}
+
+.u-sr-only {
+    @include hidden--accessible;
+}
+
+// text helpers
+// --------------------------------
+.u-text--sm {
+    font-size: .85em !important;
+}
+
+.u-text--lg {
+    font-size: 1.15em !important;
+}
+
+.u-text--right {
+    text-align: right;
+}
+
+.u-text--left {
+    text-align: left;
+}
+
+.u-text--center {
+    text-align: center;
+}
+
+.u-text--light {
+    color: $gray--060 !important;
+}
+
+.u-text--reg {
+    color: $black !important;
+}
+
+.u-text--danger {
+    color: $danger-dark !important;
+}
+
+.u-text--success {
+    color: $success-dark !important;
+}
+
+.u-text--monospace {
+    font-family: $font-family-monospace !important;
+    font-size: $font-size-small !important;
+}
+
+// For vertically centering td
+.u-cell--align-middle {
+    vertical-align: middle !important;
+}
+
+.u-truncate {
+    display: inline-block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.u-text--right--large {
+    text-align: left;
+
+    @media (min-width: $screen-md) {
+        text-align: right;
+    }
+}
+
+// visibility helpers
+// ------------------
+
+.u-transparent {
+    opacity: 0;
+}
+
+.js-hidden {
+    // similar to "hide" but without important!
+    // so that jquery show/hide/fadeIn/fadeOut will work
+    display: none;
+}
+
+.u-visible-xs {
+    display: block;
+
+    @media (min-width: $screen-xs) {
+        display: none;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.u-hidden-sm {
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        display: none;
+    }
+}
+
+.u-hidden-md {
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+        display: none;
+    }
+}
+
+.u-hidden-lg {
+    @media (min-width: $screen-lg-min) {
+        display: none;
+    }
+}
+
+.u-list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+// overflow helpers
+// ------------------
+
+// Create a scrolling panel.
+.u-scroll {
+    height: 100%;
+    overflow: auto;
+}
+
+// float helpers
+// -------------
+
+.u-float-clear {
+    clear: both !important;
+}
+
+.u-float-right {
+    float: right !important;
+}
+
+.u-float-left {
+    float: left !important;
+}
+
+.u-clearfix {
+  @include clearfix;
+}
+
+// link styling helpers
+// --------------------
+
+.u-link {
+    color: $--link-color;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit; // Buttons without class don't inherit font family.
+    border: 0;
+    background-color: transparent;
+
+    &:hover {
+        color: $--link-hover-color;
+        text-decoration: underline;
+    }
+}
+
+.u-link--danger {
+  color: darken($danger, 5%);
+
+  &:hover {
+      color: darken($danger, 15%);
+  }
+}
+
+.u-img-responsive {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+// Make link appear as regular text, use sparingly.
+.u-text-link, .u-text-link:hover {
+    color: $gray--100;
+    text-decoration: none;
+}
+
+// ========================================================
+// Spacing utility classes
+// Adapted from Basscss framework, bootstrap v4
+//
+// m   Margin
+// p   Padding
+// t   Top
+// r   Right
+// b   Bottom
+// l   Left
+// x   X-axis (left and right)
+// y   Y-axis (top and bottom)
+// n   Negative (margin only)
+// 0   0 reset
+// 1   $space1 (default .5rem)
+// 2   $space2 (default 1rem)
+// 3   $space3 (default 2rem)
+// 4   $space4 (default 4rem)
+// ========================================================
+
+$space1:    .25rem !important;
+$space2:    .5rem !important;
+$space3:    1rem !important;
+$space4:    2rem !important;
+$space5:    3rem !important;
+
+// Margins
+
+// Change or reset default margins using the white space scale.
+// Margin auto is used to horizontally center block-level elements with a set width.
+.u-mxn1 { margin-left: -$space1; margin-right: -$space1; }
+.u-mxn2 { margin-left: -$space2; margin-right: -$space2; }
+.u-mxn3 { margin-left: -$space3; margin-right: -$space3; }
+.u-mxn4 { margin-left: -$space4; margin-right: -$space4; }
+.u-mxn5 { margin-left: -$space5; margin-right: -$space5; }
+
+.u-myn1 { margin-top: -$space1; margin-bottom: -$space1; }
+.u-myn2 { margin-top: -$space2; margin-bottom: -$space2; }
+.u-myn3 { margin-top: -$space3; margin-bottom: -$space3; }
+.u-myn4 { margin-top: -$space4; margin-bottom: -$space4; }
+.u-myn5 { margin-top: -$space5; margin-bottom: -$space5; }
+
+.u-m0  { margin:        0 !important; }
+.u-mt0 { margin-top:    0 !important; }
+.u-mr0 { margin-right:  0 !important; }
+.u-mb0 { margin-bottom: 0 !important; }
+.u-ml0 { margin-left:   0 !important; }
+
+.u-m1  { margin:        $space1; }
+.u-mt1 { margin-top:    $space1; }
+.u-mr1 { margin-right:  $space1; }
+.u-mb1 { margin-bottom: $space1; }
+.u-ml1 { margin-left:   $space1; }
+
+.u-m2  { margin:        $space2; }
+.u-mt2 { margin-top:    $space2; }
+.u-mr2 { margin-right:  $space2; }
+.u-mb2 { margin-bottom: $space2; }
+.u-ml2 { margin-left:   $space2; }
+
+.u-m3  { margin:        $space3; }
+.u-mt3 { margin-top:    $space3; }
+.u-mr3 { margin-right:  $space3; }
+.u-mb3 { margin-bottom: $space3; }
+.u-ml3 { margin-left:   $space3; }
+
+.u-m4  { margin:        $space4; }
+.u-mt4 { margin-top:    $space4; }
+.u-mr4 { margin-right:  $space4; }
+.u-mb4 { margin-bottom: $space4; }
+.u-ml4 { margin-left:   $space4; }
+
+.u-m5  { margin:        $space5; }
+.u-mt5 { margin-top:    $space5; }
+.u-mr5 { margin-right:  $space5; }
+.u-mb5 { margin-bottom: $space5; }
+.u-ml5 { margin-left:   $space5; }
+
+.u-mx-auto { margin-left: auto !important; margin-right: auto !important; }
+
+// Padding
+
+.u-p0  { padding: 0 !important; }
+.u-py0 { padding-top:   0 !important; padding-bottom: 0 !important; }
+.u-px0 { padding-left:  0 !important; padding-right:  0 !important; }
+.u-pt0 { padding-top:   0 !important; }
+.u-pr0 { padding-right: 0 !important; }
+.u-pb0 { padding-bottom:0 !important; }
+.u-pl0 { padding-left:  0 !important; }
+
+.u-p1  { padding:       $space1; }
+.u-py1 { padding-top:   $space1; padding-bottom: $space1; }
+.u-px1 { padding-left:  $space1; padding-right:  $space1; }
+.u-pt1 { padding-top:   $space1; }
+.u-pr1 { padding-right: $space1; }
+.u-pb1 { padding-bottom:$space1; }
+.u-pl1 { padding-left:  $space1; }
+
+.u-p2  { padding:       $space2; }
+.u-py2 { padding-top:   $space2; padding-bottom: $space2; }
+.u-px2 { padding-left:  $space2; padding-right:  $space2; }
+.u-pt2 { padding-top:   $space2; }
+.u-pr2 { padding-right: $space2; }
+.u-pb2 { padding-bottom:$space2; }
+.u-pl2 { padding-left:  $space2; }
+
+.u-p3  { padding:       $space3; }
+.u-py3 { padding-top:   $space3; padding-bottom: $space3; }
+.u-px3 { padding-left:  $space3; padding-right:  $space3; }
+.u-pt3 { padding-top:   $space3; }
+.u-pr3 { padding-right: $space3; }
+.u-pb3 { padding-bottom:$space3; }
+.u-pl3 { padding-left:  $space3; }
+
+.u-p4  { padding:       $space4; }
+.u-py4 { padding-top:   $space4; padding-bottom: $space4; }
+.u-px4 { padding-left:  $space4; padding-right:  $space4; }
+.u-pt4 { padding-top:   $space4; }
+.u-pr4 { padding-right: $space4; }
+.u-pb4 { padding-bottom:$space4; }
+.u-pl4 { padding-left:  $space4; }
+
+.u-p5  { padding:       $space5; }
+.u-py5 { padding-top:   $space5; padding-bottom: $space5; }
+.u-px5 { padding-left:  $space5; padding-right:  $space5; }
+.u-pt5 { padding-top:   $space5; }
+.u-pr5 { padding-right: $space5; }
+.u-pb5 { padding-bottom:$space5; }
+.u-pl5 { padding-left:  $space5; }

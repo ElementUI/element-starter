@@ -1,0 +1,92 @@
+$white: #fefefe;
+$black: hsl(186, 29%, 11%);
+
+$swift-out: cubic-bezier(.55, 0, .1, 1);
+
+$font-family-base: "Effra", -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto,Oxygen, Ubuntu,Cantarell,
+                   "Open Sans","Helvetica Neue",sans-serif !default;
+
+$font-size-base: 16px;
+$font-size-small: 12px;
+
+$gray--000: hsl(189, 16%, 98%);
+$gray--005: hsl(189, 16%, 95%);
+$gray--010: hsl(189, 16%, 92%);
+$gray--015: hsl(189, 16%, 85%);
+$gray--020: hsl(189, 16%, 80%);
+$gray--030: hsl(189, 16%, 70%);
+$gray--040: hsl(189, 16%, 60%);
+$gray--050: hsl(189, 16%, 50%);
+$gray--060: hsl(189, 16%, 32%); // Lightest color for text.
+$gray--070: hsl(189, 16%, 27%);
+$gray--080: hsl(189, 16%, 22%);
+$gray--090: hsl(189, 16%, 17%);
+$gray--100: hsl(189, 16%, 12%);
+
+$color-brand--005: hsl(189, 99%, 98%) !default;
+$color-brand--010: hsl(189, 99%, 96%) !default;
+$color-brand--020: hsl(189, 75%, 85%) !default;
+$color-brand--030: hsl(189, 36%, 74%) !default;
+$color-brand--050: hsl(189, 99%, 37%) !default;
+$color-brand--055: hsl(189, 99%, 32%) !default;
+$color-brand--060: hsl(189, 60%, 30%) !default;
+$color-brand--070: hsl(189, 60%, 20%) !default;
+$color-brand--100: hsl(189, 36%, 11%) !default;
+
+$secondary: hsl(185, 26%, 94%);
+$secondary-light: hsl(185, 26%, 97%);
+$secondary-medium: hsl(185, 20%, 75%);
+$secondary-dark: hsl(185, 30%, 31%);
+
+$info: hsl(210, 30%, 71%);
+$info-light: hsl(210, 82%, 95%);
+$info-medium: hsl(210, 60%, 80%);
+$info-dark: hsl(210, 50%, 27%);
+
+$success: hsl(155, 29%, 71%);
+$success-light: hsl(155, 49%, 96%);
+$success-medium: hsl(155, 30%, 80%);
+$success-dark: hsl(155, 60%, 22%);
+
+$warning: hsl(30, 37%, 68%);
+$warning-light: hsl(30, 79%, 96%);
+$warning-medium: hsl(30, 37%, 80%);
+$warning-dark: hsl(30, 67%, 39%);
+
+$danger: hsl(0, 40%, 75%);
+$danger-light: hsl(0, 60%, 96%);
+$danger-medium: hsl(0, 30%, 79%);
+$danger-dark: hsl(0, 60%, 41%);
+
+$color-base-black: $gray--100;
+$color-light-black: $gray--090;
+$color-extra-light-black: $gray--080;
+
+$color-base-silver: $gray--030;
+$color-light-silver: $gray--020;
+$color-extra-light-silver: $gray--015;
+
+$color-base-gray: $gray--050;
+$color-light-gray: $gray--030;
+$color-extra-light-gray: $gray--005;
+
+$font-color-base: $color-base-black;
+
+// Size Breakpoints
+$screen-xs:              320px !default;
+$screen-sm:              528px !default;
+$screen-md:              768px !default;
+$screen-lg:              1000px  !default;
+
+$screen-xs-min:          $screen-xs !default;
+$screen-sm-min:          $screen-sm !default;
+$screen-md-min:          $screen-md !default;
+$screen-lg-min:          $screen-lg  !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;

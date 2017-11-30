@@ -4,57 +4,86 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const url = require('url')
 const publicPath = ''
 var vueLoaderConfig = require('./build/vue-loader.conf')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+})
 
 module.exports = (options = {}) => ({
   entry: {
     vendor: './src/vendor',
-    index: './src/main.js'
+    index: './src/main.js',
   },
   output: {
     path: resolve(__dirname, 'dist'),
     filename: options.dev ? '[name].js' : '[name].js?[chunkhash]',
     chunkFilename: '[id].js?[chunkhash]',
-    publicPath: options.dev ? '/assets/' : publicPath
+    publicPath: options.dev ? '/assets/' : publicPath,
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        options: vueLoaderConfig,
 
-    },
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "style-loader" // creates style nodes from JS strings
+          },
+          {
+            loader: "css-loader" // translates CSS into CommonJS
+          },
+          {
+            loader: "sass-loader" // compiles Sass to CSS
+          },
+        ],
+      },
       {
         test: /\.js$/,
         use: ['babel-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 10000
-          }
-        }]
-      }
-    ]
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
+      names: [
+        'vendor',
+        'manifest',
+      ],
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    })
+      template: 'src/index.html',
+    }),
   ],
   resolve: {
     alias: {
-      '~': resolve(__dirname, 'src')
-    }
+      '~': resolve(__dirname, 'src'),
+    },
   },
   devServer: {
     host: '127.0.0.1',
@@ -64,13 +93,13 @@ module.exports = (options = {}) => ({
         target: 'http://127.0.0.1:8080',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
-        }
-      }
+          '^/api': '',
+        },
+      },
     },
     historyApiFallback: {
-      index: url.parse(options.dev ? '/assets/' : publicPath).pathname
-    }
+      index: url.parse(options.dev ? '/assets/' : publicPath).pathname,
+    },
   },
-  devtool: options.dev ? '#eval-source-map' : '#source-map'
+  devtool: options.dev ? '#eval-source-map' : '#source-map',
 })

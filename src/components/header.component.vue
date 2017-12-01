@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <a @click="$router.push('dashboard'); $event.preventDefault()" href="/dashboard" >
+    <a @click="$router.push('dashboard'); $event.preventDefault()" href="/dashboard">
       <img class="nav__logo nav__logo--img u-img-responsive" alt="BriteApps" src="../assets/briteappslogonotagline.png">
     </a>
     <a v-for="module in modules" @click="$router.push(module.link); $event.preventDefault()" :href="module.link" class="nav__link" :class="{ 'nav__link--active' : activeModule === module.link }">
@@ -8,7 +8,7 @@
       {{ module.name }}
     </a>
 
-      <a href="/login" @click="logout(); $event.preventDefault()" class="nav__link nav__link--last u-mr4">Logout</a>
+    <a href="/login" @click="logout(); $event.preventDefault()" class="nav__link nav__link--last u-mr4">Logout</a>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ import {mapActions} from 'vuex'
 export default {
   name: 'ba-header',
   props: {
-    activeModule : String,
+    activeModule: String,
   },
   data () {
     let modules = [
@@ -40,7 +40,7 @@ export default {
       },
     ]
     return {
-      modules
+      modules,
     }
   },
   methods: {
@@ -51,6 +51,7 @@ export default {
 </script>
 <style scoped lang="scss">
   @import "../styles/variables";
+
   .nav {
     height: 3rem;
     background-color: #144852;
@@ -84,14 +85,13 @@ export default {
     transition: background-color 100ms;
   }
 
-  .nav__link--last{
+  .nav__link--last {
     float: right;
     display: block;
     margin: 0.5em;
   }
 
-  .nav__link--active
-  {
+  .nav__link--active {
     background-color: rgba(255, 255, 255, 0.1);
     color: $gray--005;
 

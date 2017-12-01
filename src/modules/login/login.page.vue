@@ -15,8 +15,9 @@
       <el-col :xs="{span: 24, offset: 0}" :sm="{span: 8, offset: 8}">
         <el-input class="u-mb2" placeholder="Username or e-mail" v-model="form.username"></el-input>
         <el-input class="u-mb4" type="password" placeholder="Password" v-model="form.password"></el-input>
-        <el-button @click="willLogin" class="u-mt-4" type="success">Login</el-button>
-
+        <div class="u-text--center">
+          <el-button @click="willLogin" class="u-mt-4" type="success" >Login</el-button>
+        </div>
       </el-col>
 
 

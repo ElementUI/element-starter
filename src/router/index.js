@@ -35,7 +35,18 @@ router.beforeEach((to, from, next) => {
     console.log('Not allowed to go to the route for unathorized person')
     next('/login')
   } else {
-    next()
+    if (store.state.login.user === null) {
+      console.log('user is null')
+      store.dispatch('login/init')
+        .then(() => {
+          console.log('Init complete', store.state.login.user)
+          next()
+        },
+        )
+        .catch(() => next('/login'))
+    } else {
+      next()
+    }
   }
 })
 

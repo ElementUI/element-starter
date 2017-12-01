@@ -14,5 +14,7 @@ var config = {
 }
 
 config.login_as_company_staff = config.url + '/login_as_company_staff/'
+config.get_carrier_user = config.url + '/get_carrier_user/'
+config.get_carrier_settings = config.url + '/get_carrier_settings/'
 
 export default config

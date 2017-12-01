@@ -4,12 +4,10 @@ import config from '@/config'
 import {isFailed} from '@/shared/api.utils'
 import router from '@/router'
 
-const tokenKey = 'carrierToken'
-const loginModule = {
+const settingsModule = {
   namespaced: true,
   state: {
-    user: null,
-    token: localStorage.getItem(tokenKey)
+    all: null
   },
   mutations: {
     updateToken (state, payload) {
@@ -22,31 +20,22 @@ const loginModule = {
       }
 
     },
-    updateUser(state, payload) {
-      state.user = payload
+    updateSettings(state, payload) {
+      state.all = payload
     }
   },
   actions: {
-    logout: function (context, payload) {
-      console.log('logout...')
-      context.commit('updateUser', null)
-      context.commit('updateToken', null)
-
-      router.push({name: 'login'})
-    },
-    auth: function (context, payload) {
-      console.log('auth...')
+    load: function (context, payload) {
+      console.log('Loading settings...')
       return new Promise((resolve, reject) => {
         let data
         let url
-
-
         url = config.url
         data = {
-          username: payload.username,
-          password: payload.password,
+          token: localStorage.carrierToken
         }
-        let promise = axios.post(config.login_as_company_staff, data)
+        console.log('data', data)
+        let promise = axios.post(config.get_carrier_settings, data)
 
         promise.then((response) => {
           if (isFailed(response)) {
@@ -55,9 +44,7 @@ const loginModule = {
           }
 
           // success
-          context.commit('updateToken', response.data.token)
-
-          context.commit('updateUser', response.data.data)
+          context.commit('updateSettings', response.data.data)
 
           resolve(response)
         })
@@ -87,8 +74,9 @@ const loginModule = {
           )
       })
     },
+
   },
   getters: {},
 }
 
-export default loginModule
+export default settingsModule

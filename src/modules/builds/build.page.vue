@@ -1,7 +1,7 @@
 <template>
   <div class="builds-module-root">
     <ba-header activeModule="builds"></ba-header>
-    <h1>B</h1>
+    <h1>Builds</h1>
 
   </div>
 </template>

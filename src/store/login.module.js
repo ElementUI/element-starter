@@ -5,19 +5,23 @@ import {isFailed} from '@/shared/api.utils'
 import router from '@/router'
 const localstoragePinKey = 'auth.pin.nonce'
 
+const tokenKey = 'carrierToken'
 const loginModule = {
   namespaced: true,
   state: {
-    currentUser: null
+    currentUser: null,
+    token: localStorage.getItem(tokenKey)
   },
   mutations: {
     updateToken (state, payload) {
-      state.isAuthorized = Boolean(payload)
       if (payload) {
-        localStorage.token = payload
+        localStorage.setItem(tokenKey, payload)
+        state.token = payload
       } else {
-        localStorage.removeItem('token')
+        localStorage.removeItem(tokenKey)
+        state.token = null
       }
+
     },
     updateCurrentUser(state, payload) {
       state.currentUser = payload
@@ -27,7 +31,8 @@ const loginModule = {
     logout: function (context, payload) {
       console.log('logout...')
       context.commit('updateCurrentUser', null)
-      localStorage.removeItem('carrierToken')
+      context.commit('updateToken', null)
+
       router.push({name: 'login'})
     },
     auth: function (context, payload) {
@@ -51,7 +56,8 @@ const loginModule = {
           }
 
           // success
-          localStorage.setItem('carrierToken', response.token)
+          context.commit('updateToken', response.data.token)
+
           context.commit('updateCurrentUser', response.data)
 
           resolve(response)

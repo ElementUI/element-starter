@@ -22,6 +22,28 @@ const settingsModule = {
     },
     updateSettings(state, payload) {
       state.all = payload
+    },
+
+    updateSingleSetting(state, payload) {
+      if (payload.newValue === payload.oldValue) {
+        // do not send extra request
+        return;
+      }
+      console.log('updateSingleSetting', payload)
+      let setting = payload.setting
+
+      let dataToSend =  {
+        token: localStorage.carrierToken,
+        id: setting.id,
+        value: payload.newValue
+      }
+
+      axios.post(config.set_carrier_setting, dataToSend)
+      console.log('payload', payload)
+      if (setting.overridden) {
+        setting.overridden.value = payload.newValue
+      }
+      payload.setting.default = payload.newValue
     }
   },
   actions: {

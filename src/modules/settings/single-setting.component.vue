@@ -41,10 +41,10 @@ import {mapMutations} from 'vuex'
 export default {
   props: ['setting'],
   name: 'ba-single-setting',
-  data() {
+  data () {
     let carrierAccess = this.setting.carrier_access
     return {
-      settingValueClone : this.setting.overridden ? this.setting.overridden.value : this.setting.default,
+      settingValueClone: this.setting.overridden ? this.setting.overridden.value : this.setting.default,
       readonly: carrierAccess === 'R' || carrierAccess === 'N'
     }
   },
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     ...mapMutations('settings', ['updateSingleSetting']),
-    updateTextSetting(e) {
+    updateTextSetting (e) {
       let value = e.target ? e.target.value : e
 
       let payload = {
@@ -88,11 +88,9 @@ export default {
       this.updateSingleSetting(payload)
 
       this.settingValueClone = value
-
     }
   },
 }
-
 </script>
 
 <style scoped>

@@ -27,7 +27,7 @@ export default {
   components: {BaSingleSetting},
   methods: {
     ...mapActions('settings', ['load']),
-    passSearchFilter(setting) {
+    passSearchFilter (setting) {
       let fullSlug = setting.section.slug + '.' + setting.slug
       if (fullSlug.indexOf(this.searchFilter) >= 0) {
         return true

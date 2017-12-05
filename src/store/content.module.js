@@ -16,27 +16,40 @@ const contentModule = {
 
     updateSingleContent(state, payload) {
       if (payload.newValue === payload.oldValue) {
-        // do not send extra request
+        console.log('payload.newValue === payload.oldValue')
         return;
       }
-      console.log('updateSingleSetting', payload)
-      let setting = payload.setting
+      console.log('updateSingleContent', payload)
+      let content = payload.content
 
-      let dataToSend =  {
-        token: localStorage.carrierToken,
-        id: setting.id,
-        value: payload.newValue
+      if (content.overridden) {
+        content.overridden.value = payload.newValue
       }
-
-      axios.post(config.set_carrier_setting, dataToSend)
-      console.log('payload', payload)
-      if (setting.overridden) {
-        setting.overridden.value = payload.newValue
-      }
-      payload.setting.default = payload.newValue
     }
   },
   actions: {
+    saveSingleContent(context, payload) {
+      if (payload.newValue === payload.oldValue) {
+        console.log('payload.newValue === payload.oldValue')
+        return;
+      }
+      console.log('saveSingleContent', payload)
+      let content = payload.content
+
+      let dataToSend =  {
+        token: localStorage.carrierToken,
+        id: content.id,
+        value: payload.newValue
+      }
+
+      let promise = axios.post(config.set_carrier_content, dataToSend)
+
+      console.log('payload', payload)
+
+      context.commit('updateSingleContent', payload)
+
+      return promise
+    },
     load: function (context, payload) {
       console.log('Loading content...')
       return new Promise((resolve, reject) => {

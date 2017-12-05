@@ -55,6 +55,9 @@ export default {
       if (content.default.toLowerCase().indexOf(this.searchFilter.toLowerCase()) >= 0) {
         return true
       }
+      if (content.overridden && content.overridden.value.toLowerCase().indexOf(this.searchFilter.toLowerCase()) >= 0) {
+        return true
+      }
     },
   },
   computed: {

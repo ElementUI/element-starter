@@ -4,11 +4,13 @@ import Vuex from 'vuex'
 
 import loginModule from './login.module'
 import settingsModule from './settings.module'
+import contentModule from './content.module'
 
 let storeDescription = {
   modules: {
     login: loginModule,
     settings: settingsModule,
+    content: contentModule,
   },
   actions: {
     init: function (context, payload) {

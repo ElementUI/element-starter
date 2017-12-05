@@ -28,7 +28,6 @@ export default {
   methods: {
     ...mapActions('content', ['saveSingleContent']),
     saveModifiedContent (e) {
-
       let oldValue = this.contentValue
       let newValue = e.target ? e.target.value : e
 
@@ -36,11 +35,10 @@ export default {
         return
       }
 
-      let id = this.content.id
       let payload = {
         oldValue,
         newValue,
-        content : this.content
+        content: this.content
       }
       this.contentValue = newValue
       this.saveSingleContent(payload)
@@ -48,7 +46,7 @@ export default {
           this.$message({
             message: 'Content saved successfully',
             type: 'success'
-          });
+          })
         })
       // TODO save to db
     }

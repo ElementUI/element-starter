@@ -4,6 +4,19 @@ import router from '@/router'
 
 let modalCreated = false
 
+axios.interceptors.request.use(
+  function (config) {
+    console.log('config', config)
+
+    config.headers['Authorization'] = `Bearer ${localStorage.carrierToken}`
+    return config
+  },
+  function (error) {
+    debugger
+    // Do something with request error
+    return Promise.reject(error)
+  })
+
 axios.interceptors.response.use(
   function (response) {
     let token = response.data.token

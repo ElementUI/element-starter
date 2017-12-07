@@ -8,8 +8,13 @@
       {{ module.name }}
     </a>
 
+
     <a href="/login" @click="logout(); $event.preventDefault()" class="nav__link nav__link--last u-mr4">Logout</a>
+
   </div>
+
+
+
 </template>
 
 <script>
@@ -29,6 +34,7 @@ export default {
         icon: 'rocket',
       },
       {
+
         link: 'settings',
         name: 'Settings',
         icon: 'cog',

@@ -1,16 +1,11 @@
 <template>
-  <div class="single-content-component u-mb4 u-mr4">
-    <div class="content__slug u-mb2 u-text--sm">
-      {{content.section.slug}}.{{content.slug}}
-    </div>
+    <el-form-item :label="content.slug">
+      <el-input type="textarea" v-bind:value="contentValue" @change="saveModifiedContent" @blur="saveModifiedContent"></el-input>
 
-    <div class="content__name u-mb2 u-text--sm" title="Default value">
-      {{content.default}}
-    </div>
-    <div class="content__edit">
-      <el-input v-bind:value="contentValue" @change="saveModifiedContent" @blur="saveModifiedContent"></el-input>
-    </div>
-  </div>
+      <div v-if="contentValue != content.default">
+        {{content.default}}
+      </div>
+    </el-form-item>
 </template>
 
 <script>
@@ -53,12 +48,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .content__slug {
-    background-color: #e4e4e4;
-    border-radius: 10px;
-    display: inline-block;
-    padding: 0.5em;
-  }
-</style>

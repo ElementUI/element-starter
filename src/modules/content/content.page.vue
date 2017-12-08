@@ -1,29 +1,36 @@
 <template>
-  <div class="content-module">
-    <ba-header activeModule="content"></ba-header>
-    <div class="content-module__main u-ml4" v-loading="loading">
+  <div>
+    <div v-loading="loading">
 
-      <h3 class="u-text--center">Content</h3>
-      <div class="u-mb2">Select language:</div>
-      <el-select class="u-ml2" v-model="selectedLanguage" placeholder="Select language">
-        <el-option
-            v-for="language in languages"
-            :value="language"
-            :key="language">
-        </el-option>
-      </el-select>
+      <h3 class="c-heading__page">Content</h3>
 
-      <div class="content__search u-mt4 u-mr4">
-        <div class="u-text--small">Search for...</div>
-        <el-input type="text" class="u-ml2" v-model="searchFilter"></el-input>
-      </div>
+      <el-form label-position="left">
+        <el-row :gutter="50">
+          <el-col :xs="24" :sm="16">
+            <el-form-item label="Search">
+              <el-input v-model="searchFilter"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="8">
+            <el-form-item label="Language">
+              <el-select v-model="selectedLanguage">
+                <el-option
+                    v-for="language in languages"
+                    :value="language"
+                    :key="language">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
 
       <div class="section" v-for="section in sections">
         <h4 class="section__title">{{ section.name }}</h4>
-        <div v-for="content in section.contents" v-if="passSearchFilter(content)" class="section__single-content">
+
+        <el-form v-for="content in section.contents" v-if="passSearchFilter(content)" label-position="top">
           <ba-single-content :content="content"></ba-single-content>
-          <!--{{ content.id }}-->
-        </div>
+        </el-form>
       </div>
 
     </div> <!-- Content module end -->

@@ -36,7 +36,7 @@ export default {
       {
         link: 'content',
         name: 'Content',
-        icon: 'language',
+        icon: 'font',
       },
     ]
     return {

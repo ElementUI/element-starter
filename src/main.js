@@ -9,6 +9,7 @@ import App from './App.vue'
 import router from './router'
 import store from '@/store'
 import '@/utils/axios.interceptors'
+import '@/filters'
 
 import './styles/main.scss'
 
@@ -21,6 +22,10 @@ Vue.component('icon', Icon)
 Vue.config.productionTip = true
 
 Vue.use(ElementUI)
+import moment from 'vue-moment'
+
+Vue.use(moment);
+
 Vue.component('ba-header', Header)
 
 // to reduce bundle size

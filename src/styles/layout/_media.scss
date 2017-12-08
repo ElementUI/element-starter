@@ -1,0 +1,32 @@
+.l-media {
+    display: flex;
+    align-items: center;
+}
+
+.l-media--top {
+    align-items: start;
+}
+
+.l-media__item {
+    margin-right: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+.l-media__body {
+    flex: 1;
+}
+
+.l-media__body--trim-text {
+    display: inline;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

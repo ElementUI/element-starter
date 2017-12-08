@@ -1,0 +1,7 @@
+.c-floated-nav {
+    display: inline-block;
+
+    @media (min-width: $screen-md) {
+        float: right;
+    }
+}

@@ -1,0 +1,180 @@
+$background-accent: #263131;
+
+// For on-page editor
+.ace-editor__container {
+    overflow: auto;
+    background: $white;
+    width: 100%;
+    position: relative;
+    height: 18em;
+    display: none;
+}
+
+.ace-editor__container--active {
+    display: block;
+}
+
+.ace-editor__container--full-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+}
+
+.ace-editor {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute !important;
+    z-index: 1;
+    font-size: 14px !important;
+}
+
+.ace_content {
+    background: hsl(189, 8%, 15%);
+}
+
+// Needed to prevent editor from overlapping navigation.
+.ace-editor__wrapper {
+    position: relative;
+}
+
+.ace-editor__main {
+    height: calc(100vh - 36px);
+    margin-top: 36px; // Makes room for top navigation.
+}
+
+// Top navigation
+.ace-editor__nav-container {
+    background: $background-accent;
+    color: $white;
+    font-size: .75rem;
+    font-weight: 300;
+    line-height: 2;
+    padding: .5em 2.4em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.ace-editor__nav-options {
+    position: absolute;
+    right: 1.4em;
+    top: .5em;
+}
+
+.ace-editor__nav {
+    opacity: .9;
+
+    .ace-editor__back {
+        color: $white;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .btn {
+        padding: .2em .7em;
+        line-height: 1;
+    }
+}
+
+.ace-monokai .ace_gutter {
+    background-color: $background-accent !important;
+}
+
+// Ace Find functionality
+// Nested for specificity. ACE loads all CSS through JS,
+// making it harder to control the cascade in this case.
+.ace-editor__container {
+    .ace_search {
+        position: fixed;
+        top: 2.6em;
+
+        &.right {
+            right: 1.2em;
+            border-radius: 0 0 6px 6px;
+            border: 0;
+            padding: .7em .8em .4em .8em;
+            // background: $background-accent;
+            max-width: 370px;
+        }
+
+        // Search options above input
+        // These seem a little buggy. Hiding for now.
+        .ace_search_options {
+            display: none;
+        }
+
+        .ace_search_form, .ace_replace_form {
+            border-radius: 5px;
+        }
+    }
+
+    .ace_search_field {
+        color: $black;
+    }
+
+    .ace_search_form.ace_nomatch {
+        outline: none;
+        transition: border-color 90ms ease;
+
+        border-color: $danger;
+
+        .ace_search_field {
+            transition: background 90ms ease;
+            background: $danger-light;
+        }
+    }
+
+    .ace_searchbtn_close {
+        color: $white;
+        opacity: .5;
+        position: relative;
+        bottom: 2px;
+        left: 3px;
+        width: auto;
+        background-image: none !important;
+        transition: opacity 120ms ease-in;
+
+        &:hover {
+            opacity: 1;
+            background-color: transparent;
+        }
+
+        &:after {
+            @include fa-icon();
+        }
+    }
+
+    .ace_replacebtn {
+        color: $black;
+    }
+
+    .ace_searchbtn {
+        background-image: none !important;
+        color: $black;
+        width: auto;
+
+        &:after {
+            @include fa-icon();
+        }
+    }
+
+    .ace_searchbtn_close:after {
+        content: "\f005";
+    }
+
+    .ace_searchbtn.next:after {
+        content: "\f04a";
+    }
+
+    .ace_searchbtn.prev:after {
+        content: "\f04b";
+    }
+}

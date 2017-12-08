@@ -1,0 +1,34 @@
+.l-gradient-backdrop {
+    background-image: linear-gradient(160deg, $color-brand--055, $color-brand--100);
+}
+
+.l-page-content {
+    // Account for top bar, might be fragile;
+    min-height: calc(100vh - 3rem);
+    padding: 1em 1.5em;
+    @include clearfix();
+
+    @media (min-width: $screen-lg) {
+        padding: 2em 3em;
+    }
+}
+
+.l-page__header {
+    width: 100%;
+}
+
+.l-page__main {
+    padding-right: 2em;
+    width: 80%;
+    float: left;
+}
+
+.l-page-content--no-sidebar .l-page__main {
+    width: 100%;
+    padding-right: 0;
+}
+
+.l-page__sidebar {
+    width: 20%;
+    float: left;
+}

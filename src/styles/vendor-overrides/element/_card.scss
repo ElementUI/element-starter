@@ -1,0 +1,34 @@
+.el-card__sidebar {
+    background-color: $gray--010;
+    border-right: 1px solid $gray--020;
+    border-radius: $--border-radius-base 0 0 $--border-radius-base;
+    padding: $--card-padding/2;
+    height: 100%;
+    overflow: auto;
+}
+
+.el-card--no-shadow {
+    box-shadow: none;
+}
+
+.el-card__body {
+    padding: 0;
+    height: 100%;
+}
+
+.el-card {
+    padding: $--card-padding;
+}
+
+.el-card--compact {
+    padding: $--card-padding*.6667;
+}
+
+.el-card--active {
+    background: $color-brand--055;
+    color: white;
+
+    * {
+        color: white !important;
+    }
+}

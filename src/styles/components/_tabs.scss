@@ -1,0 +1,78 @@
+.c-tab__pane {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.c-tab__nav-container {
+    padding: 0;
+    margin-bottom: 1em;
+    position: relative;
+
+    // Border bottom
+    &:before {
+        content: "";
+        height: 1px;
+        background-color: $gray--015;
+        position: absolute;
+        bottom: .95em;
+        left: 0;
+        right: 0;
+        z-index: 0;
+    }
+
+    // Rounding issue between small/large screens
+    @media (min-width: $screen-lg) {
+      &:before {
+        bottom: 1em;
+      }
+    }
+}
+
+.c-tab__nav {
+    white-space: nowrap;
+    overflow: auto;
+    position: relative;
+    list-style: none;
+    padding: 0 0 1em 0; // Bottom padding needed to make room for possible scroll bar.
+    margin: 0;
+}
+
+.c-tab__nav-item {
+    display: inline-block;
+    position: relative;
+    margin-right: -3px;
+
+    // Border bottom, needed on items for when items overflow list.
+    &:before {
+        content: "";
+        height: 1px;
+        background-color: $gray--015;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+}
+
+.c-tab__nav-link {
+    color: $gray--060;
+    transition: color 90ms ease-in, border-color 90ms ease-in;
+    padding: 0 .5em .5em;
+    display: block;
+    border-bottom: 2px solid transparent;
+    margin: 0 1em 0 0;
+
+    &:hover, &:focus, &:active {
+        text-decoration: none;
+        color: $color-brand--055;
+    }
+
+    .is-active > & {
+        border-bottom-color: $color-brand--055;
+        color: $color-brand--055;
+    }
+}

@@ -1,0 +1,197 @@
+ul.jqtree-tree {
+    list-style: none outside;
+    margin-left: 0;
+    margin-bottom: 0;
+    padding: 0;
+
+    ul.jqtree_common {
+        list-style: none outside;
+        margin-left: 12px;
+        margin-right: 0;
+        margin-bottom: 0;
+        padding: 0;
+        display: block;
+    }
+
+    li.jqtree-closed > ul.jqtree_common {
+        display: none;
+    }
+
+    li.jqtree_common {
+        clear: both;
+        list-style-type: none;
+    }
+
+    .jqtree-toggler {
+        border-bottom: none;
+        color: #333;
+        text-decoration: none;
+        vertical-align: middle;
+
+        &:hover {
+            color: #000;
+            text-decoration: none;
+        }
+
+        &.jqtree-closed {
+            background-position: 0 0;
+        }
+
+        &.jqtree-toggler-left {
+            margin-right: 0.5em;
+        }
+
+        &.jqtree-toggler-right {
+            margin-left: 0.5em;
+        }
+    }
+
+    .jqtree-element {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .jqtree-title {
+        color: #1C4257;
+        vertical-align: middle;
+        margin-left: 1.5em;
+
+        &.jqtree-title-folder {
+            margin-left: 0;
+        }
+    }
+
+    li.jqtree-folder {
+        margin-bottom: 4px;
+
+        &.jqtree-closed {
+            margin-bottom: 1px;
+        }
+    }
+
+    li.jqtree-ghost {
+        position: relative;
+        z-index: 10;
+        margin-right: 10px;
+
+        /* todo: add classes to span? */
+        span {
+            display: block;
+        }
+
+        span.jqtree-circle {
+            border: solid 2px #0000ff;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            border-radius: 100px;
+            height: 8px;
+            width: 8px;
+            position: absolute;
+            top: -4px;
+            left: -6px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        span.jqtree-line {
+            background-color: #0000ff;
+            height: 2px;
+            padding: 0;
+            position: absolute;
+            top: -1px;
+            left: 2px;
+            width: 100%;
+        }
+
+        &.jqtree-inside {
+            margin-left: 48px;
+        }
+    }
+
+    span.jqtree-border {
+        position: absolute;
+        display: block;
+        left: -2px;
+        top: 0;
+        border: solid 2px #0000ff;
+        border-radius: 6px;
+        margin: 0;
+        box-sizing: content-box;
+    }
+
+    li.jqtree-selected > .jqtree-element,
+    li.jqtree-selected > .jqtree-element:hover {
+        background-color: #97BDD6;
+        background: -webkit-gradient(linear, left top, left bottom, from(#BEE0F5), to(#89AFCA));
+        background: -moz-linear-gradient(top, #BEE0F5, #89AFCA);
+        background: -ms-linear-gradient(top, #BEE0F5, #89AFCA);
+        background: -o-linear-gradient(top, #BEE0F5, #89AFCA);
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .jqtree-moving > .jqtree-element .jqtree-title {
+        outline: dashed 1px #0000ff;
+    }
+}
+
+ul.jqtree-tree.jqtree-rtl {
+    direction: rtl;
+
+    ul.jqtree_common {
+        margin-left: 0;
+        margin-right: 12px;
+    }
+
+    .jqtree-toggler {
+        margin-left: 0.5em;
+        margin-right: 0;
+    }
+
+    .jqtree-title {
+        margin-left: 0;
+        margin-right: 1.5em;
+
+        &.jqtree-title-folder {
+            margin-right: 0;
+        }
+    }
+
+    li.jqtree-ghost {
+        margin-right: 0;
+        margin-left: 10px;
+
+        span.jqtree-circle {
+            right: -6px;
+        }
+
+        span.jqtree-line {
+            right: 2px;
+        }
+
+        &.jqtree-inside {
+            margin-left: 0;
+            margin-right: 48px;
+        }
+    }
+
+    span.jqtree-border {
+        right: -2px;
+    }
+}
+
+span.jqtree-dragging {
+    color: #fff;
+    background: #000;
+    opacity: 0.6;
+    cursor: pointer;
+    padding: 2px 8px;
+}
+
+/* IE 6, 7, 8 */
+@media \0screen\,screen\9  {
+    ul.jqtree-tree li.jqtree-ghost span.jqtree-circle {
+        background: url(jqtree-circle.png) no-repeat;
+        border: 0 none;
+    }
+}

@@ -70,6 +70,13 @@
     }
 }
 
+// Color Helpers
+// -------------
+
+.u-brand-dark {
+    color: $color-brand--070;
+}
+
 // visibility helpers
 // ------------------
 
@@ -169,12 +176,6 @@
   &:hover {
       color: darken($danger, 15%);
   }
-}
-
-.u-img-responsive {
-    max-width: 100%;
-    height: auto;
-    display: block;
 }
 
 // Make link appear as regular text, use sparingly.

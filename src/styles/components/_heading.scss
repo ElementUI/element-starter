@@ -1,0 +1,51 @@
+// Large to Small Header types
+.c-heading__page {
+    font-size: 2.5em;
+    font-weight: 300;
+    line-height: 1.1;
+}
+
+.c-heading__main {
+    font-size: 1.85em;
+}
+
+.c-heading {
+    font-size: 1.45em;
+}
+
+.c-heading__section {
+    font-size: 1.3em;
+}
+
+.c-heading__sub {
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.c-heading__text {
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+.c-heading__title {
+    font-weight: 500;
+    font-size: .95em;
+}
+
+.c-heading__label {
+    font-size: .8em;
+    margin-bottom: 0;
+}
+
+// Modifiers
+.c-heading--inline {
+    display: inline;
+}
+
+.c-heading--bold {
+    font-weight: 500;
+}
+
+.c-heading--light {
+    color: $gray--060;
+}

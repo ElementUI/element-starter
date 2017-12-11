@@ -10,7 +10,7 @@ axios.interceptors.request.use(
     return config
   },
   function (error) {
-    debugger
+    console.warn('axios.interceptors.request.use error', error)
     // Do something with request error
     return Promise.reject(error)
   })

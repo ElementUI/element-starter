@@ -2,7 +2,7 @@
   <div>
     <div v-loading="loading">
 
-      <h3 class="c-heading__page">Content</h3>
+      <h3 class="c-heading__page">Content Customization</h3>
 
       <el-form label-position="left">
         <el-row :gutter="50">
@@ -25,8 +25,8 @@
         </el-row>
       </el-form>
 
-      <div class="section" v-for="section in sections">
-        <h4 class="section__title">{{ section.name }}</h4>
+      <div class="el-card u-mt4 u-pb0" v-for="section in sections">
+        <h4 class="c-heading--lg u-mb3"><icon class="u-mr2" :name="'link'"></icon>{{ section.name }}</h4>
 
         <el-form v-for="content in section.contents" v-if="passSearchFilter(content)" label-position="top">
           <ba-single-content :content="content"></ba-single-content>

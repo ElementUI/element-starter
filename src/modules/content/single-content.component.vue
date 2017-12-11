@@ -1,9 +1,15 @@
 <template>
     <el-form-item :label="content.slug">
-      <el-input type="textarea" v-bind:value="contentValue" @change="saveModifiedContent" @blur="saveModifiedContent"></el-input>
+      <div v-if="content.default.length > 13">
+        <el-input type="textarea" v-bind:value="contentValue" @change="saveModifiedContent" @blur="saveModifiedContent"></el-input>
+      </div>
+
+      <div v-else>
+        <el-input v-bind:value="contentValue" @change="saveModifiedContent" @blur="saveModifiedContent"></el-input>
+      </div>
 
       <div v-if="contentValue != content.default">
-        {{content.default}}
+        <span class="u-text--light u-text--sm">Default text: <em>{{content.default}}</em></span>
       </div>
     </el-form-item>
 </template>

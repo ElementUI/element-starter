@@ -6,8 +6,6 @@ let modalCreated = false
 
 axios.interceptors.request.use(
   function (config) {
-    console.log('config', config)
-
     config.headers['Authorization'] = `Bearer ${localStorage.carrierToken}`
     return config
   },

@@ -29,18 +29,18 @@ export default {
   data () {
     let modules = [
       {
-        link: 'builds',
+        link: '/builds',
         name: 'Builds',
         icon: 'rocket',
       },
       {
 
-        link: 'settings',
+        link: '/settings',
         name: 'Settings',
         icon: 'cog',
       },
       {
-        link: 'content',
+        link: '/content',
         name: 'Content',
         icon: 'language',
       },

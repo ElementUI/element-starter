@@ -1,8 +1,7 @@
 <template>
-  <div class="preview">
-    <div  class="visible-xs-up">Build Preview</div>
-    <img class="hidden-xs-down" src="../assets/iphone.jpg" />
-    <iframe class="preview__iframe" :src="url"></iframe>
+  <div class="preview" v-loading="loading">
+    <img class="preview__iphone-overlay" src="/src/assets/iphone.jpg" />
+    <iframe class="preview__iframe" :src="url" @load="frameLoaded()" ></iframe>
   </div>
 </template>
 
@@ -11,10 +10,17 @@ export default {
   name: 'ba-build-preview',
   props: ['url'],
   data () {
-    return {}
+    return {
+      loading: true,
+    }
   },
   ready () {
 
+  },
+  methods: {
+    frameLoaded () {
+      this.loading = false
+    }
   }
 }
 </script>
@@ -24,13 +30,17 @@ export default {
   }
   .preview {
     position: relative;
+
+    width: 518px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .preview__iframe{
     display: block;
     position: absolute;
-    top: 149px;
+    top: 125px;
     left: 99px;
-    background-color: red;
+    background-color: #e4e4e4;
     width: 320px;
     height: 569px;
     border: 1px solid #eee;
@@ -45,6 +55,15 @@ export default {
       width: 98%;
       position:static;
       margin-bottom: 50px;
+    }
+
+    .preview__iphone-overlay {
+      display: none;
+    }
+    .preview {
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>

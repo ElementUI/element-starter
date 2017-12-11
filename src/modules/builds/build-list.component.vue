@@ -9,8 +9,11 @@
           label="Operations"
           width="180">
         <template slot-scope="scope">
-          <el-button
-              @click="handleEdit(scope.$index, scope.row)">Details</el-button>
+          <a :href="'/build-details/' + scope.row.id" @click="$event.preventDefault()">
+            <el-button @click="$router.push({ name: 'build-details', params: { buildId: scope.row.id}})">
+            Details
+            </el-button>
+          </a>
         </template>
       </el-table-column>
       <el-table-column
@@ -18,11 +21,8 @@
           label="Status"
           width="180">
         <template slot-scope="scope">
-          <el-tag
-              style="min-width: 100px;"
-              class="u-text--center"
-              :type="buildLabelColor(scope.row)"
-              close-transition>{{scope.row.status | capitalize}}</el-tag>
+          <ba-status-label :build="scope.row"></ba-status-label>
+
         </template>
       </el-table-column>
       <el-table-column
@@ -68,35 +68,11 @@ export default {
     }
   },
   methods: {
-    buildLabelColor (build) {
-      let statusNormalized = build.status.toLowerCase()
-      if (statusNormalized === 'queued') {
-        return 'primary'
-      }
 
-      if (statusNormalized === 'success') {
-        return 'success'
-      }
-
-      if (statusNormalized === 'failed') {
-        return 'danger'
-      }
-
-      return 'primary'
-    },
     goLink (link) {
       router.push({path: link})
     },
-    queueBuild () {
-      this.loading = true
-      axios.post(config.build_mobile_app, {commit_id: this.commitId})
-        .then(response => {
-          this.loadBuilds()
-        })
-        .catch(response => {
-          this.loading = false
-        })
-    },
+
     loadBuilds () {
       this.loading = true
       axios.get(config.list_builds_per_company)

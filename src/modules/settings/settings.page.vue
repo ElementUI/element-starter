@@ -1,30 +1,52 @@
 <template>
   <div class="settings-module-root">
     <ba-header activeModule="Settings"></ba-header>
-    <h3 class="u-padding-header u-text--center c-heading__main ">Settings</h3>
+    <ba-page-with-sidebar :title="'Settings'">
+      <template slot="sidebar">
+        <div class="sidebar-settings" v-for="section in sections" >
+          <div class="u-mb2">
+            <a :href="'#' + section.name">{{section.name}}</a>
+          </div>
+        </div>
 
-    <div class="settings__search u-ml4 ">
-      <div class="u-text--small">Search for...</div>
-      <el-input type="text" v-model="searchFilter"></el-input>
-    </div>
+      </template>
+      <template slot="main">
+        <h3 class="u-pt4 c-heading__page u-pb3">Settings</h3>
 
-    <div v-for="section in sections" class="setting-section u-ml4">
+        <el-form label-position="left">
+          <el-row :gutter="50">
+            <el-col :xs="24" :sm="16">
+              <el-form-item label="Search">
+                <el-input v-model="searchFilter"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
 
-      <h4 class="setting-section__title">{{section.name}}</h4>
-      <div v-for="setting in section.settings" v-if="passSearchFilter(setting)" class="setting-section__settings single-setting u-mb4 u-ml4">
-        <ba-single-setting :setting="setting"></ba-single-setting>
-      </div>
+        <div v-for="section in sections" class="el-card setting-section u-mt4 u-ml4">
 
-    </div>
+          <a class="u-section-anchor" :id="section.name"></a>
+          <h4 class="c-heading--lg u-mb3"><icon class="u-mr2" name="link"></icon>{{ section.name }}</h4>
+
+          <div v-for="setting in section.settings" v-if="passSearchFilter(setting)" class="setting-section__settings single-setting u-mb4 u-ml4">
+            <ba-single-setting :setting="setting"></ba-single-setting>
+          </div>
+
+        </div>
+      </template>
+    </ba-page-with-sidebar>
   </div>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex'
 import BaSingleSetting from '@/modules/settings/single-setting.component'
+import BaPageWithSidebar from '@/components/page-with-sidebar.component'
 
 export default {
-  components: {BaSingleSetting},
+  components: {
+    BaPageWithSidebar,
+    BaSingleSetting},
   methods: {
     ...mapActions('settings', ['load']),
     passSearchFilter (setting) {
@@ -65,8 +87,5 @@ export default {
 }
 </script>
 <style scoped >
-  /* Hide section title if no search filter pass for section */
-  .setting-section__title:last-child {
-    display: none;
-  }
+
 </style>

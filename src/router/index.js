@@ -27,6 +27,10 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to.name === null) {
+    next('/dashboard')
+  }
+
   if (to.name === 'login') {
     next()
   }

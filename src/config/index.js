@@ -22,4 +22,8 @@ config.set_carrier_setting = config.url + '/set_carrier_setting/'
 config.get_carrier_content = config.url + '/get_carrier_content/'
 config.set_carrier_content = config.url + '/set_carrier_content/'
 
+config.list_builds_per_company = config.url + '/builds/'
+config.builds_details = config.url + '/build/'
+config.build_mobile_app = config.url + '/build-mobile-app/'
+
 export default config

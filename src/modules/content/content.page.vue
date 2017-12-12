@@ -1,48 +1,65 @@
 <template>
   <div>
-    <div v-loading="loading">
+    <ba-header activeModule="Content"></ba-header>
 
-      <h3 class="c-heading__page">Content Customization</h3>
-
-      <el-form label-position="left">
-        <el-row :gutter="50">
-          <el-col :xs="24" :sm="16">
-            <el-form-item label="Search">
-              <el-input v-model="searchFilter"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :sm="8">
-            <el-form-item label="Language">
-              <el-select v-model="selectedLanguage">
-                <el-option
-                    v-for="language in languages"
-                    :value="language"
-                    :key="language">
-                </el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
-
-      <div class="el-card u-mt4 u-pb0" v-for="section in sections">
-        <h4 class="c-heading--lg u-mb3"><icon class="u-mr2" :name="'link'"></icon>{{ section.name }}</h4>
-
-        <el-form v-for="content in section.contents" v-if="passSearchFilter(content)" label-position="top">
-          <ba-single-content :content="content"></ba-single-content>
-        </el-form>
+    <ba-page-with-sidebar :title="'Content'">
+      <div slot="sidebar">
+        <div class="section-list" v-for="section in sections">
+          <div class="section-list__link-item u-mt2">
+            <a  :href="'#'+ section.name">{{section.name}}</a>
+          </div>
+        </div>
       </div>
+      <div slot="main" class="u-pt4" v-loading="loading">
 
-    </div> <!-- Content module end -->
+        <h3 class="c-heading__page">Content Customization</h3>
+
+        <el-form label-position="left">
+          <el-row :gutter="50">
+            <el-col :xs="24" :sm="16">
+              <el-form-item label="Search">
+                <el-input v-model="searchFilter"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :xs="24" :sm="8">
+              <el-form-item label="Language">
+                <el-select v-model="selectedLanguage">
+                  <el-option
+                          v-for="language in languages"
+                          :value="language"
+                          :key="language">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+
+        <div class="el-card u-mt4 u-pb0" v-for="section in sections">
+
+          <a class="section-anchor" :id="section.name"></a>
+          <h4 class="c-heading--lg u-mb3"><icon class="u-mr2" :name="'link'"></icon>{{ section.name }}</h4>
+
+          <el-form v-for="content in section.contents" :key="content.id" v-if="passSearchFilter(content)" label-position="top">
+            <ba-single-content :content="content"></ba-single-content>
+          </el-form>
+        </div>
+
+      </div> <!-- Content module end -->
+    </ba-page-with-sidebar>
+
   </div>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex'
 import BaSingleContent from '@/modules/content/single-content.component'
+import BaPageWithSidebar from '@/components/page-with-sidebar.component'
 
 export default {
-  components: {BaSingleContent},
+  components: {
+    BaPageWithSidebar,
+    BaSingleContent},
   data () {
     console.log('this.all', this.all)
     this.load()
@@ -107,5 +124,13 @@ export default {
   /* Hide title if no search filter pass for section */
   .section__title:last-child {
     display: none;
+  }
+
+  /* Offset anchor to adjust for fixed header */
+  .section-anchor {
+    display: block;
+    position: relative;
+    top: -5rem;
+    visibility: hidden;
   }
 </style>

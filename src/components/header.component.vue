@@ -1,9 +1,9 @@
 <template>
-  <div class="nav">
+  <div class="nav nav--fixed">
     <a @click="$router.push('dashboard'); $event.preventDefault()" href="/dashboard">
       <img class="nav__logo nav__logo--img u-img-responsive" alt="BriteApps" src="../assets/briteappslogonotagline.png">
     </a>
-    <a v-for="module in modules" @click="$router.push(module.link); $event.preventDefault()" :href="module.link" class="nav__link" :class="{ 'nav__link--active' : activeModule === module.link }">
+    <a v-for="module in modules" @click="$router.push(module.link); $event.preventDefault()" :href="module.link" class="nav__link" :class="{ 'nav__link--active' : activeModule === module.name }">
       <icon class="u-mr1" scale="0.75" :name="module.icon"></icon>
       {{ module.name }}
     </a>
@@ -56,6 +56,12 @@ export default {
     height: 3rem;
     background-color: #144852;
     vertical-align: center;
+  }
+
+  .nav--fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
   }
 
   .nav__logo {

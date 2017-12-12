@@ -1,7 +1,5 @@
 <template>
-
   <div class="login-root">
-    <!--<ba-header></ba-header>-->
     <el-row>
       <el-col :xs="{span: 24, offset: 0}" :sm="{span: 8, offset: 8}">
         <img class="u-img-responsive" src="../../assets/briteappslogonotagline.png"/>

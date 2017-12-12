@@ -1,11 +1,15 @@
 <template>
   <div class="builds-module-root">
-    <ba-header activeModule="builds"></ba-header>
-    <h2 class="u-text--center">Builds</h2>
-    <a href="/new-build" @click="$event.preventDefault()">
-      <el-button type="success" class="u-ml4" icon="el-icon-plus" @click="goToLink('new-build')">New build</el-button>
-    </a>
-    <ba-build-list></ba-build-list>
+    <ba-header activeModule="Builds"></ba-header>
+
+    <div class="builds-module__content">
+
+        <h2 class="u-pl4 u-mt2 c-heading__page">Builds</h2>
+        <a href="/new-build" @click="$event.preventDefault()">
+          <el-button type="success" class="u-ml4" icon="el-icon-plus" @click="goToLink('new-build')">New build</el-button>
+        </a>
+        <ba-build-list></ba-build-list>
+    </div>
   </div>
 </template>
 
@@ -25,4 +29,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+  .builds-module__content {
+    padding-top: 3rem;
+  }
 </style>

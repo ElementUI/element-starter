@@ -1,0 +1,101 @@
+//[data-fm="file-form"],
+.file-manager__fallback-link {
+    display: none;
+
+    .no-js {
+        display: block;
+    }
+}
+
+.file-manager--is-folder [data-fm-action="download"] {
+    display: none;
+}
+
+.file-manager__action-list {
+    margin: 0;
+    list-style-type: none;
+    padding: .05em 0 0 2em;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: none;
+}
+
+.file-manager__action {
+    display: inline-block;
+}
+
+.file-manager__action-link {
+    padding: .7em 2em .5em 0;
+}
+
+.file-manager__icon-container {
+    padding: .35rem .8rem .7rem !important;
+    font-size: 1.5em;
+}
+
+.file-manager__name {
+    display: flex;
+    align-items: center;
+}
+
+// Using scoping class to avoid coloring icons elsewhere.
+.file-manager__icon {
+    opacity: .8;
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    vertical-align: middle;
+    flex-shrink: 1;
+
+    .file-manager__row:hover &, .file-manager__row.is-active & {
+        opacity: 1;
+    }
+
+    .fa {
+        color: $gray--060;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        line-height: inherit;
+    }
+
+    // file outline background;
+    .fa-file {
+        color: $white;
+    }
+
+    .fa-file-word-o {
+        color: $info;
+    }
+
+    .fa-file-pdf-o {
+        color: $danger;
+    }
+
+    .fa-file-powerpoint-o {
+        color: $warning;
+    }
+
+    .fa-file-excel-o {
+        color: $success;
+    }
+
+    .fa-folder-fi {
+        color: $black;
+    }
+}
+
+.file-manager__file-input {
+    margin: 0;
+    display: none;
+}
+
+// Overrides for foundation icons
+.fa-folder-fi, .fa-folder-add {
+    font-size: 1.1em !important;
+    line-height: .8 !important;
+}

@@ -1,0 +1,156 @@
+.select2-container--britecore {
+    margin: 0;
+
+    .select2-selection.select2-selection--single {
+        @include form-element;
+        margin: 0;
+        padding: 5px; // Prefilled option from auto complete has weird padding that we need to offset.
+        line-height: 1.8;
+    }
+
+    &.select2-container--open .select2-selection.select2-selection--single {
+        border-bottom: 1px dotted $gray--020;
+        border-radius: $--border-radius-base $--border-radius-base 0 0;
+    }
+
+    .select2-dropdown {
+        border: 1px solid $--input-border;
+        border-top: 0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+        background-color: $secondary;
+    }
+
+    .select2-search--dropdown {
+        padding: .75rem .75rem .3rem;
+    }
+
+    .select2-search__field {
+        @include form-element;
+        width: 100% !important;
+        margin-bottom: 0;
+        border: 1px solid $--input-border !important;
+        padding: .5rem !important;
+    }
+
+    .select2-results__option {
+        padding: .25rem .5rem;
+        margin: 0 .75rem;
+        font-size: .9em;
+
+        &:first-child {
+            margin-top: .5rem;
+        }
+
+        &:last-child {
+            margin-bottom: .75rem;
+        }
+    }
+
+    .select2-results__options {
+        max-height: 10em;
+        overflow: auto;
+    }
+
+    .select2-selection__arrow {
+        height: 100%;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        width: 2em;
+        vertical-align: middle;
+        text-align: center;
+
+        &:before {
+            content: '\f03b';
+            @include fa-icon;
+            display: block;
+            vertical-align: sub;
+            margin: 11px 0 0 5px;
+        }
+
+        b {
+            display: none;
+        }
+    }
+
+    &.select2-container--open .select2-selection__arrow {
+        transform: rotate(180deg);
+    }
+
+    .select2-results__message, .loading-results {
+        color: $gray--060;
+        font-size: .85em;
+        padding: .25rem 0 .5rem;
+        margin: 0 .75rem !important;
+    }
+
+    .select2-results__option--highlighted[aria-selected] {
+        border-radius: $--border-radius-base;
+        background-color: darken($color-brand--055, 2%);
+        color: $white;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+    }
+
+    // Mulitple select overrides
+    // =========================
+
+    .select2-selection--multiple {
+        @include form-element;
+
+        margin-bottom: 0;
+        height: auto;
+    }
+
+    &.select2-container--open .select2-selection--multiple {
+        border-bottom: 1px dotted $gray--020 !important;
+        border-radius: $--border-radius-base $--border-radius-base 0 0;
+    }
+
+    .select2-selection--multiple .select2-search--inline {
+        width: auto;
+    }
+
+    .select2-selection--multiple .select2-selection__choice {
+        background-color: $secondary;
+        border: 1px solid $secondary-medium;
+        border-radius: 4px;
+        cursor: default;
+        float: left;
+        padding-left: .45em;
+        margin-right: 0.6em;
+    }
+
+    .select2-selection--multiple .select2-search__field {
+        border: 0 !important;
+        margin-top: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        padding: 0 !important;
+        height: auto;
+        line-height: 1.7;
+    }
+
+    .select2-selection--multiple .select2-selection__rendered {
+        display: block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    // Tag removal
+    // ===========
+
+    .select2-selection__choice__remove {
+        @include primary-button;
+
+        padding: 5px 4px 6px;
+        border-left: 1px solid lighten($secondary-dark, 10%);
+        border-radius: 0 $--border-radius-base $--border-radius-base 0;
+        margin: -1px -1px -1px .4em;
+        float: right;
+        // Regular button inset, plus one other.
+        box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.1), inset 1px 0 1px -1px rgba(0, 0, 0, 0.1);
+        line-height: .9;
+    }
+}

@@ -1,0 +1,162 @@
+.trix__container {
+  margin: 0 0 1rem;
+}
+
+trix-toolbar {
+    border: 1px solid $--input-border;
+    border-radius: $--border-radius-base $--border-radius-base 0 0;
+    border-bottom: 1px dotted $gray--020;
+    padding: .5rem;
+    background-color: $secondary;
+}
+
+trix-toolbar .button_group {
+    background: $white;
+    margin: 0;
+    font-size: .85em;
+    border: 1px solid $--input-border;
+    border-top-color: lighten($gray--020, 5%);
+    border-bottom-color: darken($gray--020, 5%);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+trix-toolbar .button_group button, trix-toolbar .button_group input[type=button] {
+    border-bottom: 0;
+}
+
+trix-toolbar .button_group button.active, trix-toolbar .button_group input[type=button].active {
+    background-color: $gray--015;
+}
+
+trix-toolbar .dialogs .dialog {
+    max-width: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-top: 0;
+    border: 1px solid hsl(0, 0%, 80%);
+    margin-top: 0.5em;
+
+    .button_group {
+        font-size: 1em;
+        overflow: hidden;
+    }
+
+    .button_group input[type=button] {
+        padding: 0.4em .8em;
+        font-weight: 500;
+        font-family: $font-family-base;
+
+        &:hover {
+            background-color: $gray--005;
+        }
+    }
+
+    input[type=url]:focus, input[type=text]:focus {
+        //background-color: $--input-background-focus;
+        border: 1px solid $--input-focus-border;
+        //box-shadow: $--input-shadow-focus;
+    }
+
+    input {
+        font-size: .95rem !important;
+    }
+}
+
+trix-toolbar .dialogs .dialog.link_dialog .link_url_fields {
+    align-items: initial;
+}
+
+trix-toolbar .dialogs .dialog input[type=url].validate:invalid, trix-toolbar .dialogs .dialog input[type=text].validate:invalid {
+    box-shadow: none;
+    border: 1px solid $warning;
+    background-color: $warning-light;
+}
+
+trix-editor {
+    @include form-element;
+
+    height: auto;
+    border-top: 0 !important;
+    border-radius: 0 0 $--border-radius-base $--border-radius-base;
+
+    // Trix lacks sufficiently scoped classes, so nesting needed.
+    .attachment {
+        padding: 1em;
+        background-color: $gray--005;
+        border-radius: 3px;
+        position: relative;
+        width: 60%;
+        border: 1px solid $gray--020;
+    }
+
+    .progress[value] {
+        -webkit-appearance: none;
+        appearance: none;
+        border: none;
+        border-radius: 4px;
+        background-color: rgba($success, .6);
+        color: $success;
+        height: .75em;
+        overflow: hidden;
+        opacity: .9;
+        transition: opacity 120ms ease-in;
+
+        &::-webkit-progress-bar {
+            background: rgba($success, .6);
+        }
+
+        // Comma separating these selectors causes a bug, so repitition is necessary.
+        &::-webkit-progress-value {
+            background-color: $success;
+            transition: width 90ms ease-in;
+        }
+
+        &::-moz-progress-bar {
+            background-color: $success;
+            transition: width 90ms ease-in;
+        }
+
+        &::-ms-fill {
+            background-color: $success;
+            transition: width 90ms ease-in;
+        }
+    }
+
+    .progress[value="100"] {
+        opacity: 0;
+    }
+
+    .caption {
+        margin-top: .5em;
+        font-size: .9em;
+    }
+
+    // Need to override trix specificity
+    .attachment .caption.caption-editing textarea {
+        @include form-element;
+
+        margin: .25em 0 0 0;
+        text-align: left;
+    }
+}
+
+// Limit formatting options, trix doesn't support js config for toolbar.
+.trix--basic {
+    trix-toolbar {
+        .strike, .heading-1, .code {
+            display: none;
+        }
+
+        .quote {
+            border-left: 0 !important;
+        }
+    }
+}
+
+// Claims people don't need code formatting most likely.
+.trix--standard {
+    trix-toolbar {
+        .code {
+            display: none;
+        }
+    }
+}

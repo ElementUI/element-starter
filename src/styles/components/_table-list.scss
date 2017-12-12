@@ -1,0 +1,59 @@
+.c-table-list__table {
+    position: relative;
+}
+
+.c-table-list__table--interactive {
+    padding-top: 2.5em;
+
+    .c-table-list__header {
+        position: absolute;
+        width: 100%;
+        top: 0;
+    }
+}
+
+.c-table-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.c-table-list__row {
+    background-color: transparent;
+    border-top: 1px solid $gray--015;
+    display: flex;
+    align-items: center;
+
+    > .row {
+      width: 100%;
+    }
+}
+
+.c-table-list__row--column {
+    flex-direction: column;
+}
+
+.c-table-list__table--interactive .c-table-list__row {
+    &:hover {
+        background-color: lighten($gray--005, 4%);
+        border: solid lighten($color-brand--030, 10%);
+        border-width: 1px 0;
+    }
+
+    &.is-active {
+        background-color: lighten($gray--005, 1.5%);
+        border: solid lighten($color-brand--030, 5%);
+        border-width: 1px 0;
+    }
+
+    // Avoid border stacking
+    &:hover + .c-table-list__row, &.is-active + .c-table-list__row {
+        border-top-width: 0;
+    }
+
+    // When hovering above an item item, don't override the active item's border.
+    &:hover + .file-manager__row.is-active {
+        border-top-width: 1px;
+        margin-top: -1px;
+    }
+}

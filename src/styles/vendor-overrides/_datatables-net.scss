@@ -1,0 +1,259 @@
+@font-face {
+  font-family: 'Glyphicons Halflings';
+
+  // src: url('../../assets/fonts/glyphicons-halflings-regular.eot');
+  // src: url('../../assets/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  // url('../../assets/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+  // url('../../assets/fonts/glyphicons-halflings-regular.woff') format('woff'),
+  // url('../../assets/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+  // url('../../assets/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+table.dataTable {
+  clear: both;
+  max-width: none !important;
+  border-collapse: separate !important;
+
+  td,
+  th {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+
+    &.dataTables_empty {
+      text-align: center;
+    }
+  }
+
+  // Style options for the table. Foundation provides its own, but it is also
+  // useful to have a few more for DataTables
+  &.nowrap {
+    th,
+    td {
+      white-space: nowrap;
+    }
+  }
+}
+
+
+// DataTables' built in feature elements
+div.dataTables_wrapper {
+  div.dataTables_length {
+    label {
+      font-weight: normal;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    select {
+      width: 75px;
+      display: inline-block;
+    }
+  }
+
+  div.dataTables_filter {
+    text-align: right;
+
+    label {
+      font-weight: normal;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    input {
+      margin-left: 0.5em;
+      display: inline-block;
+      width: auto;
+    }
+  }
+
+  div.dataTables_info {
+    padding-top: 8px;
+    white-space: nowrap;
+  }
+
+  div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+
+    ul.pagination {
+      margin: 2px 0;
+      white-space: nowrap;
+    }
+  }
+
+  div.dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    margin-top: -26px;
+    text-align: center;
+    padding: 1em 0;
+  }
+}
+
+
+// Sorting - using Glyphicons
+table.dataTable thead {
+  > tr > th,
+  > tr > td {
+    &.sorting_asc,
+    &.sorting_desc,
+    &.sorting {
+      padding-right: 30px;
+    }
+
+    &:active {
+      outline: none;
+    }
+  }
+
+  .sorting,
+  .sorting_asc,
+  .sorting_desc,
+  .sorting_asc_disabled,
+  .sorting_desc_disabled {
+    cursor: pointer;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      display: block;
+      font-family: 'Glyphicons Halflings';
+      opacity: 0.5;
+    }
+  }
+
+  .sorting:after {
+    opacity: 0.2;
+    content: "\e150"; /* sort */
+  }
+
+  .sorting_asc:after {
+    content: "\e155"; /* sort-by-attributes */
+  }
+
+  .sorting_desc:after {
+    content: "\e156"; /* sort-by-attributes-alt */
+  }
+
+  .sorting_asc_disabled:after,
+  .sorting_desc_disabled:after {
+    color: #eee;
+  }
+}
+
+
+// Scrolling
+div.dataTables_scrollHead table.dataTable {
+  margin-bottom: 0 !important;
+}
+
+div.dataTables_scrollBody {
+  > table {
+    border-top: none;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    > thead { // Hide sort icons
+      .sorting:after,
+      .sorting_asc:after,
+      .sorting_desc:after {
+        display: none;
+      }
+    }
+
+    > tbody > tr:first-child > th,
+    > tbody > tr:first-child > td {
+      border-top: none;
+    }
+  }
+}
+
+div.dataTables_scrollFoot {
+  > table {
+    margin-top: 0 !important;
+    border-top: none;
+  }
+
+  > .dataTables_scrollFootInner {
+    box-sizing: content-box;
+  }
+}
+
+
+// Responsive
+@media screen and (max-width: 767px) {
+  div.dataTables_wrapper {
+    div.dataTables_length,
+    div.dataTables_filter,
+    div.dataTables_info,
+    div.dataTables_paginate {
+      text-align: center;
+    }
+  }
+}
+
+
+//
+// Bootstrap provides a range of styling options for table's via class name
+// that we want to full support. They sometimes require some customisations
+//
+
+// Condensed
+table.dataTable.table-condensed {
+  > thead > tr > th {
+    padding-right: 20px;
+  }
+
+  .sorting:after,
+  .sorting_asc:after,
+  .sorting_desc:after {
+    top: 6px;
+    right: 6px;
+  }
+}
+
+// Frustratingly the border-collapse:collapse used by Bootstrap makes the column
+// width calculations when using scrolling impossible to align columns. We have
+// to use `border-collapse: separate`
+table.table-bordered.dataTable {
+  th,
+  td {
+    border-left-width: 0;
+
+    &:last-child,
+    &:last-child {
+      border-right-width: 0;
+    }
+  }
+
+  tbody th,
+  tbody td {
+    border-bottom-width: 0;
+  }
+}
+
+// Bordered table
+div.dataTables_scrollHead table.table-bordered {
+  border-bottom-width: 0;
+}
+
+// Responsive tables. We use rows inside the Bootstrap responsive wrapper,
+// so they need to have their margin and padding removed
+div.table-responsive > div.dataTables_wrapper > div.row {
+  margin: 0;
+
+  > div[class^="col-"] {
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}

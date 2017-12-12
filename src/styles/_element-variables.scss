@@ -550,7 +550,7 @@ $--tree-expand-icon-color: $--color-text-placeholder;
 
 /* Dropdown
 -------------------------- */
-$--dropdown-menu-box-shadow: $--box-shadow-light;
+$--dropdown-menu-box-shadow: $--box-shadow-dark;
 $--dropdown-menuItem-hover-fill: $--color-primary;
 $--dropdown-menuItem-hover-color: $--color-white;
 
@@ -705,4 +705,4 @@ $--breakpoints-spec: (
   'xl-only' : (min-width: $--xl),
 );
 
-//@import './node_modules/element-ui/lib/theme-chalk/index.css'
+//@import './node_modules/element-ui/packages/theme-chalk/src/index';

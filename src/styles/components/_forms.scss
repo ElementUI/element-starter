@@ -1,0 +1,55 @@
+.c-form {
+    max-width: 42em;
+}
+
+.c-form--inline {
+    display: inline-block;
+}
+
+label {
+  font-weight: 400;
+}
+
+textarea {
+  min-height: 5em;
+}
+
+.input-group {
+  z-index: 0;
+}
+
+.c-form__submit {
+    margin-top: 1.5rem;
+}
+
+.help-text {
+    font-size: $font-size-small;
+    color: $gray--060;
+    margin-top: .25em;
+}
+
+input.inline-edit {
+    /* Eliminate borders and padding */
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    box-shadow: none;
+
+    /* Inherit the parent element's typography */
+    font: inherit;
+    color: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    text-align: inherit;
+    background: inherit;
+
+    /* Seems to help alignment in headers */
+    vertical-align: top;
+
+    &:focus {
+        @include form-element;
+
+        margin-top: .25em;
+    }
+}

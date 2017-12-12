@@ -1,0 +1,215 @@
+$c-nav-height: 3rem;
+
+.c-nav__outer-container {
+  border-right: 1px solid $gray--020;
+  box-shadow: none;
+}
+
+.c-nav__container {
+    top: $c-nav-height;
+
+    .close-button:hover, .close-button:focus {
+        color: $gray--020;
+    }
+}
+
+.c-nav {
+    padding: .7rem 1rem 1rem 1rem;
+    color: rgba($white, .95);
+}
+
+.c-nav__top-bar {
+    background-color: $color-brand--070;
+    position: relative;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    height: $c-nav-height; // Hardcoded to match logo block
+
+    ~ .off-canvas-wrapper .off-canvas-content {
+        margin-top: 2em;
+    }
+
+    @media (min-width: $screen-lg) {
+        position: static;
+        width: auto;
+        margin-left: $offcanvas-size;
+        padding-left: .5em;
+
+        ~ .off-canvas-wrapper .off-canvas-content {
+            margin-top: 0;
+        }
+    }
+}
+
+.c-nav__main {
+    width: 100%;
+    //background-color: $offcanvas-background;
+    display: flex;
+    z-index: 2;
+
+    @media (min-width: $screen-lg) {
+        width: $offcanvas-size;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+}
+
+.c-nav__menu-trigger {
+    margin: .45em 1em .45em;
+    padding: .25em .55em .25em .25em;
+
+    @media (min-width: $screen-lg) {
+        display: none;
+    }
+}
+
+.c-nav__logo {
+    padding: .9rem 0 .5rem 1rem;
+    height: $c-nav-height; // Hardcoded to match nav block
+    flex: 1;
+    background-color: $color-brand--070;
+}
+
+.c-nav__logo-image {
+    //background-image: url('../../assets/britecore_logo.svg');
+    background-size: contain;
+    max-width: 1.5em;
+    max-height: 1.2em;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.c-nav__logo-text {
+    color: $white;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-left: 1.3em;
+    line-height: .8;
+    margin-bottom: 0;
+    max-width: 90% !important;
+
+    @media (min-width: $screen-lg) {
+        max-width: 169px !important; // off-canvas size, minus buffer;
+    }
+}
+
+.c-nav__logo-arrow {
+    display: inline-block;
+    color: $white;
+    vertical-align: text-top;
+    font-size: .8em;
+}
+
+.c-nav__section {
+    margin-bottom: 2rem;
+}
+
+.c-nav__header {
+    color: $gray--020;
+    line-height: 1.1;
+    font-size: 1.1em;
+
+    // Needed for long numbers without sensible breaks.
+    overflow-wrap: break-word;
+
+    a {
+      color: $gray--020;
+    }
+}
+
+.c-nav__subheader {
+    color: $gray--060;
+    font-size: .8em;
+    margin-bottom: 0;
+}
+
+.c-nav__list {
+    font-size: .9rem;
+}
+
+.c-nav__divider {
+    margin: 0.8em 0;
+    opacity: .2;
+}
+
+.c-nav__link {
+    color: rgba($white, .95);
+    transition: color 100ms $swift-out 20ms;
+    display: block;
+    width: 100%;
+    line-height: 1.2;
+    padding: .25em 0;
+
+    &:hover, &:focus {
+        color: rgba($white, .85);
+        cursor: pointer;
+    }
+}
+
+.c-nav__link--module {
+    width: auto;
+    margin: 0 .5em;
+    padding: .4em 1.2em;
+    font-size: .9em;
+    border-radius: .33em;
+    display: none;
+    background-color: transparent;
+    transition: background-color 120ms $swift-out;
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    @media (min-width: $screen-lg) {
+        display: inline-block;
+    }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, .1);
+    }
+}
+
+.c-nav__link--active {
+    background-color: rgba(255, 255, 255, .15);
+}
+
+.c-nav__dropdown-link {
+    border-bottom: 1px solid $gray--015;
+    padding-bottom: .25em;
+    margin-bottom: .25em;
+
+    &:last-child {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.c-nav__icon {
+    opacity: .6;
+    margin-right: .4em;
+    font-size: 0.8em !important;
+    line-height: 1.6 !important;
+
+    .c-nav__link:hover & {
+        opacity: .95;
+    }
+
+    .c-nav__link--active:hover & {
+        opacity: .95;
+    }
+}
+
+.c-nav__form {
+    .el-form-item__label {
+        color: rgba($white, .95);
+    }
+}

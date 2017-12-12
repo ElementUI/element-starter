@@ -1,0 +1,20 @@
+.el-table {
+    border: $--table-border;
+    border-radius: $--border-radius-base;
+
+    &:before {
+        display: none;
+    }
+
+    tr {
+        background-color: transparent;
+    }
+}
+
+.el-table__body-wrapper > table > tbody > tr:last-child > td {
+    border-bottom: 0;
+}
+
+.el-table__header th {
+    background-color: $--table-header-background;
+}

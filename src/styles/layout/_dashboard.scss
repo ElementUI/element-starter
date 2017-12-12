@@ -1,0 +1,30 @@
+// Layout tools for dashboad views
+.l-dashboard {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: auto 1fr 2fr;
+    grid-gap: 1em;
+}
+
+.l-dashboard--fixed {
+    height: 90vh;
+    height: calc(100vh - 4em - 46px); // Content padding and topbar.
+    //overflow: hidden;
+}
+
+.l-dashboard-panel {
+    margin: 0;
+}
+
+.l-dashboard__heading {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.l-dashboard-panel--side {
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    overflow: hidden;
+}

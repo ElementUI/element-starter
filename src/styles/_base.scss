@@ -1,6 +1,90 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
 
-.ba-application-root {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: $font-family-base;
+    font-weight: 400;
+    font-size: $font-size-base;
+    color: $--color-black;
+    background-color: hsl(180, 20%, 98%);
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    margin-bottom: .5rem;
+    margin-top: 0;
+    font-size: 1.25em;
+    color: $font-color-base;
+    font-weight: inherit;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+}
+h1 {
+  font-size: calc($font-size-base + 6px);
+}
+
+h2 {
+  font-size: calc($font-size-base + 4px);
+}
+
+h3 {
+  font-size: calc($font-size-base + 2px);
+}
+
+h4, h5, h6, p {
+  font-size: inherit;
+}
+
+p {
+  line-height: 1.6;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $--color-primary;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: lighten($--color-primary, $--button-hover-tint-percent);
+  }
+
+  &:active {
+    color: darken($--color-primary, $--button-active-shade-percent);
+  }
+}
+
+
+sup, sub {
+  font-size: calc($font-size-base - 1px);
+}
+
+small {
+  font-size: calc($font-size-base - 2px);
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eeeeee;
 }

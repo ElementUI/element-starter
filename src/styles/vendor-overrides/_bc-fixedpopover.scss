@@ -1,0 +1,42 @@
+.bc-fixedpopover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+    overflow: visible;
+}
+
+.bc-fixedpopover--bottom {
+    &:before {
+        @include css-triangle(9px, $gray--020, 'up');
+        position: absolute;
+        top: -9px;
+        left: 13px;
+    }
+
+    &:after {
+        @include css-triangle(7px, $white, 'up');
+        position: absolute;
+        top: -7px;
+        left: 15px;
+    }
+}
+
+.bc-fixedpopover--right {
+    &:before {
+        @include css-triangle(9px, $gray--020, 'left');
+        position: absolute;
+        top: 15px;
+        left: -9px;
+    }
+
+    &:after {
+        @include css-triangle(7px, $white, 'left');
+        position: absolute;
+        top: 17px;
+        left: -7.4px;
+    }
+}
+
+.bc-fixedpopover--no-arrow {
+    &:before, &:after {
+        content: none;
+    }
+}

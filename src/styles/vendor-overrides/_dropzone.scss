@@ -1,0 +1,48 @@
+.dropzone {
+  border: 2px dashed $color-brand--055;
+  border-radius: 5px;
+  background: $white;
+  min-height: 150px;
+  padding: 54px 54px;
+}
+
+.dropzone:hover {
+  background: $gray--005;
+}
+
+.dropzone .dz-message {
+  font-weight: 400;
+  font-size: 1.5em;
+  color: $gray--060;
+  text-align: center;
+}
+
+.dropzone .dz-message .note {
+  font-size: 0.8em;
+  font-weight: 200;
+  display: block;
+  margin-top: 1.4rem;
+}
+
+.dropzone .dz-preview .dz-error-message {
+  color: $white;
+}
+
+.dropzone .fallback {
+  text-align: center;
+  display: none; /* Don't display the fallback input/button until... */
+}
+
+.dropzone.dz-browser-not-supported .fallback {
+  display: block; /* Display the fallback once the browser not supported class appears */
+}
+
+.dropzone .fallback input {
+  width: 400px;
+  margin-bottom: 1em;
+}
+
+/* Don't show adjacent forms if the browser is not supported */
+.dropzone.dz-browser-not-supported ~ form {
+  display: none;
+}

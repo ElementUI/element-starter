@@ -1,0 +1,53 @@
+.jqtree-title {
+    &:before {
+        @include fa-icon;
+
+        content: '\f080';
+        margin-right: .45em;
+    }
+}
+
+ul.jqtree-tree ul.jqtree_common {
+    margin-left: .75em;
+}
+
+.jqtree-element {
+    padding: .15em .5em;
+    border-radius: $--border-radius-base;
+}
+
+.jqtree-level--1 {
+    > .jqtree-toggler {
+        display: none;
+    }
+}
+
+ul.jqtree-tree li.jqtree-selected > .jqtree-element, ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover {
+    background-color: lighten($secondary-medium, 15%);
+    background-image: none;
+}
+
+.jqtree__icons {
+    opacity: .8;
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    vertical-align: middle;
+
+    .fa {
+        color: inherit;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        line-height: inherit;
+        text-shadow: none;
+    }
+
+    .fa-square {
+        color: $white;
+        font-size: .9em;
+    }
+}

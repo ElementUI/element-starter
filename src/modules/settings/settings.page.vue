@@ -1,9 +1,9 @@
 <template>
-  <div class="builds-module-root">
-    <ba-header activeModule="settings"></ba-header>
-    <h3 class="u-text--center">Settings</h3>
+  <div class="settings-module-root">
+    <ba-header activeModule="Settings"></ba-header>
+    <h3 class="u-padding-header u-text--center c-heading__main ">Settings</h3>
 
-    <div class="settings__search u-ml4">
+    <div class="settings__search u-ml4 ">
       <div class="u-text--small">Search for...</div>
       <el-input type="text" v-model="searchFilter"></el-input>
     </div>

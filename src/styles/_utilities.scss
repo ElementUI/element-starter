@@ -125,6 +125,12 @@
     list-style: none;
 }
 
+.u-img-responsive {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 // overflow helpers
 // ------------------
 
@@ -134,6 +140,9 @@
     overflow: auto;
 }
 
+.u-padding-header {
+    padding-top: 2em;
+}
 // float helpers
 // -------------
 
@@ -313,3 +322,4 @@ $space5:    3rem !important;
 .u-pr5 { padding-right: $space5; }
 .u-pb5 { padding-bottom:$space5; }
 .u-pl5 { padding-left:  $space5; }
+

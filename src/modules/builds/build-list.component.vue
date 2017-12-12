@@ -1,10 +1,9 @@
 <template>
   <div class="builds-list__component">
-    <h4>Previous builds:</h4>
     <div class="loading" v-if="loading">Loading...</div>
 
-    <el-table
-        :data="builds">
+    <h4 v-if="builds && builds.length > 0">Previous builds:</h4>
+    <el-table v-if="builds && builds.length > 0" :data="builds">
       <el-table-column
           label="Operations"
           width="180">
@@ -37,14 +36,10 @@
 
     </el-table>
 
+    <h3 class="c-heading u-text--center" v-if="builds && builds.length === 0">There are no builds to show...</h3>
 
-    <div class="row builds-list__item build"  v-if="false && !loading" v-for="build in builds">
-      <div class="col-12 col-sm-3 build__date">{{build.status}}</div>
-      <div class="col-12 col-sm-3 build__status">{{build.queued_at}}</div>
-      <div class="col-12 col-sm-3 build__details">
-        <a :href="'#/build-details/' + build.id" @click="goLink('build-details/' + build.id)">Details...</a>
-      </div>
-    </div>
+
+
 
   </div>
 

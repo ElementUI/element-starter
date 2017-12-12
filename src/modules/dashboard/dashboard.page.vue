@@ -1,8 +1,9 @@
 <template>
   <div class="dashboard-root">
     <ba-header></ba-header>
-
-    <h2 class="u-text--center"> {{user.company.name}}</h2>
+    <div class="u-pt4"></div>
+    <div class="u-pt4"></div>
+    <h2 class="u-text--center u-header-padding"> {{user.company.name}}</h2>
     <div class="u-text--sm u-text--center">Welcome {{user.username}}</div>
 
   </div>

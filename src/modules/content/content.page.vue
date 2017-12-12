@@ -37,7 +37,7 @@
 
         <div class="el-card u-mt4 u-pb0" v-for="section in sections">
 
-          <a class="section-anchor" :id="section.name"></a>
+          <a class="u-section-anchor" :id="section.name"></a>
           <h4 class="c-heading--lg u-mb3"><icon class="u-mr2" :name="'link'"></icon>{{ section.name }}</h4>
 
           <el-form v-for="content in section.contents" :key="content.id" v-if="passSearchFilter(content)" label-position="top">
@@ -124,13 +124,5 @@ export default {
   /* Hide title if no search filter pass for section */
   .section__title:last-child {
     display: none;
-  }
-
-  /* Offset anchor to adjust for fixed header */
-  .section-anchor {
-    display: block;
-    position: relative;
-    top: -5rem;
-    visibility: hidden;
   }
 </style>

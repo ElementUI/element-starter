@@ -125,6 +125,14 @@
     list-style: none;
 }
 
+/* Offset anchor to adjust for fixed header */
+.u-section-anchor {
+    display: block;
+    position: relative;
+    top: -5rem;
+    visibility: hidden;
+}
+
 .u-img-responsive {
     max-width: 100%;
     height: auto;

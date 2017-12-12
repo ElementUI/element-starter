@@ -1,38 +1,43 @@
 <template>
-  <div class="single-setting">
-    <div class="single-setting__name">
-      {{setting.name}} <span> ( {{setting.stype}} )</span>
-    </div>
-    <div class="single-setting__slug u-text--sm">
-      {{setting.slug}}
-    </div>
-    <div class="single-setting__value u-mb4">
-      <div class="setting--boolean" v-if="setting.stype === 'BLN'">
-        <el-switch :disabled="readonly" v-model="settingValue"></el-switch>
+    <div class="single-setting">
+      <div class="single-setting__title u-mb1">
+        <div class="single-setting__name">
+          {{setting.name}}
+        </div>
+        <div class="single-setting__slug">
+          <el-tag>{{setting.section.slug}}.{{setting.slug}}</el-tag>
+        </div>
       </div>
-      <div class="setting--string" v-if="setting.stype === 'STR' || setting.stype === 'URL'">
-        <el-input :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
-      </div>
-      <div class="setting--int" v-if="setting.stype === 'INT'">
-        <el-input-number :disabled="readonly" v-model="settingValue"></el-input-number>
-      </div>
-      <div class="setting--decimal" v-if="setting.stype === 'DEC'">
-        <el-input :disabled="readonly" v-model="settingValue"></el-input>
-      </div>
-      <div class="setting--time" v-if="setting.stype === 'TIM'">
-        <el-time-select :disabled="readonly" v-model="settingValue"
-                        :picker-options="{
-                          start: '06:00',
-                          step: '00:15',
-                          end: '23:30'
-                        }"></el-time-select>
-      </div>
+      <div class="single-setting__value u-mb4">
+        <div class="setting--boolean" v-if="setting.stype === 'BLN'">
+          <el-switch :disabled="readonly" v-model="settingValue"></el-switch>
+        </div>
+        <div class="setting--string" v-if="setting.stype === 'STR' || setting.stype === 'URL'">
+          <el-input :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
+        </div>
+        <div class="setting--markdown" v-if="setting.stype === 'MKD'">
+          <el-input type="textarea" :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
+        </div>
+        <div class="setting--int" v-if="setting.stype === 'INT'">
+          <el-input-number :disabled="readonly" v-model="settingValue"></el-input-number>
+        </div>
+        <div class="setting--decimal" v-if="setting.stype === 'DEC'">
+          <el-input :disabled="readonly" v-model="settingValue"></el-input>
+        </div>
+        <div class="setting--time" v-if="setting.stype === 'TIM'">
+          <el-time-select :disabled="readonly" v-model="settingValue"
+                          :picker-options="{
+                            start: '06:00',
+                            step: '00:15',
+                            end: '23:30'
+                          }"></el-time-select>
+        </div>
 
-      <div class="u-mt4">
-        <!--{{setting.default}}-->
+        <div class="u-mt4">
+          <!--{{setting.default}}-->
+        </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -94,5 +99,12 @@ export default {
 </script>
 
 <style scoped>
+ .single-setting__title {
+   display: flex;
+ }
 
+ .single-setting__name {
+   flex: auto;
+   line-height: 30px;
+ }
 </style>

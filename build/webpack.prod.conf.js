@@ -14,6 +14,8 @@ const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
 
+env.API_ROOT = process.env.API_ROOT
+console.warn('using api root', env.API_ROOT)
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({

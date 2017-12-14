@@ -24,8 +24,6 @@
                     <div class="l-page__main">
                         <!-- Main content will be transcluded here-->
                         <slot name="main"></slot>
-
-
                     </div>
                 </div>
             </div>

@@ -4,15 +4,15 @@
 
     <ba-page-with-sidebar :title="'Content'">
       <div slot="sidebar">
-        <div class="section-list" v-for="section in sections">
-          <div class="section-list__link-item u-mt2">
-            <a  :href="'#'+ section.name">{{section.name}}</a>
+        <div class="c-nav__list">
+          <div v-for="section in sections">
+            <a class="c-nav__link" :href="'#'+ section.name">{{section.name}}</a>
           </div>
         </div>
       </div>
-      <div slot="main" class="u-pt4" v-loading="loading">
+      <div slot="main" v-loading="loading">
 
-        <h3 class="c-heading__page">Content Customization</h3>
+        <h3 class="u-pt5 c-heading__page u-pb3">Content Customization</h3>
 
         <el-form label-position="left">
           <el-row :gutter="50">
@@ -38,7 +38,7 @@
         <div class="el-card u-mt4 u-pb0" v-for="section in sections">
 
           <a class="u-section-anchor" :id="section.name"></a>
-          <h4 class="c-heading--lg u-mb3"><icon class="u-mr2" :name="'link'"></icon>{{ section.name }}</h4>
+          <h4 class="c-heading--lg u-mb3"><icon class="u-mr2 u-text--light" :name="'link'"></icon>{{ section.name }}</h4>
 
           <el-form v-for="content in section.contents" :key="content.id" v-if="passSearchFilter(content)" label-position="top">
             <ba-single-content :content="content"></ba-single-content>

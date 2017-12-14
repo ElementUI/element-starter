@@ -1,11 +1,12 @@
 <template>
-    <div class="single-setting">
+    <div :class="{ 'c-disabled-block' : readonly }">
+      <div class="c-disabled-block__message" v-if="readonly">
+          <icon class="u-mr2" :name="'exclamation-triangle'"></icon>Setting is 'Read Only'. Please contact BriteApps team for assitance.
+      </div>
+
       <div class="single-setting__title u-mb1">
         <div class="single-setting__name">
-          {{setting.name}}
-        </div>
-        <div class="single-setting__slug">
-          <el-tag>{{setting.section.slug}}.{{setting.slug}}</el-tag>
+          {{setting.name}} <em class="u-text--sm u-text--light u-ml3">{{setting.section.slug}}.{{setting.slug}}</em>
         </div>
       </div>
       <div class="single-setting__value u-mb4">
@@ -16,7 +17,7 @@
           <el-input :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
         </div>
         <div class="setting--markdown" v-if="setting.stype === 'MKD'">
-          <el-input type="textarea" :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
+          <el-input :disabled="readonly" type="textarea" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
         </div>
         <div class="setting--int" v-if="setting.stype === 'INT'">
           <el-input-number :disabled="readonly" v-model="settingValue"></el-input-number>

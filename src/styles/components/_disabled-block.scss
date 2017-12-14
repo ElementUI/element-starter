@@ -1,0 +1,36 @@
+.c-disabled-block {
+    pointer-events: none;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: -.5em;
+        background: $gray--015;
+        border: 1px solid $gray--030;
+        border-radius: 4px;
+        opacity: .2;
+    }
+
+    .el-input.is-disabled input {
+        background: #fefefe;
+        border: 1px solid #d8dce5;
+    }
+}
+
+.c-disabled-block__message {
+    color: $info-dark;
+    margin-bottom: .5em;
+    font-size: .8em;
+
+    .fa-icon {
+        // WIP need a better way to adjust these
+        height: 1em;
+        top: 2px;
+        position: relative;
+    }
+}

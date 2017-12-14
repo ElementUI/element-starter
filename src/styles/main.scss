@@ -14,7 +14,7 @@
 @import 'vendor/foundation/_off-canvas';
 @include foundation-off-canvas();
 
-// Vendor Overrides 
+// Vendor Overrides
 @import 'vendor-overrides/_ace';
 @import 'vendor-overrides/_bc-fixedpopover';
 @import 'vendor-overrides/_bc-timepicker';
@@ -44,6 +44,7 @@
 @import 'components/_button';
 @import 'components/_checkbox';
 @import 'components/_divider';
+@import 'components/_disabled-block';
 @import 'components/_floated-nav';
 @import 'components/_forms';
 @import 'components/_heading';

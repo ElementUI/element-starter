@@ -39,7 +39,7 @@
 
             <el-col  :xs="24" :sm="9">
                 <el-checkbox v-model="showOnlyOverridden">
-                  Show only non-default content
+                  Show only customized content
                 </el-checkbox>
             </el-col>
           </el-row>

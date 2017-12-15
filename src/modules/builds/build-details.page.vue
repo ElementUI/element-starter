@@ -2,6 +2,8 @@
   <div class="build-details">
     <ba-header activeModule="builds"></ba-header>
     <div v-loading="loading" class="build-details__root ">
+      <div class="u-pt4"></div>
+      <div class="u-pt4"></div>
       <h2 class="u-text--center">Build Details</h2>
       <div class="controls-container u-text--center">
         <el-button  icon="el-icon-refresh" @click="invalidateBuildStatus()">Invalidate Status</el-button>
@@ -11,6 +13,9 @@
 
       <div v-if="loading">Loading...</div>
       <div v-if="!loading && build">
+        <div class="apk-download u-text--center u-mt4">
+          <a :href="ApkLink">Download Android APK</a>
+        </div>
         <div class="u-text--right">
           <el-checkbox  v-model="showBuildTechnicalDetails">Show Build Technical Details</el-checkbox>
         </div>
@@ -70,6 +75,9 @@ export default {
   computed: {
     buildPreviewLink () {
       return this.build.aws_artifact_path + '/dist/index.html'
+    },
+    ApkLink () {
+      return this.build.aws_artifact_path + '/cordova/platforms/android/build/outputs/apk/android-debug.apk'
     },
   },
   methods: {

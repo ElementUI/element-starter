@@ -15,7 +15,7 @@ docker rm --force ba_carrier_portal__nginx
 docker run \
     --name ba_carrier_portal__nginx \
     -v ~/dist_output/dist:/usr/share/nginx/html:ro \
-    -v /srv/src/BriteApps-Admin-Element/deploy/default.conf:/etc/nginx/conf.d/default.conf \
+    -v $PWD/deploy/default.conf:/etc/nginx/conf.d/default.conf \
     -p 80:80 \
     -d \
     nginx

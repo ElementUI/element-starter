@@ -4,7 +4,7 @@
     <ba-page-with-sidebar :title="'Settings'">
       <template slot="sidebar">
         <div class="sidebar-settings">
-          <div class="c-nav__list" v-for="section in sections">
+          <div class="c-nav__list" v-for="section in filteredSections">
             <a class="c-nav__link" :href="'#' + section.name">{{section.name}}</a>
           </div>
         </div>
@@ -17,18 +17,21 @@
           <el-row :gutter="50">
             <el-col :xs="24" :sm="16">
               <el-form-item label="Search">
-                <el-input v-model="searchFilter"></el-input>
+                <el-input v-model="searchFilter">
+                  <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                  <i slot="suffix" class="el-input__icon el-icon-close u-link" @click="searchFilter = ''"></i>
+                </el-input>
               </el-form-item>
             </el-col>
           </el-row>
         </el-form>
 
-        <div v-for="section in sections" class="el-card setting-section u-mt4 u-pb0">
+        <div v-for="section in filteredSections" v-if="section.settings.length > 0" class="el-card setting-section u-mt4 u-pb0">
 
           <a class="u-section-anchor" :id="section.name"></a>
           <h4 class="c-heading--lg u-mb3"><icon class="u-mr2" name="link"></icon>{{ section.name }}</h4>
 
-          <div v-for="setting in section.settings" v-if="passSearchFilter(setting)" class="setting-section__settings single-setting u-mb4">
+          <div v-for="setting in section.settings" class="setting-section__settings single-setting u-mb4">
             <ba-single-setting :setting="setting"></ba-single-setting>
           </div>
 
@@ -76,7 +79,32 @@ export default {
       }
       return array
     },
+    filteredSections () {
+      let map = new Map()
+      let all = this.sections
+      all.forEach((section) => {
+        let currentSectionName = section.name
+        let filteredSettingsInSection = []
+        section.settings.forEach((setting) => {
+          if (this.passSearchFilter(setting)) {
+            filteredSettingsInSection.push(setting)
+          }
+        })
+        map.set(currentSectionName, filteredSettingsInSection)
+      })
 
+      let keys = Array.from(map.keys())
+      keys.sort()
+      let result = []
+      console.log(keys)
+      keys.forEach((key) => {
+        result.push({
+          name: key,
+          settings: map.get(key)
+        })
+      })
+      return result
+    }
   },
   data () {
     this.load()

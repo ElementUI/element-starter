@@ -31,17 +31,8 @@
             :key="section.name"
             v-if="section.settings.length > 0"
             :section="section"
-        > </ba-settings-section>
-        <!--<div v-for="section in filteredSections" v-if="section.settings.length > 0" class="el-card setting-section u-mt4 u-pb0">-->
+        ></ba-settings-section>
 
-          <!--<a class="u-section-anchor" :id="section.name"></a>-->
-          <!--<h4 class="c-heading&#45;&#45;lg u-mb3"><icon class="u-mr2" name="link"></icon>{{ section.name }}</h4>-->
-
-          <!--<div v-for="setting in section.settings" class="setting-section__settings single-setting u-mb4">-->
-            <!--<ba-single-setting :setting="setting"></ba-single-setting>-->
-          <!--</div>-->
-
-        <!--</div>-->
       </template>
     </ba-page-with-sidebar>
   </div>

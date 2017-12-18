@@ -45,16 +45,9 @@
           </el-row>
         </el-form>
 
-        <div class="el-card u-mt4 u-pb0" v-for="section in filteredSections" v-if="section.contents.length > 0">
-          <a class="u-section-anchor" :id="section.name"></a>
-          <h4 class="c-heading--lg u-mb3"><icon class="u-mr2 u-text--light" :name="'link'"></icon>{{ section.name }}</h4>
+        <ba-content-section v-for="section in filteredSections" :section="section" v-if="section.contents.length > 0" :key="section.name">
+        </ba-content-section>
 
-          <div class="contents-repeater--expanded">
-            <el-form v-for="content in section.contents" :key="content.id" label-position="top">
-              <ba-single-content :content="content"></ba-single-content>
-            </el-form>
-          </div>
-        </div>
 
       </div> <!-- Content module end -->
     </ba-page-with-sidebar>
@@ -63,16 +56,15 @@
 </template>
 
 <script>
-/* eslint-disable */
-
 import {mapActions, mapState} from 'vuex'
-import BaSingleContent from '@/modules/content/single-content.component'
 import BaPageWithSidebar from '@/components/page-with-sidebar.component'
+import BaContentSection from '@/modules/content/content-section.component'
 
 export default {
   components: {
+    BaContentSection,
     BaPageWithSidebar,
-    BaSingleContent},
+  },
   data () {
     this.load()
     return {
@@ -84,7 +76,6 @@ export default {
   methods: {
     ...mapActions('content', ['load']),
     passSearchFilter (content) {
-
       let searchFilterPass = false
       let overriddenFilterPass = false
       let fullSlug = content.section.slug + '.' + content.slug
@@ -95,7 +86,8 @@ export default {
       if (!searchFilterPass && content.default.toLowerCase().indexOf(this.searchFilter.toLowerCase()) >= 0) {
         searchFilterPass = true
       }
-      if (!searchFilterPass && content.overridden && content.overridden.value.toLowerCase().indexOf(this.searchFilter.toLowerCase()) >= 0) {
+      if (!searchFilterPass && content.overridden &&
+           content.overridden.value.toLowerCase().indexOf(this.searchFilter.toLowerCase()) >= 0) {
         searchFilterPass = true
       }
 
@@ -121,7 +113,6 @@ export default {
       if (this.all === null) {
         return arr
       }
-
 
       let sections = this.all[this.selectedLanguage]
       for (let section in sections) {
@@ -155,9 +146,9 @@ export default {
       keys.forEach((key) => {
         result.push({
           name: key,
-          contents: map.get(key)
+          contents: map.get(key),
         })
-      } )
+      })
       return result
     },
     languages () {

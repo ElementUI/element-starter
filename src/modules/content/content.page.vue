@@ -10,71 +10,47 @@
           </div>
         </div>
       </div>
-      <div slot="main" v-loading="loading">
+      <div slot="main" :class="{'has-fixed-search': showFixedSearch}" v-loading="loading">
 
         <h3 class="u-pt5 c-heading__page u-pb3">Content Customization</h3>
 
-        <div class="fixed-search" :class="{'fixed-search--visible': showFixedSearch}">
-          <div class="fixed-search__content">
-            <el-form label-position="left">
-            <el-row :gutter="50">
-              <el-col :xs="24" :sm="16">
-                <el-form-item label="Search">
-                  <el-input v-model="searchFilter" class="u-disable-transition">
-                    <i slot="prefix" class="el-input__icon el-icon-search u-disable-transition"></i>
-                    <i slot="suffix" class="el-input__icon el-icon-close u-link u-disable-transition" @click="searchFilter = ''"></i>
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :xs="24" :sm="8">
-                <el-form-item label="Language">
-                  <el-select v-model="selectedLanguage">
-                    <el-option
-                        v-for="language in languages"
-                        :value="language"
-                        :key="language">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
+        <div class="search-container-shell">
+          <div class="fixed-search" :class="{'fixed-search--visible': showFixedSearch}">
+            <div class="fixed-search__content">
+                <el-form label-position="left">
+              <el-row :gutter="50">
+                <el-col :xs="24" :sm="16">
+                  <el-form-item label="Search">
+                    <el-input v-model="searchFilter">
+                      <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                      <i slot="suffix" class="el-input__icon el-icon-close u-link" @click="searchFilter = ''"></i>
+                    </el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :xs="24" :sm="8">
+                  <el-form-item label="Language">
+                    <el-select v-model="selectedLanguage">
+                      <el-option
+                              v-for="language in languages"
+                              :value="language"
+                              :key="language">
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="50">
 
-          </el-form>
+                <el-col  :xs="24" :sm="9">
+                    <el-checkbox v-model="showOnlyOverridden">
+                      Show only customized content
+                    </el-checkbox>
+                </el-col>
+              </el-row>
+            </el-form>
+            </div>
           </div>
         </div>
-
-        <el-form label-position="left">
-          <el-row :gutter="50">
-            <el-col :xs="24" :sm="16">
-              <el-form-item label="Search">
-                <el-input v-model="searchFilter">
-                  <i slot="prefix" class="el-input__icon el-icon-search"></i>
-                  <i slot="suffix" class="el-input__icon el-icon-close u-link" @click="searchFilter = ''"></i>
-                </el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="8">
-              <el-form-item label="Language">
-                <el-select v-model="selectedLanguage">
-                  <el-option
-                          v-for="language in languages"
-                          :value="language"
-                          :key="language">
-                  </el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="50">
-
-            <el-col  :xs="24" :sm="9">
-                <el-checkbox v-model="showOnlyOverridden">
-                  Show only customized content
-                </el-checkbox>
-            </el-col>
-          </el-row>
-        </el-form>
-
         <ba-content-section v-for="section in filteredSections"
                             :section="section"
                             v-if="section.contents.length > 0"
@@ -158,7 +134,9 @@ export default {
         }
         let first = ref[0]
         let fixedHeaderAdjust = 100
-        let currentOffset = first.$el.offsetTop - fixedHeaderAdjust
+        let floatingSearchAdjust = this.showFixedSearch ? 110 : 0
+
+        let currentOffset = first.$el.offsetTop - (fixedHeaderAdjust + floatingSearchAdjust)
         if (nearestSection === null) {
           nearestSection = currentName
         }
@@ -179,7 +157,7 @@ export default {
       return this.all === undefined || this.all === null
     },
     showFixedSearch () {
-      return this.searchFilter || this.isScrolled
+      return this.isScrolled
     },
     sections () {
       let arr = []
@@ -248,44 +226,37 @@ export default {
 }
 </script>
 <style lang="scss">
-  /* Hide title if no search filter pass for section */
-  .section__title:last-child {
-    display: none;
+  .search-container-shell {
+    height: 110px;
   }
 
+  @media (max-width: 768px) {
+    .search-container-shell {
+      height: 220px;
+    }
+  }
   .fixed-search {
-    visibility: hidden;
-    position: fixed;
-    top: 3em;
-    left: 0;
     width: 100%;
     z-index: 99;
-    transform-origin: top right;
-    transform: scale(.95);
-    transition: all 300ms;
-    opacity: 0;
     &--visible {
-      opacity: 1;
-      transform: scale(1);
-      visibility: visible;
-    }
-
-    &__content {
-      padding: 1em;
-      padding-bottom: 0em;
-      margin-left: 0;
-      background-color: #eeeeee;
-      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.18);
+      position: fixed;
+      top: 3em;
+      left: 0;
     }
   }
+
+  .fixed-search--visible .fixed-search__content {
+    background-color: #eeeeee;
+    padding: 1em;
+    padding-bottom: 0.5em;
+    margin-left: 0;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.18);
+  }
+
   @media (min-width: 1000px) {
-    .fixed-search {
-      &__content {
-        /* sidebar visible */
+    .fixed-search--visible .fixed-search__content {
         margin-left: 220px;
       }
     }
-
-  }
 
 </style>

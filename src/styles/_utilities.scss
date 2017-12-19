@@ -169,7 +169,9 @@
 .u-clearfix {
   @include clearfix;
 }
-
+.u-disable-transition {
+    transition: none;
+}
 // link styling helpers
 // --------------------
 

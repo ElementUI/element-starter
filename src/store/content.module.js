@@ -24,6 +24,8 @@ const contentModule = {
 
       if (content.overridden) {
         content.overridden.value = payload.newValue
+      } else {
+        content.overridden = {value: payload.newValue}
       }
     }
   },

@@ -5,7 +5,7 @@
       <template slot="sidebar">
         <div class="sidebar-settings">
           <div class="c-nav__list" v-for="section in filteredSections">
-            <a class="c-nav__link" :href="'#' + section.name">{{section.name}}</a>
+            <a class="c-nav__link" :class="{'c-nav__link--active' : sectionInViewport === section.name }" :href="'#' + section.name">{{section.name}}</a>
           </div>
         </div>
 
@@ -26,11 +26,13 @@
           </el-row>
         </el-form>
 
+        {{sectionInViewport}}
         <ba-settings-section
             v-for="section in filteredSections"
             :key="section.name"
             v-if="section.settings.length > 0"
             :section="section"
+            :ref="'section__' + section.name"
         ></ba-settings-section>
 
       </template>
@@ -63,6 +65,37 @@ export default {
 
       return false
     },
+    handleScroll (e) {
+      let section = this.nearestSectionPositionToScroll(window.scrollY)
+      this.sectionInViewport = section
+    },
+    nearestSectionPositionToScroll (scrollY) {
+      let nearestSection = null
+      for (let i in this.filteredSections) {
+        let currentName = this.filteredSections[i].name
+        let refKey = 'section__' + currentName
+        let ref = this.$refs[refKey]
+        if (!ref) {
+          continue
+        }
+        if (ref.length <= 0) {
+          continue
+        }
+        let first = ref[0]
+        let fixedHeaderAdjust = 100
+        let currentOffset = first.$el.offsetTop - fixedHeaderAdjust
+        if (nearestSection === null) {
+          nearestSection = currentName
+        }
+        if (currentOffset < scrollY) {
+          nearestSection = currentName
+        }
+        if (currentOffset > scrollY) {
+          break
+        }
+      }
+      return nearestSection
+    },
   },
   computed: {
     ...mapState('settings', ['all']),
@@ -78,6 +111,7 @@ export default {
       }
       return array
     },
+
     filteredSections () {
       let map = new Map()
       let all = this.sections
@@ -97,6 +131,9 @@ export default {
       let result = []
       console.log(keys)
       keys.forEach((key) => {
+        if (this.sectionInViewport === null) {
+          this.sectionInViewport = key
+        }
         result.push({
           name: key,
           settings: map.get(key)
@@ -108,8 +145,15 @@ export default {
   data () {
     this.load()
     return {
-      searchFilter: ''
+      searchFilter: '',
+      sectionInViewport: null
     }
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
   },
 }
 </script>

@@ -6,7 +6,7 @@
       <div slot="sidebar">
         <div class="c-nav__list">
           <div v-for="section in filteredSections" v-if="section.contents.length > 0">
-            <a class="c-nav__link" :href="'#'+ section.name">{{section.name}}</a>
+            <a class="c-nav__link" :class="{'c-nav__link--active' : sectionInViewport === section.name }" :href="'#'+ section.name">{{section.name}}</a>
           </div>
         </div>
       </div>
@@ -45,7 +45,12 @@
           </el-row>
         </el-form>
 
-        <ba-content-section v-for="section in filteredSections" :section="section" v-if="section.contents.length > 0" :key="section.name">
+        <ba-content-section v-for="section in filteredSections"
+                            :section="section"
+                            v-if="section.contents.length > 0"
+                            :key="section.name"
+                            :ref="'section__' + section.name"
+        >
         </ba-content-section>
 
 
@@ -71,6 +76,7 @@ export default {
       searchFilter: '',
       selectedLanguage: null,
       showOnlyOverridden: false,
+      sectionInViewport: null,
     }
   },
   methods: {
@@ -100,6 +106,37 @@ export default {
       }
 
       return searchFilterPass && overriddenFilterPass
+    },
+    handleScroll (e) {
+      let section = this.nearestSectionPositionToScroll(window.scrollY)
+      this.sectionInViewport = section
+    },
+    nearestSectionPositionToScroll (scrollY) {
+      let nearestSection = null
+      for (let i in this.filteredSections) {
+        let currentName = this.filteredSections[i].name
+        let refKey = 'section__' + currentName
+        let ref = this.$refs[refKey]
+        if (!ref) {
+          continue
+        }
+        if (ref.length <= 0) {
+          continue
+        }
+        let first = ref[0]
+        let fixedHeaderAdjust = 100
+        let currentOffset = first.$el.offsetTop - fixedHeaderAdjust
+        if (nearestSection === null) {
+          nearestSection = currentName
+        }
+        if (currentOffset < scrollY) {
+          nearestSection = currentName
+        }
+        if (currentOffset > scrollY) {
+          break
+        }
+      }
+      return nearestSection
     },
   },
   computed: {
@@ -144,6 +181,9 @@ export default {
       let result = []
       keys.sort()
       keys.forEach((key) => {
+        if (this.sectionInViewport === null) {
+          this.sectionInViewport = key
+        }
         result.push({
           name: key,
           contents: map.get(key),
@@ -162,6 +202,12 @@ export default {
       }
       return arr
     },
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
   },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="appearance--root">
+  <div class="appearance">
     <ba-header activeModule="Appearance"></ba-header>
     <div class="appearance__content">
       <h2 class="c-heading__page">Appereance Customization</h2>
@@ -16,7 +16,6 @@
           <div class="u-text--center">
             <input type="file" :ref="'upload-image__' + image.slug" hidden @change="selectedFileDidChange($event, image)"/>
             <el-button class="u-m4" @click="uploadNewImage(image)">Upload new image</el-button>
-
           </div>
           <div class="u-text--center" v-loading="image.isLoading">
             <ba-company-image v-if="!image.isLoading" :slug="image.slug"></ba-company-image>

@@ -1,0 +1,5 @@
+.u-disable-transition {
+  .el-input__prefix, .el-input__suffix {
+    transition: none;
+  }
+}

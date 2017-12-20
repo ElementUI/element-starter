@@ -38,6 +38,11 @@ export default {
         name: 'Content',
         icon: 'font',
       },
+      {
+        link: '/appearance',
+        name: 'Appearance',
+        icon: 'adjust',
+      },
     ]
     return {
       modules,

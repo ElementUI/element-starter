@@ -1,48 +1,53 @@
 <template>
-    <div :class="{ 'c-disabled-block' : readonly }">
-      <div class="c-disabled-block__message" v-if="readonly">
-          <icon class="u-mr2" :name="'exclamation-triangle'"></icon>Setting is 'Read Only'. Please contact BriteApps team for assitance.
-      </div>
+  <div :class="{ 'c-disabled-block' : readonly }">
+    <div class="c-disabled-block__message" v-if="readonly">
+      <icon class="u-mr2" :name="'exclamation-triangle'"></icon>
+      Setting is 'Read Only'. Please contact BriteApps team for assitance.
+    </div>
 
-      <div class="single-setting__title u-mb1">
-        <div class="single-setting__name">
-          {{setting.name}} <em class="u-text--sm u-text--light u-ml3">{{setting.section.slug}}.{{setting.slug}}</em>
-        </div>
+    <div class="single-setting__title u-mb1">
+      <div class="single-setting__name">
+        {{setting.name}} <em class="u-text--sm u-text--light u-ml3">{{setting.section.slug}}.{{setting.slug}}</em>
       </div>
-      <div class="single-setting__value u-mb4">
-        <div class="setting--boolean" v-if="setting.stype === 'BLN'">
-          <el-switch :disabled="readonly" v-model="settingValue"></el-switch>
-        </div>
-        <div class="setting--string" v-if="setting.stype === 'STR' || setting.stype === 'URL'">
-          <el-input :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
-        </div>
-        <div class="setting--markdown" v-if="setting.stype === 'MKD'">
-          <el-input :disabled="readonly" type="textarea" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
-        </div>
-        <div class="setting--int" v-if="setting.stype === 'INT'">
-          <el-input-number :disabled="readonly" v-model="settingValue"></el-input-number>
-        </div>
-        <div class="setting--decimal" v-if="setting.stype === 'DEC'">
-          <el-input :disabled="readonly" v-model="settingValue"></el-input>
-        </div>
-        <div class="setting--time" v-if="setting.stype === 'TIM'">
-          <el-time-select :disabled="readonly" v-model="settingValue"
-                          :picker-options="{
+    </div>
+    <div class="single-setting__value u-mb4">
+      <div class="setting--boolean" v-if="setting.stype === 'BLN'">
+        <el-switch :disabled="readonly" v-model="settingValue"></el-switch>
+      </div>
+      <div class="setting--string" v-if="setting.stype === 'STR' || setting.stype === 'URL'">
+        <el-input :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
+      </div>
+      <div class="setting--markdown" v-if="setting.stype === 'MKD'">
+        <el-input :disabled="readonly" type="textarea" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
+      </div>
+      <div class="setting--int" v-if="setting.stype === 'INT'">
+        <el-input-number :disabled="readonly" v-model="settingValue" :min="range.min" :max="range.max"></el-input-number>
+      </div>
+      <div class="setting--decimal" v-if="setting.stype === 'DEC'">
+        <el-input :disabled="readonly" v-model="settingValue"></el-input>
+      </div>
+      <div class="setting--time" v-if="setting.stype === 'TIM'">
+        <el-time-select :disabled="readonly" v-model="settingValue"
+                        :picker-options="{
                             start: '06:00',
                             step: '00:15',
                             end: '23:30'
                           }"></el-time-select>
-        </div>
+      </div>
 
-        <div class="u-mt4">
-          <!--{{setting.default}}-->
-        </div>
+      <div class="u-mt4">
+        <!--{{setting.default}}-->
       </div>
     </div>
+  </div>
 </template>
 
 <script>
 import {mapMutations} from 'vuex'
+
+function isDefined (variable) {
+  return typeof variable !== 'undefined'
+}
 
 export default {
   props: ['setting'],
@@ -51,10 +56,40 @@ export default {
     let carrierAccess = this.setting.carrier_access
     return {
       settingValueClone: this.setting.overridden ? this.setting.overridden.value : this.setting.default,
-      readonly: carrierAccess === 'R' || carrierAccess === 'N'
+      readonly: carrierAccess === 'R' || carrierAccess === 'N',
     }
   },
   computed: {
+    range () {
+      let result = {
+        min: -Infinity,
+        max: Infinity,
+      }
+      while (true) {
+        let metadata = this.setting.metadata
+        if (!metadata || !metadata.validation) {
+          break
+        }
+
+        let range = metadata.validation.range
+
+        if (!range) {
+          break
+        }
+
+        if (isDefined(range.min)) {
+          result.min = range.min
+        }
+
+        if (isDefined(range.max)) {
+          result.max = range.max
+        }
+
+        break
+      }
+
+      return result
+    },
     settingValue: {
       get () {
         let val = this.setting.overridden ? this.setting.overridden.value : this.setting.default
@@ -94,18 +129,18 @@ export default {
       this.updateSingleSetting(payload)
 
       this.settingValueClone = value
-    }
+    },
   },
 }
 </script>
 
 <style scoped>
- .single-setting__title {
-   display: flex;
- }
+  .single-setting__title {
+    display: flex;
+  }
 
- .single-setting__name {
-   flex: auto;
-   line-height: 30px;
- }
+  .single-setting__name {
+    flex: auto;
+    line-height: 30px;
+  }
 </style>

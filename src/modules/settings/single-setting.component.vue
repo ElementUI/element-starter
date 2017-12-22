@@ -21,7 +21,7 @@
           <el-input :disabled="readonly" type="textarea" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
         </div>
         <div class="setting--int" v-if="setting.stype === 'INT'">
-          <el-input-number :disabled="readonly" v-model="settingValue"></el-input-number>
+          <el-input-number :disabled="readonly" v-model="settingValue" :min="range.min" :max="range.max"></el-input-number>
         </div>
         <div class="setting--decimal" v-if="setting.stype === 'DEC'">
           <el-input :disabled="readonly" v-model="settingValue"></el-input>

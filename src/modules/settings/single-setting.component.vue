@@ -5,30 +5,30 @@
       Setting is 'Read Only'. Please contact BriteApps team for assitance.
     </div>
 
-    <div class="single-setting__title u-mb1">
-      <div class="single-setting__name">
-        {{setting.name}} <em class="u-text--sm u-text--light u-ml3">{{setting.section.slug}}.{{setting.slug}}</em>
+      <div class="single-setting__title u-mb1">
+        <div class="single-setting__name">
+          {{setting.name}} <em class="u-text--sm u-text--light u-ml3">{{setting.section.slug}}.{{setting.slug}}</em>
+        </div>
       </div>
-    </div>
-    <div class="single-setting__value u-mb4">
-      <div class="setting--boolean" v-if="setting.stype === 'BLN'">
-        <el-switch :disabled="readonly" v-model="settingValue"></el-switch>
-      </div>
-      <div class="setting--string" v-if="setting.stype === 'STR' || setting.stype === 'URL'">
-        <el-input :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
-      </div>
-      <div class="setting--markdown" v-if="setting.stype === 'MKD'">
-        <el-input :disabled="readonly" type="textarea" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
-      </div>
-      <div class="setting--int" v-if="setting.stype === 'INT'">
-        <el-input-number :disabled="readonly" v-model="settingValue" :min="range.min" :max="range.max"></el-input-number>
-      </div>
-      <div class="setting--decimal" v-if="setting.stype === 'DEC'">
-        <el-input :disabled="readonly" v-model="settingValue"></el-input>
-      </div>
-      <div class="setting--time" v-if="setting.stype === 'TIM'">
-        <el-time-select :disabled="readonly" v-model="settingValue"
-                        :picker-options="{
+      <div class="single-setting__value u-mb4">
+        <div class="setting--boolean" v-if="setting.stype === 'BLN'">
+          <el-switch :disabled="readonly" v-model="settingValue"></el-switch>
+        </div>
+        <div class="setting--string" v-if="setting.stype === 'STR' || setting.stype === 'URL' || setting.stype === 'LTX'">
+          <el-input :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
+        </div>
+        <div class="setting--markdown" v-if="setting.stype === 'MKD'">
+          <el-input :disabled="readonly" type="textarea" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
+        </div>
+        <div class="setting--int" v-if="setting.stype === 'INT'">
+          <el-input-number :disabled="readonly" v-model="settingValue"></el-input-number>
+        </div>
+        <div class="setting--decimal" v-if="setting.stype === 'DEC'">
+          <el-input :disabled="readonly" v-model="settingValue"></el-input>
+        </div>
+        <div class="setting--time" v-if="setting.stype === 'TIM'">
+          <el-time-select :disabled="readonly" v-model="settingValue"
+                          :picker-options="{
                             start: '06:00',
                             step: '00:15',
                             end: '23:30'

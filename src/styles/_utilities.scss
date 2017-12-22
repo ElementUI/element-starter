@@ -132,6 +132,9 @@
     top: -5rem;
     visibility: hidden;
 }
+.has-fixed-search .u-section-anchor {
+    top: -12rem;
+}
 
 .u-img-responsive {
     max-width: 100%;
@@ -169,7 +172,9 @@
 .u-clearfix {
   @include clearfix;
 }
-
+.u-disable-transition {
+    transition: none;
+}
 // link styling helpers
 // --------------------
 

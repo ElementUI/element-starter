@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "8"
+env:
+  - API_ROOT='http://admin.briteapps.com'
+install:
+  - npm install
+script:
+  - npm run build
+

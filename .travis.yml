@@ -3,6 +3,9 @@ node_js:
   - "8"
 env:
   - API_ROOT='http://admin.briteapps.com'
+cache:
+  directories:
+    - "node_modules"
 install:
   - npm install
 script:

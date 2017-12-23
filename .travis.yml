@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "8"
+services:
+  - docker
 script:
   - docker build -t ba_carrier_portal:latest .
   - docker run -v ~/dist_output:/var/dist/ --env API_ROOT="'http://admin.briteapps.com'" ba_carrier_portal:latest

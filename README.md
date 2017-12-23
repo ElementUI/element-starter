@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gleb-britecore/BriteApps-Admin-Element.svg?branch=travis)](https://travis-ci.org/gleb-britecore/BriteApps-Admin-Element)
+
 # briteapps-carrier-cortal
 
 > A Vue.js project

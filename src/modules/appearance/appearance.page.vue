@@ -55,6 +55,12 @@ export default {
           sub: 'High resolution square image is the best, (resolution > 512px for retina displays)',
           isLoading: false
         },
+        {
+          slug: 'claims_placeholder',
+          description: 'Icon on the top of on File Claim page',
+          sub: 'preferred: 1000x300; png',
+          isLoading: false
+        },
       ],
     }
   },

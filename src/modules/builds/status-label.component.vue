@@ -20,7 +20,7 @@ export default {
         return 'primary'
       }
 
-      if (statusNormalized === 'success') {
+      if (statusNormalized === 'succeeded') {
         return 'success'
       }
 

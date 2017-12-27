@@ -77,7 +77,7 @@ export default {
       return this.build.aws_artifact_path + '/dist/index.html'
     },
     ApkLink () {
-      return this.build.aws_artifact_path + '/cordova/platforms/android/build/outputs/apk/android-debug.apk'
+      return this.build.aws_artifact_path + '/cordova/platforms/android/build/outputs/apk/debug/android-debug.apk'
     },
   },
   methods: {

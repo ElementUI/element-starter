@@ -5,6 +5,7 @@ import DashboardRoutes from '@/modules/dashboard/dashboard.routes'
 import BuildRoutes from '@/modules/builds/builds.routes'
 import SettingsRoutes from '@/modules/settings/settings.routes'
 import ContentRoutes from '@/modules/content/content.routes'
+import AppearanceRoutes from '@/modules/appearance/appearance.routes'
 
 import store from '@/store'
 
@@ -22,6 +23,7 @@ let router = new Router({
     ...BuildRoutes,
     ...SettingsRoutes,
     ...ContentRoutes,
+    ...AppearanceRoutes,
   ],
   mode: 'history',
 })

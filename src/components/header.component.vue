@@ -39,6 +39,12 @@ export default {
         icon: 'font',
       },
       {
+        link: '/templates',
+        name: 'Templates',
+        icon: 'code',
+      },
+
+      {
         link: '/appearance',
         name: 'Appearance',
         icon: 'adjust',

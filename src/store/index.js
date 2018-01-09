@@ -5,12 +5,14 @@ import Vuex from 'vuex'
 import loginModule from './login.module'
 import settingsModule from './settings.module'
 import contentModule from './content.module'
+import templatesModule from './templates.module'
 
 let storeDescription = {
   modules: {
     login: loginModule,
     settings: settingsModule,
     content: contentModule,
+    templates: templatesModule,
   },
   actions: {
     init: function (context, payload) {

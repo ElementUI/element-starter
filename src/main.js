@@ -16,6 +16,8 @@ import './styles/main.scss'
 import Header from './components/header.component.vue'
 import BuildStatusLabel from './modules/builds/status-label.component.vue'
 
+import AceEditor from './components/ace-editor.component.vue'
+
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon.vue'
 import moment from 'vue-moment'
@@ -27,6 +29,7 @@ Vue.use(ElementUI)
 
 Vue.use(moment)
 
+Vue.component('ba-ace-editor', AceEditor)
 Vue.component('ba-header', Header)
 Vue.component('ba-status-label', BuildStatusLabel)
 

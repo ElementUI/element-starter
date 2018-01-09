@@ -147,7 +147,6 @@ export default {
       let result = []
       all.forEach((x) => {
         if (this.passSearchFilter(x)) {
-          console.log(x.id, 'x, pass')
           result.push(x)
         }
       })

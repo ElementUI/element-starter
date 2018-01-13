@@ -2,7 +2,7 @@
 
 # briteapps-carrier-cortal
 
-> A Vue.js project
+> Hosted at http://45.63.65.202/
 
 ## Build Setup
 

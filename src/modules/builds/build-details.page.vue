@@ -16,6 +16,14 @@
         <div class="apk-download u-text--center u-mt4">
           <a :href="ApkLink">Download Android APK</a>
         </div>
+        <div class="google-play-promote u-text--center u-mt4">
+
+          <el-button @click="promoteBuild()" type="success">
+            <icon name="android"></icon>
+            <span class="u-ml1">Promote Build</span>
+          </el-button>
+
+        </div>
         <div class="u-text--right">
           <el-checkbox  v-model="showBuildTechnicalDetails">Show Build Technical Details</el-checkbox>
         </div>
@@ -74,13 +82,17 @@ export default {
   },
   computed: {
     buildPreviewLink () {
-      return this.build.aws_artifact_path + '/dist/index.html'
+      return this.build.aws_build_preview
     },
     ApkLink () {
-      return this.build.aws_artifact_path + '/cordova/platforms/android/build/outputs/apk/android-release.apk'
+      return this.build.android_release_apk
     },
   },
   methods: {
+    promoteBuild () {
+      axios.post(config.builds_details + this.buildId + '/' + 'promote', {})
+        .then()
+    },
     invalidateBuildStatus () {
       this.loading = true
       axios.patch(config.builds_details + this.buildId + '/')

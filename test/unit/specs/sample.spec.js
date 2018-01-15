@@ -6,9 +6,8 @@ describe('header.component.vue', () => {
     const Constructor = Vue.extend(Header)
     const vm = new Constructor().$mount()
     let innerHTML = vm.$el.innerHTML
-    expect(innerHTML).toEqual('a')
-    console.log('vm', innerHTML)
-    expect(vm.$el.querySelector('.dashboard-root a .nav__link').textContent)
-    .toEqual('Welcome to Your Vue.js App')
+    let content = vm.$el.querySelector('a:nth-of-type(2)').textContent
+    console.log('content', content)
+    expect(content).toEqual('Welcome to Your Vue.js App')
   })
 })

@@ -133,10 +133,18 @@ export default {
   },
   methods: {
     promoteBuild () {
+      this.$notify({
+        title: 'Uploading to Play Market...',
+        message: 'Promotion to Google Play started...',
+      })
       this.dialogVisible = false
       axios.post(config.builds_details + this.buildId + '/' + 'promote', { play_market_track: this.form.selectedTrack })
         .then(() => {
-
+          this.$notify({
+            title: 'Success',
+            message: 'Google Play Version Successfully Updated...',
+            type: 'success'
+          })
         })
     },
     invalidateBuildStatus () {

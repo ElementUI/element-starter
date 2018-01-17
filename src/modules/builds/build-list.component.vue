@@ -25,6 +25,14 @@
         </template>
       </el-table-column>
       <el-table-column
+              prop="build_number"
+              label="#"
+              width="180">
+        <template slot-scope="scope">
+          {{scope.row.version}}.{{scope.row.build_number}}
+        </template>
+      </el-table-column>
+      <el-table-column
           prop="queued_at"
           label="Queued At"
           >

@@ -16,6 +16,49 @@
         <div class="apk-download u-text--center u-mt4">
           <a :href="ApkLink">Download Android APK</a>
         </div>
+        <div class="google-play-promote u-text--center u-mt4">
+
+          <el-button @click="dialogVisible = true" type="success">
+            <icon name="android"></icon>
+            <span class="u-ml1">Promote Build</span>
+          </el-button>
+
+            <el-dialog
+                    title="Promote Build To Google Play Market"
+                    :visible.sync="dialogVisible"
+                    width="500px"
+                    :before-close="undefined">
+                <el-form :model="form">
+                    <div class="u-text--center">Version:</div>
+
+                    <el-tag class="u-mb4">
+                        <div>
+
+                                                    <b>{{build.version}}.{{build.build_number}}</b>
+                        </div>
+                    </el-tag>
+
+                    <div class="u-mb2">Distribution Track:</div>
+                    <el-form-item >
+                        <el-select v-model="form.selectedTrack">
+
+                            <el-option v-for="track in availableDistributionTracks" :key="track" :label="track" :value="track"></el-option>
+
+
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item class="u-mt5" >
+                        <div class="u-text--light">Please confirm your action bellow:</div>
+                        <el-checkbox v-model="form.reallySure" auto-complete="off">Yes, I know what I'm doing.</el-checkbox>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                     <el-button @click="dialogVisible = false">Cancel</el-button>
+                     <el-button type="primary" :disabled="!form.reallySure" @click="promoteBuild()">Confirm</el-button>
+                </span>
+            </el-dialog>
+
+        </div>
         <div class="u-text--right">
           <el-checkbox  v-model="showBuildTechnicalDetails">Show Build Technical Details</el-checkbox>
         </div>
@@ -65,22 +108,45 @@ export default {
   },
   data () {
     let buildId = this.$route.params.buildId
+    let availableDistributionTracks = ['alpha', 'beta', 'production']
     return {
       loading: true,
       buildId,
+      dialogVisible: false,
       showBuildTechnicalDetails: false,
+      availableDistributionTracks,
       build: {},
+      form: {
+        reallySure: false,
+        selectedTrack: 'alpha',
+
+      }
     }
   },
   computed: {
     buildPreviewLink () {
-      return this.build.aws_artifact_path + '/dist/index.html'
+      return this.build.aws_build_preview
     },
     ApkLink () {
-      return this.build.aws_artifact_path + '/cordova/platforms/android/build/outputs/apk/android-release.apk'
+      return this.build.android_release_apk
     },
   },
   methods: {
+    promoteBuild () {
+      this.$notify({
+        title: 'Uploading to Play Market...',
+        message: 'Promotion to Google Play started...',
+      })
+      this.dialogVisible = false
+      axios.post(config.builds_details + this.buildId + '/' + 'promote', { play_market_track: this.form.selectedTrack })
+        .then(() => {
+          this.$notify({
+            title: 'Success',
+            message: 'Google Play Version Successfully Updated...',
+            type: 'success'
+          })
+        })
+    },
     invalidateBuildStatus () {
       this.loading = true
       axios.patch(config.builds_details + this.buildId + '/')
@@ -100,12 +166,9 @@ export default {
   },
 }
 </script>
-<style scoped>
-  .build-details__root {
-    /*max-width: 100%;*/
-    /* todo */
-    /*overflow: hidden;*/
-    /*padding: 1em;*/
+<style>
+  .build-details__root  .el-loading-mask{
+      z-index: 799;
   }
 
   .build__pre {

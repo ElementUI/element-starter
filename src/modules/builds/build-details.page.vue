@@ -23,6 +23,46 @@
             <span class="u-ml1">Promote Build</span>
           </el-button>
 
+          <el-button @click="dialogAppleVisible = true" type="success">
+            <icon name="face"></icon>
+            <span class="u-ml1">Promote Apple Build</span>
+          </el-button>
+
+            <el-dialog
+                    title="Promote Build To Apple Store"
+                    :visible.sync="dialogAppleVisible"
+                    width="500px"
+                    :before-close="undefined">
+                <el-form :model="form">
+                    <div class="u-text--center">Version:</div>
+
+                    <el-tag class="u-mb4">
+                        <div>
+
+                                                    <b>{{build.version}}.{{build.build_number}}</b>
+                        </div>
+                    </el-tag>
+
+                    <div class="u-mb2">Distribution Track:</div>
+                    <el-form-item >
+                        <el-select v-model="form.selectedTrack">
+
+                            <el-option v-for="track in availableDistributionTracks" :key="track" :label="track" :value="track"></el-option>
+
+
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item class="u-mt5" >
+                        <div class="u-text--light">Please confirm your action bellow:</div>
+                        <el-checkbox v-model="form.reallySure" auto-complete="off">Yes, I know what I'm doing.</el-checkbox>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                     <el-button @click="dialogVisible = false">Cancel</el-button>
+                     <el-button type="primary" :disabled="!form.reallySure" @click="promoteAppleBuild()">Confirm</el-button>
+                </span>
+            </el-dialog>
+
             <el-dialog
                     title="Promote Build To Google Play Market"
                     :visible.sync="dialogVisible"
@@ -113,6 +153,7 @@ export default {
       loading: true,
       buildId,
       dialogVisible: false,
+      dialogAppleVisible: false,
       showBuildTechnicalDetails: false,
       availableDistributionTracks,
       build: {},
@@ -132,6 +173,22 @@ export default {
     },
   },
   methods: {
+    promoteAppleBuild () {
+//        this.$notify({
+//            title: 'Success',
+//            message: 'Apple Store promoting queued',
+//            type: 'success'
+//          })
+      this.dialogAppleVisible = false
+      axios.post(config.builds_details + this.buildId + '/' + 'promote_apple', { play_market_track: this.form.selectedTrack })
+        .then(() => {
+          this.$notify({
+            title: 'Success',
+            message: 'Apple Store promoting queued',
+            type: 'success'
+          })
+        })
+    },
     promoteBuild () {
       this.$notify({
         title: 'Uploading to Play Market...',

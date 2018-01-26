@@ -24,7 +24,7 @@
           </el-button>
 
           <el-button @click="dialogAppleVisible = true" type="success">
-            <icon name="face"></icon>
+            <icon name="apple"></icon>
             <span class="u-ml1">Promote Apple Build</span>
           </el-button>
 

@@ -174,13 +174,8 @@ export default {
   },
   methods: {
     promoteAppleBuild () {
-//        this.$notify({
-//            title: 'Success',
-//            message: 'Apple Store promoting queued',
-//            type: 'success'
-//          })
       this.dialogAppleVisible = false
-      axios.post(config.builds_details + this.buildId + '/' + 'promote_apple', { play_market_track: this.form.selectedTrack })
+      axios.post(config.builds_details + this.buildId + '/' + 'promote_apple', { track: this.form.selectedTrack })
         .then(() => {
           this.$notify({
             title: 'Success',

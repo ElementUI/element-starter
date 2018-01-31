@@ -62,7 +62,7 @@ export default {
           isLoading: false
         },
         {
-          slug: 'splash_screen',
+          slug: 'splash',
           description: 'Splash screen for iOS application, shows when application is starting',
           sub: 'preferred: 2208x2208; png',
           isLoading: false

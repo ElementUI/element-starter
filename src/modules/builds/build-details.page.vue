@@ -12,7 +12,7 @@
 
 
       <div v-if="loading">Loading...</div>
-      <div v-if="!loading && build">
+      <div v-if="!loading && build && build.status=='SUCCEEDED'">
         <div class="apk-download u-text--center u-mt4">
           <a :href="ApkLink">Download Android APK</a>
         </div>
@@ -140,6 +140,8 @@ import config from '@/config'
 
 import BuildPreview from './build-preview.component.vue'
 import ElTag from 'element-ui/packages/tag/src/tag'
+import {ShowSpinner, HideSpinner} from '../../utils/spinner'
+import {isCurrentPageVisible} from '../../utils/misc'
 
 export default {
   components: {
@@ -207,14 +209,33 @@ export default {
           this.build = response.data
         })
     },
+    loadBuild () {
+      if (!isCurrentPageVisible(this)) {
+        return
+      }
+      if (this.build.status && ['queued', 'IN_PROGRESS'].indexOf(this.build.status) === -1) {
+        this.loading = false
+        return
+      }
+      if (!this.loading) {
+        ShowSpinner()
+      }
+      axios.get(config.builds_details + this.buildId + '/')
+        .then(response => {
+          if (!this.loading) {
+            HideSpinner()
+          }
+          this.loading = false
+          this.build = response.data
+          if (['queued', 'IN_PROGRESS'].indexOf(this.build.status) !== -1) {
+            setTimeout(this.loadBuild, 15000)
+          }
+        })
+    },
   },
   beforeMount () {
-    axios.get(config.builds_details + this.buildId + '/')
-      .then(response => {
-        this.build = response.data
-        this.loading = false
-      })
-    //  this.loading
+    this.loading = true
+    this.loadBuild()
   },
 }
 </script>

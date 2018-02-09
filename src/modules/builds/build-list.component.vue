@@ -59,6 +59,9 @@ import axios from 'axios'
 import config from '@/config'
 import router from '@/router'
 import ElButton from 'element-ui/packages/button/src/button'
+import _ from 'lodash'
+import {ShowSpinner, HideSpinner} from '../../utils/spinner'
+import {isCurrentPageVisible} from '../../utils/misc'
 
 export default {
   components: {ElButton},
@@ -71,22 +74,36 @@ export default {
     }
   },
   methods: {
-
     goLink (link) {
       router.push({path: link})
     },
-
     loadBuilds () {
-      this.loading = true
+      if (!isCurrentPageVisible(this)) {
+        return
+      }
+      if (!this.loading) {
+        ShowSpinner()
+      }
       axios.get(config.list_builds_per_company)
         .then(response => {
-          //        debugger
+          if (!this.loading) {
+            HideSpinner()
+          }
           this.loading = false
           this.builds = response.data
+          let pendingBuildsExist = _.some(
+            this.builds, (build) => { return ['queued', 'IN_PROGRESS'].indexOf(build.status) !== -1 }
+          )
+          if (pendingBuildsExist) {
+            setTimeout(this.loadBuilds, 15000)
+          } else {
+            setTimeout(this.loadBuilds, 60000)
+          }
         })
     },
   },
   beforeMount () {
+    this.loading = true
     this.loadBuilds()
   }
 }

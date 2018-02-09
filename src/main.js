@@ -38,7 +38,7 @@ Vue.component('ba-status-label', BuildStatusLabel)
 // http://element.eleme.io/#/en-US/component/quickstart
 
 /* eslint-disable no-new */
-new Vue({
+let mainVueInstance = new Vue({
   el: '#js-vue-ba-portal',
   store,
   router,
@@ -49,3 +49,9 @@ new Vue({
   },
 
 })
+
+function getApp () {
+  return mainVueInstance
+}
+
+export {getApp}

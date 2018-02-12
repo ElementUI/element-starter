@@ -8,7 +8,7 @@
       <div class="controls-container u-text--center">
         <el-button  icon="el-icon-refresh" @click="invalidateBuildStatus()">Invalidate Status</el-button>
       </div>
-      <div class="u-text--center u-mt3"><ba-status-label v-if="build" :build="build"></ba-status-label></div>
+      <div v-loading="loadingStatus" class="u-text--center u-mt3"><ba-status-label v-if="build" :build="build"></ba-status-label></div>
 
 
       <div v-if="loading">Loading...</div>
@@ -124,7 +124,7 @@
         <div class="col-12">
           <h3 class="u-text--center u-mt4">Build Preview</h3>
 
-          <ba-build-preview :url="buildPreviewLink">
+          <ba-build-preview ref="buildPreviewElement" :url="buildPreviewLink">
           </ba-build-preview>
         </div>
       </div>
@@ -140,7 +140,6 @@ import config from '@/config'
 
 import BuildPreview from './build-preview.component.vue'
 import ElTag from 'element-ui/packages/tag/src/tag'
-import {ShowSpinner, HideSpinner} from '../../utils/spinner'
 import {isCurrentPageVisible} from '../../utils/misc'
 
 export default {
@@ -152,7 +151,9 @@ export default {
     let buildId = this.$route.params.buildId
     let availableDistributionTracks = ['alpha', 'beta', 'production']
     return {
+      initBuildPreviewLink: null,
       loading: true,
+      loadingStatus: false,
       buildId,
       dialogVisible: false,
       dialogAppleVisible: false,
@@ -202,6 +203,7 @@ export default {
         })
     },
     invalidateBuildStatus () {
+      this.$refs.buildPreviewElement.invalidateIframe()
       this.loading = true
       axios.patch(config.builds_details + this.buildId + '/')
         .then(response => {
@@ -218,23 +220,29 @@ export default {
         return
       }
       if (!this.loading) {
-        ShowSpinner()
+        this.loadingStatus = true
       }
       axios.get(config.builds_details + this.buildId + '/')
         .then(response => {
           if (!this.loading) {
-            HideSpinner()
+            this.loadingStatus = false
           }
           this.loading = false
           this.build = response.data
           if (['queued', 'IN_PROGRESS'].indexOf(this.build.status) !== -1) {
+            this.initBuildStatus = this.build.status
             setTimeout(this.loadBuild, 15000)
+          } else {
+            if (this.initBuildStatus !== null) {
+              this.$refs.buildPreviewElement.invalidateIframe()
+            }
           }
         })
     },
   },
   beforeMount () {
     this.loading = true
+    this.initBuildStatus = null
     this.loadBuild()
   },
 }

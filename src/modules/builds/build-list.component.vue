@@ -1,9 +1,8 @@
 <template>
   <div class="builds-list__component">
     <div class="loading" v-if="loading">Loading...</div>
-
     <h4 v-if="builds && builds.length > 0">Previous builds:</h4>
-    <el-table v-if="builds && builds.length > 0" :data="builds">
+    <el-table v-loading="loadingTable" v-if="builds && builds.length > 0" :data="builds">
       <el-table-column
           label="Operations"
           width="180">
@@ -46,9 +45,6 @@
 
     <h3 class="c-heading u-text--center" v-if="builds && builds.length === 0">There are no builds to show...</h3>
 
-
-
-
   </div>
 
 
@@ -60,7 +56,6 @@ import config from '@/config'
 import router from '@/router'
 import ElButton from 'element-ui/packages/button/src/button'
 import _ from 'lodash'
-import {ShowSpinner, HideSpinner} from '../../utils/spinner'
 import {isCurrentPageVisible} from '../../utils/misc'
 
 export default {
@@ -69,6 +64,7 @@ export default {
   data () {
     return {
       loading: true,
+      loadingTable: false,
       builds: [],
       commitId: null,
     }
@@ -81,14 +77,10 @@ export default {
       if (!isCurrentPageVisible(this)) {
         return
       }
-      if (!this.loading) {
-        ShowSpinner()
-      }
+      this.loadingTable = true
       axios.get(config.list_builds_per_company)
         .then(response => {
-          if (!this.loading) {
-            HideSpinner()
-          }
+          this.loadingTable = false
           this.loading = false
           this.builds = response.data
           let pendingBuildsExist = _.some(

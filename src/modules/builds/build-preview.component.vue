@@ -1,7 +1,7 @@
 <template>
   <div class="preview" v-loading="loading">
     <img class="preview__iphone-overlay" src="../../assets/iphone.jpg" />
-    <iframe class="preview__iframe" :src="url" @load="frameLoaded()" ></iframe>
+    <iframe ref="iframeRef" v-if="showIframe" class="preview__iframe" :src="url" @load="frameLoaded()" ></iframe>
   </div>
 </template>
 
@@ -12,6 +12,8 @@ export default {
   data () {
     return {
       loading: true,
+      showIframe: true,
+      loadingIframe: true
     }
   },
   ready () {
@@ -20,6 +22,12 @@ export default {
   methods: {
     frameLoaded () {
       this.loading = false
+    },
+    invalidateIframe () {
+      this.loading = true
+      let url = this.$refs.iframeRef.src
+      this.$refs.iframeRef.src = ''
+      this.$refs.iframeRef.src = url
     }
   }
 }

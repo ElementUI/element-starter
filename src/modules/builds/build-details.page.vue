@@ -140,7 +140,6 @@ import config from '@/config'
 
 import BuildPreview from './build-preview.component.vue'
 import ElTag from 'element-ui/packages/tag/src/tag'
-import {isCurrentPageVisible} from '../../utils/misc'
 
 export default {
   components: {
@@ -164,7 +163,8 @@ export default {
         reallySure: false,
         selectedTrack: 'alpha',
 
-      }
+      },
+      timerRef: null
     }
   },
   computed: {
@@ -212,9 +212,6 @@ export default {
         })
     },
     loadBuild () {
-      if (!isCurrentPageVisible(this)) {
-        return
-      }
       if (this.build.status && ['queued', 'IN_PROGRESS'].indexOf(this.build.status) === -1) {
         this.loading = false
         return
@@ -231,7 +228,7 @@ export default {
           this.build = response.data
           if (['queued', 'IN_PROGRESS'].indexOf(this.build.status) !== -1) {
             this.initBuildStatus = this.build.status
-            setTimeout(this.loadBuild, 15000)
+            this.timerRef = setTimeout(this.loadBuild, 15000)
           } else {
             if (this.initBuildStatus !== null) {
               this.$refs.buildPreviewElement.invalidateIframe()
@@ -245,6 +242,9 @@ export default {
     this.initBuildStatus = null
     this.loadBuild()
   },
+  beforeDestroy () {
+    clearTimeout(this.timerRef)
+  }
 }
 </script>
 <style>

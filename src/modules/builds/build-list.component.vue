@@ -56,13 +56,13 @@ import config from '@/config'
 import router from '@/router'
 import ElButton from 'element-ui/packages/button/src/button'
 import _ from 'lodash'
-import {isCurrentPageVisible} from '../../utils/misc'
 
 export default {
   components: {ElButton},
   name: 'baBuildList',
   data () {
     return {
+      timerRef: null,
       loading: true,
       loadingTable: false,
       builds: [],
@@ -74,9 +74,6 @@ export default {
       router.push({path: link})
     },
     loadBuilds () {
-      if (!isCurrentPageVisible(this)) {
-        return
-      }
       this.loadingTable = true
       axios.get(config.list_builds_per_company)
         .then(response => {
@@ -87,9 +84,9 @@ export default {
             this.builds, (build) => { return ['queued', 'IN_PROGRESS'].indexOf(build.status) !== -1 }
           )
           if (pendingBuildsExist) {
-            setTimeout(this.loadBuilds, 15000)
+            this.timerRef = setTimeout(this.loadBuilds, 15000)
           } else {
-            setTimeout(this.loadBuilds, 60000)
+            this.timerRef = setTimeout(this.loadBuilds, 60000)
           }
         })
     },
@@ -97,6 +94,9 @@ export default {
   beforeMount () {
     this.loading = true
     this.loadBuilds()
+  },
+  beforeDestroy () {
+    clearTimeout(this.timerRef)
   }
 }
 </script>

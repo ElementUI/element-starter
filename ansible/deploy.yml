@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - add_host:
+        hostname: web01
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_host: 45.63.65.202
+
+- hosts: web01
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+  - name: Go to the BriteApps-Admin-Element folder and execute rebuild.sh command
+    command: chdir=/srv/src/BriteApps-Admin-Element/ ./rebuild.sh
+    register: out
+
+  - debug: var=out.stdout_lines
+

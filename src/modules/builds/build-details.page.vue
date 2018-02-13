@@ -8,11 +8,11 @@
       <div class="controls-container u-text--center">
         <el-button  icon="el-icon-refresh" @click="invalidateBuildStatus()">Invalidate Status</el-button>
       </div>
-      <div class="u-text--center u-mt3"><ba-status-label v-if="build" :build="build"></ba-status-label></div>
+      <div v-loading="loadingStatus" class="u-text--center u-mt3"><ba-status-label v-if="build" :build="build"></ba-status-label></div>
 
 
       <div v-if="loading">Loading...</div>
-      <div v-if="!loading && build">
+      <div v-if="!loading && build && build.status=='SUCCEEDED'">
         <div class="apk-download u-text--center u-mt4">
           <a :href="ApkLink">Download Android APK</a>
         </div>
@@ -124,7 +124,7 @@
         <div class="col-12">
           <h3 class="u-text--center u-mt4">Build Preview</h3>
 
-          <ba-build-preview :url="buildPreviewLink">
+          <ba-build-preview ref="buildPreviewElement" :url="buildPreviewLink">
           </ba-build-preview>
         </div>
       </div>
@@ -150,7 +150,9 @@ export default {
     let buildId = this.$route.params.buildId
     let availableDistributionTracks = ['alpha', 'beta', 'production']
     return {
+      initBuildPreviewLink: null,
       loading: true,
+      loadingStatus: false,
       buildId,
       dialogVisible: false,
       dialogAppleVisible: false,
@@ -161,7 +163,8 @@ export default {
         reallySure: false,
         selectedTrack: 'alpha',
 
-      }
+      },
+      timerRef: null
     }
   },
   computed: {
@@ -200,6 +203,7 @@ export default {
         })
     },
     invalidateBuildStatus () {
+      this.$refs.buildPreviewElement.invalidateIframe()
       this.loading = true
       axios.patch(config.builds_details + this.buildId + '/')
         .then(response => {
@@ -207,15 +211,40 @@ export default {
           this.build = response.data
         })
     },
+    loadBuild () {
+      if (this.build.status && ['queued', 'IN_PROGRESS'].indexOf(this.build.status) === -1) {
+        this.loading = false
+        return
+      }
+      if (!this.loading) {
+        this.loadingStatus = true
+      }
+      axios.get(config.builds_details + this.buildId + '/')
+        .then(response => {
+          if (!this.loading) {
+            this.loadingStatus = false
+          }
+          this.loading = false
+          this.build = response.data
+          if (['queued', 'IN_PROGRESS'].indexOf(this.build.status) !== -1) {
+            this.initBuildStatus = this.build.status
+            this.timerRef = setTimeout(this.loadBuild, 15000)
+          } else {
+            if (this.initBuildStatus !== null) {
+              this.$refs.buildPreviewElement.invalidateIframe()
+            }
+          }
+        })
+    },
   },
   beforeMount () {
-    axios.get(config.builds_details + this.buildId + '/')
-      .then(response => {
-        this.build = response.data
-        this.loading = false
-      })
-    //  this.loading
+    this.loading = true
+    this.initBuildStatus = null
+    this.loadBuild()
   },
+  beforeDestroy () {
+    clearTimeout(this.timerRef)
+  }
 }
 </script>
 <style>

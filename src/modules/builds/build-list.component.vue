@@ -1,9 +1,8 @@
 <template>
   <div class="builds-list__component">
     <div class="loading" v-if="loading">Loading...</div>
-
     <h4 v-if="builds && builds.length > 0">Previous builds:</h4>
-    <el-table v-if="builds && builds.length > 0" :data="builds">
+    <el-table v-loading="loadingTable" v-if="builds && builds.length > 0" :data="builds">
       <el-table-column
           label="Operations"
           width="180">
@@ -46,9 +45,6 @@
 
     <h3 class="c-heading u-text--center" v-if="builds && builds.length === 0">There are no builds to show...</h3>
 
-
-
-
   </div>
 
 
@@ -59,35 +55,48 @@ import axios from 'axios'
 import config from '@/config'
 import router from '@/router'
 import ElButton from 'element-ui/packages/button/src/button'
+import _ from 'lodash'
 
 export default {
   components: {ElButton},
   name: 'baBuildList',
   data () {
     return {
+      timerRef: null,
       loading: true,
+      loadingTable: false,
       builds: [],
       commitId: null,
     }
   },
   methods: {
-
     goLink (link) {
       router.push({path: link})
     },
-
     loadBuilds () {
-      this.loading = true
+      this.loadingTable = true
       axios.get(config.list_builds_per_company)
         .then(response => {
-          //        debugger
+          this.loadingTable = false
           this.loading = false
           this.builds = response.data
+          let pendingBuildsExist = _.some(
+            this.builds, (build) => { return ['queued', 'IN_PROGRESS'].indexOf(build.status) !== -1 }
+          )
+          if (pendingBuildsExist) {
+            this.timerRef = setTimeout(this.loadBuilds, 15000)
+          } else {
+            this.timerRef = setTimeout(this.loadBuilds, 60000)
+          }
         })
     },
   },
   beforeMount () {
+    this.loading = true
     this.loadBuilds()
+  },
+  beforeDestroy () {
+    clearTimeout(this.timerRef)
   }
 }
 </script>

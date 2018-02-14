@@ -62,7 +62,7 @@ export default {
   name: 'baBuildList',
   data () {
     return {
-      timerRef: null,
+      loadBuildTimerRef: null,
       loading: true,
       loadingTable: false,
       builds: [],
@@ -84,9 +84,9 @@ export default {
             this.builds, (build) => { return ['queued', 'IN_PROGRESS'].indexOf(build.status) !== -1 }
           )
           if (pendingBuildsExist) {
-            this.timerRef = setTimeout(this.loadBuilds, 15000)
+            this.loadBuildTimerRef = setTimeout(this.loadBuilds, 15000)
           } else {
-            this.timerRef = setTimeout(this.loadBuilds, 60000)
+            this.loadBuildTimerRef = setTimeout(this.loadBuilds, 60000)
           }
         })
     },
@@ -96,7 +96,7 @@ export default {
     this.loadBuilds()
   },
   beforeDestroy () {
-    clearTimeout(this.timerRef)
+    clearTimeout(this.loadBuildTimerRef)
   }
 }
 </script>

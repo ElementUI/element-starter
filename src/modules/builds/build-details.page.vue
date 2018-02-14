@@ -210,7 +210,7 @@ export default {
         }).catch(
         () => {
           this.promoteAndroidButtonCaption = promoteAndroidBuildBaseCaption + ' : FAILURE ' + this.form.selectedTrack
-          this.waitingAndroidPromoteCompleted = true
+          this.waitingAndroidPromoteCompleted = false
           this.$notify({
             title: 'FAILURE',
             message: 'Google Play Version Successfully Updated...',

@@ -4,7 +4,7 @@
     <div v-loading="loading" class="build-details__root ">
       <div class="u-pt4"></div>
       <div class="u-pt4"></div>
-      <h2 class="u-text--center">Build Details</h2>
+      <h2 class="u-text--center">Build {{ humanBuildId }} Details</h2>
       <div class="controls-container u-text--center">
         <el-button  icon="el-icon-refresh" @click="invalidateBuildStatus()">Invalidate Status</el-button>
       </div>
@@ -70,24 +70,24 @@
 
                     <el-tag class="u-mb4">
                         <div>
-
-                                                    <b>{{build.version}}.{{build.build_number}}</b>
+                            <b>{{build.version}}.{{build.build_number}}</b>
                         </div>
                     </el-tag>
 
                     <div class="u-mb2">Distribution Track:</div>
                     <el-form-item >
                         <el-select v-model="form.selectedTrack">
-
                             <el-option v-for="track in availableDistributionTracks" :key="track" :label="track" :value="track"></el-option>
-
-
                         </el-select>
+                    </el-form-item>
+                     <el-form-item v-if="form.selectedTrack=='production'" class="u-mt5" >
+                        <div class="u-text--light">Please confirm your action bellow:</div>
+                        <el-checkbox v-model="form.reallySure" auto-complete="off">Yes, I know what I'm doing.</el-checkbox>
                     </el-form-item>
                 </el-form>
                 <span slot="footer" class="dialog-footer">
                      <el-button @click="dialogVisible = false">Cancel</el-button>
-                     <el-button type="primary" @click="promoteBuild()">Confirm</el-button>
+                     <el-button type="primary" @click="promoteBuild()" :disabled="form.selectedTrack=='production' && !form.reallySure">Confirm</el-button>
                 </span>
             </el-dialog>
 
@@ -145,7 +145,7 @@ export default {
   },
   data () {
     let buildId = this.$route.params.buildId
-    let availableDistributionTracks = ['alpha', 'beta', 'production']
+    let availableDistributionTracks = ['beta', 'production']
     return {
       initBuildPreviewLink: null,
       previousApplePromoteStatus: null,
@@ -175,6 +175,9 @@ export default {
     ApkLink () {
       return this.build.android_release_apk
     },
+    humanBuildId () {
+      return this.build ? this.build.version + '.' + this.build.build_number : 'UNDEFINED'
+    }
   },
   methods: {
     promoteAppleBuild () {

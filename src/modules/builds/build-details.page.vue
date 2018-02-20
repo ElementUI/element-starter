@@ -218,10 +218,10 @@ export default {
         (error) => {
           this.promoteAndroidButtonCaption = promoteAndroidBuildBaseCaption + ' : FAILURE ' + this.form.selectedTrack
           this.waitingAndroidPromoteCompleted = false
-          let message =  error.response.data && error.response.data.failure_message ?
-            error.response.data.failure_message : 'Google Play Version Update failed...'
-          let title =  error.response.data && error.response.data.failure ?
-            'Failure: ' + error.response.data.failure : 'FAILURE'
+          let message = error.response.data && error.response.data.failure_message
+            ? error.response.data.failure_message : 'Google Play Version Update failed...'
+          let title = error.response.data && error.response.data.failure
+            ? 'Failure: ' + error.response.data.failure : 'FAILURE'
           this.$notify({
             title: title,
             message: message,
@@ -248,7 +248,8 @@ export default {
             this.$notify({
               title: data.status,
               message: 'Apple Store promoting finished with internal error...',
-              type: 'error'
+              type: 'error',
+              duration: 0
             })
             console.log('issue during loadApplePromoteDetails', result)
             return
@@ -269,7 +270,8 @@ export default {
               this.$notify({
                 title: data.status,
                 message: 'Apple Store promoting finished...',
-                type: data.status === 'SUCCESS' ? 'success' : 'error'
+                type: data.status === 'SUCCESS' ? 'success' : 'error',
+                duration: data.status === 'SUCCESS' ? 3000 : 0
               })
             }
           }

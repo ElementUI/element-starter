@@ -22,7 +22,6 @@
 <script>
 import axios from 'axios'
 import config from '@/config'
-import router from '@/router'
 
 export default {
   name: 'AndroidVersionList',

@@ -61,19 +61,4 @@ export default {
   }
 }
 </script>
-<style scoped>
-  .builds-list__component {
-    padding: 2em;
-  }
-  .builds-list__item {
-    padding: 1em;
-  }
-  .build__date,
-  .build__status,
-  .build__details
-  {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-</style>
+

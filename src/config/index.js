@@ -29,4 +29,6 @@ config.list_builds_per_company = config.url + '/builds/'
 config.builds_details = config.url + '/build/'
 config.build_mobile_app = config.url + '/build-mobile-app/'
 
+config.android_promotes = config.url + '/promoted/android/'
+
 export default config

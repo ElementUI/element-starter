@@ -5,6 +5,7 @@
       <div class="u-pt4"></div>
       <div class="u-pt4"></div>
       <h2 class="u-text--center">Build {{ humanBuildId }} Details</h2>
+      <android-version-list class="u-text--center u-mb2" ref="androidVersionListElement"></android-version-list>
       <div class="controls-container u-text--center">
         <el-button  icon="el-icon-refresh" @click="invalidateBuildStatus()">Invalidate Status</el-button>
       </div>
@@ -133,6 +134,7 @@ import config from '@/config'
 
 import BuildPreview from './build-preview.component.vue'
 import ElTag from 'element-ui/packages/tag/src/tag'
+import AndroidVersionList from './android-version.component'
 
 let promoteAppleBuildBaseCaption = 'Send to Apple for Approval'
 
@@ -142,6 +144,7 @@ export default {
   components: {
     ElTag,
     'ba-build-preview': BuildPreview,
+    'android-version-list': AndroidVersionList
   },
   data () {
     let buildId = this.$route.params.buildId
@@ -162,7 +165,7 @@ export default {
       availableDistributionTracks,
       build: {},
       form: {
-        selectedTrack: 'alpha',
+        selectedTrack: 'beta',
       },
       loadBuildTimerRef: null,
       loadApplePromoteTimerRef: null
@@ -205,19 +208,25 @@ export default {
         .then(() => {
           this.promoteAndroidButtonCaption = promoteAndroidBuildBaseCaption + ' : SUCCESS ' + this.form.selectedTrack
           this.waitingAndroidPromoteCompleted = false
+          this.$refs.androidVersionListElement.loadAndroidPromotesState() // trigger version refresh
           this.$notify({
             title: 'Success',
             message: 'Google Play Version Successfully Updated...',
             type: 'success'
           })
         }).catch(
-        () => {
+        (error) => {
           this.promoteAndroidButtonCaption = promoteAndroidBuildBaseCaption + ' : FAILURE ' + this.form.selectedTrack
           this.waitingAndroidPromoteCompleted = false
+          let message =  error.response.data && error.response.data.failure_message ?
+            error.response.data.failure_message : 'Google Play Version Update failed...'
+          let title =  error.response.data && error.response.data.failure ?
+            'Failure: ' + error.response.data.failure : 'FAILURE'
           this.$notify({
-            title: 'FAILURE',
-            message: 'Google Play Version Successfully Updated...',
-            type: 'error'
+            title: title,
+            message: message,
+            type: 'error',
+            duration: 0
           })
         }
       )
@@ -289,7 +298,8 @@ export default {
           } else {
             this.loadingStatus = false
             if (this.build.android_promotion_tracks !== null) {
-              this.promoteAndroidButtonCaption = promoteAndroidBuildBaseCaption + ' : SUCCESS ' + this.build.android_promotion_tracks
+              this.promoteAndroidButtonCaption = promoteAndroidBuildBaseCaption + ' : SUCCESS ' +
+                this.build.android_promotion_tracks
             }
             if (this.initBuildStatus !== null) {
               this.$refs.buildPreviewElement.invalidateIframe()

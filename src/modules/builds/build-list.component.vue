@@ -1,6 +1,7 @@
 <template>
   <div class="builds-list__component">
     <div class="loading" v-if="loading">Loading...</div>
+    <android-version-list></android-version-list>
     <h4 v-if="builds && builds.length > 0">Previous builds:</h4>
     <el-table v-loading="loadingTable" v-if="builds && builds.length > 0" :data="builds">
       <el-table-column
@@ -55,10 +56,11 @@ import axios from 'axios'
 import config from '@/config'
 import router from '@/router'
 import ElButton from 'element-ui/packages/button/src/button'
+import AndroidVersionList from './android-version.component'
 import _ from 'lodash'
 
 export default {
-  components: {ElButton},
+  components: {ElButton, 'android-version-list': AndroidVersionList},
   name: 'baBuildList',
   data () {
     return {

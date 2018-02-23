@@ -259,8 +259,9 @@ export default {
             console.log('no promote tasks in db')
             return
           }
+
           data = data[0]
-          if (data.status === 'QUEUED') {
+          if (['LOCKED', 'QUEUED'].indexOf(data.status) !== -1) {
             this.previousApplePromoteStatus = data.status
             this.waitingPromoteCompleted = true
             this.loadApplePromoteTimerRef = setTimeout(this.loadApplePromoteDetails, 15000)

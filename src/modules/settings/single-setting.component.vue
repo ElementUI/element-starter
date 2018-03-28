@@ -14,8 +14,11 @@
         <div class="setting--boolean" v-if="setting.stype === 'BLN'">
           <el-switch :disabled="readonly" v-model="settingValue"></el-switch>
         </div>
-        <div class="setting--string" v-if="setting.stype === 'STR' || setting.stype === 'URL' || setting.stype === 'LTX'">
+        <div class="setting--string" v-if="setting.stype === 'STR' || setting.stype === 'URL'">
           <el-input :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
+        </div>
+        <div class="setting--string" v-if="setting.stype === 'LTX'">
+          <el-input type="textarea" autosize :rows="3" :disabled="readonly" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>
         </div>
         <div class="setting--markdown" v-if="setting.stype === 'MKD'">
           <el-input :disabled="readonly" type="textarea" v-bind:value="settingValueClone" @change="updateTextSetting" @blur="updateTextSetting"></el-input>

@@ -12,7 +12,7 @@ Vue.use(Vuex)
 // 后端交互
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 Vue.prototype.$http = axios
-Vue.prototype.backendUrl = 'http://127.0.0.1:9507'
+Vue.prototype.backendUrl = 'http://127.0.0.1:8888'
 Vue.config.productionTip = false
 
 // 状态管理

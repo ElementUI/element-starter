@@ -3,6 +3,7 @@
     <h2>{{title}}</h2>
     <el-menu :default-active="activeIndex" router>
       <el-menu-item index="/">首页</el-menu-item>
+      <el-menu-item index="record">记录</el-menu-item>
       <el-menu-item index="about">关于</el-menu-item>
     </el-menu>
   </el-col>

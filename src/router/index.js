@@ -6,7 +6,8 @@ Vue.use(Router)
 const routeOptions = [
   {path: '/', component: 'Home'},
   {path: '/about', component: 'About'},
-  {path: '/login', component: 'Login'}
+  {path: '/login', component: 'Login'},
+  {path: '/record', component:'Record'},
 ]
 
 const routes = routeOptions.map(route => {

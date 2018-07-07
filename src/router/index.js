@@ -6,6 +6,7 @@ Vue.use(Router)
 const routeOptions = [
   {path: '/', component: 'Home'},
   {path: '/about', component: 'About'},
+  {path: '/login', component: 'Login'}
 ]
 
 const routes = routeOptions.map(route => {

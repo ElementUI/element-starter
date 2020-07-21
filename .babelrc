@@ -1,3 +1,9 @@
 {
-  "presets": ["vue-app"]
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-optional-chaining"
+  ]
 }

@@ -14,7 +14,11 @@
         <!-- searchable header end -->
 
         <!-- cluster table content -->
-        <el-table ref="clusterTable" :show-header='true' class="table" :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+        <el-table ref="clusterTable" class="table" 
+        :show-header='true' 
+        @row-click='handleRow' 
+        row-key='Cell ID'
+        :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)">
             <el-table-column prop='Cell ID' label='Cell ID'></el-table-column>
             <el-table-column prop='nUMI' label='nUMI'></el-table-column>
             <el-table-column prop='nGene' label='nGene'></el-table-column>
@@ -52,23 +56,16 @@
             }; // end of data return
         },
         methods: {
+            handleRow(row, event, column){
+                console.log(row, event, column);
+            },
             selectCell(item){
-                this.currentGene = '';
+                this.currentCell = '';
             }
         },
         beforeMount(){
             console.log('before mount');
             console.log(CLUSTER_DATA_URL);
-            //var data = $.csv.toObjects(d);
-            //console.log(this.data);
-            //$(document).ready(function() {
-            //    $.ajax({
-            //        type: "GET",
-            //        url: "/cluster_data/18_Reddien_Science_SI.s1.txt",
-            //        dataType: "text",
-            //        success: function(data) {processData(data);}
-            //     });
-            //});
             var self = this;
             $.getJSON(CLUSTER_DATA_URL, function(_data){
                 self.tableData = _data;

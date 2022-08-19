@@ -6,8 +6,6 @@
         <!-- searchable header -->
         <p class="inline_item" > select a cell:</p>
         <el-select class="inline_item" v-model='currentGene' filterable placeholder="" @change="selectGene">
-          <el-option>
-          </el-option>
         </el-select>
         <p class="inline_item" > search:</p>
         <el-input  class="inline_item" style='width:150px;' placeholder="Gene"></el-input>
@@ -16,7 +14,7 @@
         <!-- cluster table content -->
         <el-table ref="clusterTable" :show-header='true' class="table" :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)">
             <el-table-column prop='Contig' label='Contig'></el-table-column>
-            <el-table-column prop='Blast-blast hit' label='Blast-blast hit'></el-table-column>
+            <el-table-column prop='Best-blast hit' label='Best-blast hit'></el-table-column>
             <el-table-column prop='Accession' label='Accession'></el-table-column>
             <el-table-column prop='e-value' label='e-value'></el-table-column>
             <el-table-column prop='Organism' label='Organism'></el-table-column>
@@ -25,9 +23,13 @@
             <el-table-column prop='Adjusted p-value' label='Adjusted p-value'></el-table-column>
             <el-table-column prop='AUC' label='AUC'></el-table-column>
             <el-table-column prop='Power' label='Power'></el-table-column>
-            <el-table-column prop='Associated cell type class' label='Associated cell type class'></el-table-column>
+            <el-table-column prop='Associated cell  type class' label='Associated cell type class'></el-table-column>
         </el-table>
-        <el-pagination layout="total,sizes, prev, jumper, next">
+        <el-pagination layout="total,sizes, prev, jumper, next"
+        :total="this.tableData.length"
+        :current-page="currentPage"
+        @current-change="handleCurrentChange" @size-change="handleSizeChange"
+        :page-sizes="[10,15,20]" :page-size="pageSize" :current-page.sync="currentPage">
         </el-pagination>
         <!-- cluster table content -->
     </div>
@@ -53,16 +55,20 @@
             }; // end of data return
         },
         methods: {
+            handleSizeChange (size) {
+                this.pageSize = size;
+            },
+            handleCurrentChange (currentpage){
+                this.currentPage = currentpage;
+            },
             selectGene(item){
                 this.currentGene = '';
             }
         },
         beforeMount(){
             var self = this;
-            
             $.getJSON(GENE_DATA_URL, function(_data){
                 console.log('xxxxxxxxx');
-                console.log(_data)
                 self.tableData = _data;
                 console.log(self.tableData);
             });
